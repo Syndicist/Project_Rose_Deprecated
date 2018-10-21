@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Rose.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Rose test sprites/start slash attack.png" type="Texture" id=4]
@@ -46,8 +46,8 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 
 resource_name = "StartSlash"
-length = 1.0
-loop = true
+length = 0.8
+loop = false
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("StartSlashSprites:frame")
@@ -65,16 +65,16 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 8.69928, 28.3636 )
 
 [node name="Rose" type="KinematicBody2D" index="0"]
 
-position = Vector2( 314, 193 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="animator" type="AnimationPlayer" parent="." index="0"]
 
@@ -87,15 +87,17 @@ anims/Idle = SubResource( 1 )
 anims/Run = SubResource( 2 )
 anims/StartSlash = SubResource( 3 )
 blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="collider" type="CollisionShape2D" parent="." index="1"]
 
+position = Vector2( -0.524475, 2.62238 )
 shape = SubResource( 4 )
 
 [node name="StillSprites" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation" ]
+_sections_unfolded = [ "Transform" ]
 
 [node name="RunSprites" type="Sprite" parent="." index="3"]
 
