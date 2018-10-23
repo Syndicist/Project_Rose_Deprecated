@@ -50,13 +50,13 @@ script = ExtResource( 1 )
 
 texture = ExtResource( 2 )
 hframes = 7
-frame = 6
 _sections_unfolded = [ "Animation" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 
+position = Vector2( -1.75194, 0.291988 )
 build_mode = 0
-polygon = PoolVector2Array( 38.8106, 56.5241, 30.9623, 60.3293, 18.5953, 63.8967, -5.66309, 63.6589, 10.5092, 50.8162, 19.7844, 33.4548, 27.3949, 35.8331, 31.9136, 39.4005, 35.2432, 43.2058, 37.3836, 47.9623 )
+polygon = PoolVector2Array( -0.660431, -57.5828, 10.5561, -57.5828, 22.6384, -55.7304, 33.3406, -51.6873, 44.2806, -46.2173, 61.1664, -30.7585, 67.5877, -18.3915, 70.0526, -8.32755, 60.9285, -18.8671, 54.9829, -24.0993, 46.4211, -26.7154, 35.9567, -27.1911, 21.285, -23.4455, 16.4548, -39.3203, 11.2226, -46.6929, 7.65524, -51.4495 )
 
 [node name="animator" type="AnimationPlayer" parent="." index="2"]
 

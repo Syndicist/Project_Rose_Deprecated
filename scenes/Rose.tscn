@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scenes/Rose.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Rose_combo.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Rose test sprites/start slash attack.png" type="Texture" id=4]
@@ -22,6 +22,25 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "MidSlash"
+length = 1.0
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("MidSlashSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -46,7 +65,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 
 resource_name = "StartSlash"
-length = 0.8
+length = 1.0
 loop = false
 step = 0.25
 tracks/0/type = "value"
@@ -84,6 +103,7 @@ playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
 anims/Idle = SubResource( 1 )
+anims/MidSlash = SubResource( 5 )
 anims/Run = SubResource( 2 )
 anims/StartSlash = SubResource( 3 )
 blend_times = [  ]
@@ -104,15 +124,21 @@ _sections_unfolded = [ "Transform" ]
 visible = false
 texture = ExtResource( 3 )
 hframes = 8
-frame = 7
 _sections_unfolded = [ "Animation" ]
 
 [node name="StartSlashSprites" type="Sprite" parent="." index="4"]
 
 visible = false
+position = Vector2( -11.0446, 1.56506 )
 texture = ExtResource( 4 )
 hframes = 3
-frame = 2
+_sections_unfolded = [ "Animation" ]
+
+[node name="MidSlashSprites" type="Sprite" parent="." index="5"]
+
+visible = false
+texture = ExtResource( 4 )
+hframes = 3
 _sections_unfolded = [ "Animation" ]
 
 
