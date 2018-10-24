@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-2f2a78905a827266e0f138e7fe863294.stex"
+path="res://.import/1st_slash_attack_effect.png-a857876068f3e7a9fdab18cc639ee925.stex"
 
 [deps]
 
-source_file="res://sprites/Rose test sprites/idle.png"
-dest_files=[ "res://.import/idle.png-2f2a78905a827266e0f138e7fe863294.stex" ]
+source_file="res://sprites/Rose test sprites/1st_slash_attack_effect.png"
+dest_files=[ "res://.import/1st_slash_attack_effect.png-a857876068f3e7a9fdab18cc639ee925.stex" ]
 
 [params]
 

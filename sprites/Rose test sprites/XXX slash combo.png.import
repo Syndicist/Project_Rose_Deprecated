@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-2f2a78905a827266e0f138e7fe863294.stex"
+path="res://.import/XXX slash combo.png-16510a8a74f85f507ff409921cd5e42a.stex"
 
 [deps]
 
-source_file="res://sprites/Rose test sprites/idle.png"
-dest_files=[ "res://.import/idle.png-2f2a78905a827266e0f138e7fe863294.stex" ]
+source_file="res://sprites/Rose test sprites/XXX slash combo.png"
+dest_files=[ "res://.import/XXX slash combo.png-16510a8a74f85f507ff409921cd5e42a.stex" ]
 
 [params]
 

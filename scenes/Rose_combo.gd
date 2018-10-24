@@ -218,6 +218,7 @@ func AttackState():
 	#can have its own interruptable window.
 	if(attack_timer <= 35):
 		interruptable = true;
+		velocity.x = 0;
 	else:
 		interruptable = false;
 	if(interruptable):
@@ -263,39 +264,46 @@ func AttackState():
 
 ### SLASH attacks ###
 func firstSlash():
-	changeSprite("StartSlashSprites","StartSlash");
-	if(anim == "StartSlash" && $StartSlashSprites.frame == 2 && combo_step == 1):
-		var effect = preload("res://scenes/StartSlashEffect.tscn").instance();
+	changeSprite("FirstSlashSprites","1stSlash");
+	if(anim == "1stSlash" && $FirstSlashSprites.frame == 2 && combo_step == 1):
+		var effect = preload("res://scenes/1st_Slash_Effect.tscn").instance();
 		effect.position = self.position;
 		if(Direction == "left"):
 			effect.scale.x = effect.scale.x * -1;
+			effect.velocity.x = -500
+			velocity.x = -500;
+		else:
+			effect.velocity.x = 500;
+			velocity.x = 500;
 		effect.add_collision_exception_with(self);
 		get_parent().add_child(effect);
 		effect.get_node("animator").play("slash");
 		combo_step += 1;
 	pass
 func secondSlash():
-	changeSprite("MidSlashSprites","MidSlash");
-	if(anim == "MidSlash" && $MidSlashSprites.frame == 2 && combo_step == 2):
-		var effect = preload("res://scenes/StartSlashEffect.tscn").instance();
-		effect.position = self.position;
-		if(Direction == "left"):
-			effect.scale.x = effect.scale.x * -1;
-		effect.add_collision_exception_with(self);
-		get_parent().add_child(effect);
-		effect.get_node("animator").play("slash");
+	changeSprite("SecondSlashSpritesXXX","2ndSlashXXX");
+	if(anim == "2ndSlashXXX" && $SecondSlashSpritesXXX.frame == 2 && combo_step == 2):
+		#TODO: unique effect sprite
+		#var effect = preload("res://scenes/StartSlashEffect.tscn").instance();
+		#effect.position = self.position;
+		#if(Direction == "left"):
+		#	effect.scale.x = effect.scale.x * -1;
+		#effect.add_collision_exception_with(self);
+		#get_parent().add_child(effect);
+		#effect.get_node("animator").play("slash");
 		combo_step += 1;
 	pass
 func thirdSlash():
-	changeSprite("StartSlashSprites","StartSlash");
-	if(anim == "StartSlash" && $StartSlashSprites.frame == 2 && combo_step == 3):
-		var effect = preload("res://scenes/StartSlashEffect.tscn").instance();
-		effect.position = self.position;
-		if(Direction == "left"):
-			effect.scale.x = effect.scale.x * -1;
-		effect.add_collision_exception_with(self);
-		get_parent().add_child(effect);
-		effect.get_node("animator").play("slash");
+	changeSprite("ThirdSlashSpritesXXX","3rdSlashXXX");
+	if(anim == "3rdSlashXXX" && $ThirdSlashSpritesXXX.frame == 1 && combo_step == 3):
+		#TODO: unique effect sprite
+		#var effect = preload("res://scenes/StartSlashEffect.tscn").instance();
+		#effect.position = self.position;
+		#if(Direction == "left"):
+		#	effect.scale.x = effect.scale.x * -1;
+		#effect.add_collision_exception_with(self);
+		#get_parent().add_child(effect);
+		#effect.get_node("animator").play("slash");
 		combo_step += 1;
 	pass
 
