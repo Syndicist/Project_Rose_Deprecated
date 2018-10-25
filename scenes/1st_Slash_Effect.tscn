@@ -46,12 +46,13 @@ _sections_unfolded = [ "Collision", "Transform" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -3.16952, -57.6389, -3.16952, -57.6389, 15.5933, -56.7393, 31.9143, -51.4703, 42.9664, -45.3017, 52.9903, -36.5629, 58.9019, -30.5228, 65.3275, -19.3423, 67.6407, -9.96086, 57.6167, -20.1133, 49.649, -25.1253, 49.649, -25.1253, 42.7093, -27.053, 30.8862, -27.1815, 30.8862, -27.1815, 20.2197, -23.7117, 15.0792, -36.9484, 7.88253, -48.5145, 3.25609, -53.912 )
+polygon = PoolVector2Array( 35.0913, 46.8321, 36.3729, 57.0846, 31.4451, 58.9034, 15.5555, 63.8907, -7.06105, 63.5427, -2.07381, 59.7153, 7.78468, 51.8285, 17.8751, 33.9673, 25.4748, 36.0057, 30.1814, 40.4474, 33.0978, 42.7026 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 2 )
 hframes = 7
+frame = 6
 _sections_unfolded = [ "Animation" ]
 
 [node name="animator" type="AnimationPlayer" parent="." index="2"]

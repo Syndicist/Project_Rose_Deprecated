@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/2nd_Slash_Effect_XXX.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_effect_XXX.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "slash"
+length = 0.44
+loop = false
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
+
+[node name="2nd_Slash_Effect_XXX" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 4
+collision_mask = 24
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( 30.431, 10.9988, -22.6249, -4.41614, 21.8273, 46.4889, 25.9285, 29.5714 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+position = Vector2( 0, -0.291992 )
+texture = ExtResource( 2 )
+hframes = 11
+frame = 10
+_sections_unfolded = [ "Animation" ]
+
+[node name="animator" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/slash = SubResource( 1 )
+blend_times = [  ]
+
+
