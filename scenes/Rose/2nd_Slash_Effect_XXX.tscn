@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Rose/2nd_Slash_Effect_XXX.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_effect_XXX.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "slash"
+length = 0.28
+loop = false
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.24 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -36.8564, -15.0711, -19.923, -22.9579, 2.69353, -32.3524, 2.69353, -32.3524, -17.0234, -19.3624, -33.029, -14.3752, -33.029, -14.3752 ), PoolVector2Array( -36.8564, -15.0711, -19.923, -22.9579, 2.69353, -32.3524, 2.69353, -32.3524, 10.1078, -34.0555, 30.6191, -33.8977, 40.7169, -32.7933, 56.4948, -27.271, 63.9104, -23.3265, 70.8527, -17.1732, 77.0061, -10.0731, 80.9506, 0.971424, 80.9506, 8.86037, 80.1617, 13.7515, 73.0616, 24.1649, 59.0193, 35.3673, 40.2436, 44.3607, 23.8346, 50.9874, 7.10999, 56.0363, -17.188, 60.1386, -37.2259, 61.4008, -20.1858, 56.3519, -14.348, 52.5652, 7.46415, 40.2961, 23.6567, 21.5333, 29.9538, 7.13998, 29.5682, -5.58272, 26.79, -14.7228, 18.7346, -22.0838, 11.582, -24.0976, 3.38777, -25.2781, -2.09821, -23.1949, -17.0234, -19.3624, -33.029, -14.3752, -33.029, -14.3752 ) ]
+}
+
+[node name="2nd_Slash_Effect_XXX" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 4
+collision_mask = 24
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -36.8564, -15.0711, -19.923, -22.9579, 2.69353, -32.3524, 2.69353, -32.3524, 10.1078, -34.0555, 30.6191, -33.8977, 40.7169, -32.7933, 56.4948, -27.271, 63.9104, -23.3265, 70.8527, -17.1732, 77.0061, -10.0731, 80.9506, 0.971424, 80.9506, 8.86037, 80.1617, 13.7515, 73.0616, 24.1649, 59.0193, 35.3673, 40.2436, 44.3607, 23.8346, 50.9874, 7.10999, 56.0363, -17.188, 60.1386, -37.2259, 61.4008, -20.1858, 56.3519, -14.348, 52.5652, 7.46415, 40.2961, 23.6567, 21.5333, 29.9538, 7.13998, 29.5682, -5.58272, 26.79, -14.7228, 18.7346, -22.0838, 11.582, -24.0976, 3.38777, -25.2781, -2.09821, -23.1949, -17.0234, -19.3624, -33.029, -14.3752, -33.029, -14.3752 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+position = Vector2( 1.38885, -0.291992 )
+texture = ExtResource( 2 )
+hframes = 11
+frame = 5
+_sections_unfolded = [ "Animation" ]
+
+[node name="animator" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/slash = SubResource( 1 )
+blend_times = [  ]
+
+

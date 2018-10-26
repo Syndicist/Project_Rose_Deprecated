@@ -1,0 +1,229 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/Rose/Rose.gd" type="Script" id=1]
+[ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Rose test sprites/1st_slash_attack.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_xxx.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Rose test sprites/3rd_slash_attack_xxx.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "1stSlash"
+length = 1.0
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("FirstSlashSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "2ndSlashXXX"
+length = 1.0
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("SecondSlashSpritesXXX:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "3rdSlashXXX"
+length = 0.5
+loop = false
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("ThirdSlashSpritesXXX:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "Fall"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("FallSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+length = 1.0
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("StillSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "Jump"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("JumpSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+
+length = 1.05
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("RunSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.69928, 28.3636 )
+
+[node name="Rose" type="KinematicBody2D"]
+
+position = Vector2( 2.63519, -4.21632 )
+input_pickable = false
+collision_layer = 2
+collision_mask = 25
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="animator" type="AnimationPlayer" parent="." index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/1stSlash = SubResource( 1 )
+anims/2ndSlashXXX = SubResource( 2 )
+anims/3rdSlashXXX = SubResource( 3 )
+anims/Fall = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Jump = SubResource( 6 )
+anims/Run = SubResource( 7 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="collider" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -0.524475, 2.62238 )
+shape = SubResource( 8 )
+
+[node name="StillSprites" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="RunSprites" type="Sprite" parent="." index="3"]
+
+visible = false
+texture = ExtResource( 3 )
+hframes = 8
+_sections_unfolded = [ "Animation" ]
+
+[node name="FirstSlashSprites" type="Sprite" parent="." index="4"]
+
+visible = false
+position = Vector2( -11.0446, 1.56506 )
+texture = ExtResource( 4 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="SecondSlashSpritesXXX" type="Sprite" parent="." index="5"]
+
+visible = false
+position = Vector2( -5.83978, 0 )
+texture = ExtResource( 5 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="ThirdSlashSpritesXXX" type="Sprite" parent="." index="6"]
+
+visible = false
+position = Vector2( -5.54779, 0 )
+texture = ExtResource( 6 )
+hframes = 2
+frame = 1
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="JumpSprites" type="Sprite" parent="." index="7"]
+
+visible = false
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="FallSprites" type="Sprite" parent="." index="8"]
+
+visible = false
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Animation" ]
+
+
