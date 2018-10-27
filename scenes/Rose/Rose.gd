@@ -85,6 +85,11 @@ func _ready():
 	cooldown_timer = 0;
 	pass
 
+
+func _process(delta):
+	$Camera2D.current = true;
+	pass
+
 ################## MAIN_FUNCTION ##################
 #Processes physical interactions, switches states,
 #and manages timers.
@@ -299,7 +304,7 @@ func AttackState():
 ### SLASH attacks ###
 #initializes and plays the given effect
 func makeSlashEffect(effect):
-	position.y = position.y - 5;
+	position.y = position.y - 7;
 
 	effect.position = self.position;
 	if(Direction == "left"):
