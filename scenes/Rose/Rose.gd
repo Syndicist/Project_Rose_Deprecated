@@ -305,13 +305,9 @@ func AttackState():
 #initializes and plays the given effect
 func makeSlashEffect(effect):
 	position.y = position.y - 7;
-
 	effect.position = self.position;
 	if(Direction == "left"):
 		effect.scale.x = effect.scale.x * -1;
-		velocity.x = -effect.spd;
-	else:
-		velocity.x = effect.spd;
 	
 	get_parent().add_child(effect);
 	effect.get_node("animator").play("slash");

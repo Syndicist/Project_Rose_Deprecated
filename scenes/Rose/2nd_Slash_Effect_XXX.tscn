@@ -6,7 +6,7 @@
 [sub_resource type="Animation" id=1]
 
 resource_name = "slash"
-length = 0.28
+length = 0.14
 loop = false
 step = 0.04
 tracks/0/type = "value"
@@ -16,45 +16,32 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.24 ),
+"times": PoolRealArray( 0, 0.12 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 10 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionPolygon2D:polygon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.04 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ PoolVector2Array( -36.8564, -15.0711, -19.923, -22.9579, 2.69353, -32.3524, 2.69353, -32.3524, -17.0234, -19.3624, -33.029, -14.3752, -33.029, -14.3752 ), PoolVector2Array( -36.8564, -15.0711, -19.923, -22.9579, 2.69353, -32.3524, 2.69353, -32.3524, 10.1078, -34.0555, 30.6191, -33.8977, 40.7169, -32.7933, 56.4948, -27.271, 63.9104, -23.3265, 70.8527, -17.1732, 77.0061, -10.0731, 80.9506, 0.971424, 80.9506, 8.86037, 80.1617, 13.7515, 73.0616, 24.1649, 59.0193, 35.3673, 40.2436, 44.3607, 23.8346, 50.9874, 7.10999, 56.0363, -17.188, 60.1386, -37.2259, 61.4008, -20.1858, 56.3519, -14.348, 52.5652, 7.46415, 40.2961, 23.6567, 21.5333, 29.9538, 7.13998, 29.5682, -5.58272, 26.79, -14.7228, 18.7346, -22.0838, 11.582, -24.0976, 3.38777, -25.2781, -2.09821, -23.1949, -17.0234, -19.3624, -33.029, -14.3752, -33.029, -14.3752 ) ]
+"values": [ 0, 6 ]
 }
 
 [node name="2nd_Slash_Effect_XXX" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 4
-collision_mask = 24
+collision_mask = 56
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -36.8564, -15.0711, -19.923, -22.9579, 2.69353, -32.3524, 2.69353, -32.3524, 10.1078, -34.0555, 30.6191, -33.8977, 40.7169, -32.7933, 56.4948, -27.271, 63.9104, -23.3265, 70.8527, -17.1732, 77.0061, -10.0731, 80.9506, 0.971424, 80.9506, 8.86037, 80.1617, 13.7515, 73.0616, 24.1649, 59.0193, 35.3673, 40.2436, 44.3607, 23.8346, 50.9874, 7.10999, 56.0363, -17.188, 60.1386, -37.2259, 61.4008, -20.1858, 56.3519, -14.348, 52.5652, 7.46415, 40.2961, 23.6567, 21.5333, 29.9538, 7.13998, 29.5682, -5.58272, 26.79, -14.7228, 18.7346, -22.0838, 11.582, -24.0976, 3.38777, -25.2781, -2.09821, -23.1949, -17.0234, -19.3624, -33.029, -14.3752, -33.029, -14.3752 )
+polygon = PoolVector2Array( -37.4805, -13.7975, -9.9736, -27.5509, 8.42891, -33.7497, 30.3182, -33.9434, 40.0037, -32.9748, 58.9874, -25.6138, 73.322, -14.1849, 79.327, 0.924519, 79.5207, 9.83521, 76.2276, 18.5522, 60.3434, 35.405, 24.7006, 51.0956, 6.87921, 56.3258, -26.6327, 61.9434, -37.0931, 61.5559, -11.717, 51.0956, 7.26663, 39.4729, 22.5698, 20.1019, 28.5748, 6.92955, 28.5748, -5.46793, 21.7949, -18.6403, 10.1723, -24.0642, -0.288071, -24.839 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-position = Vector2( 1.38885, -0.291992 )
 texture = ExtResource( 2 )
 hframes = 11
-frame = 5
-_sections_unfolded = [ "Animation" ]
+frame = 6
+_sections_unfolded = [ "Animation", "Region" ]
 
 [node name="animator" type="AnimationPlayer" parent="." index="2"]
 
