@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 34.8295, 56.3362 )
+extents = Vector2( 22.8541, 56.3362 )
 
 [node name="DenseFoliage" type="StaticBody2D"]
 
