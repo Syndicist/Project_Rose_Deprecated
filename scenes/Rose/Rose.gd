@@ -45,6 +45,11 @@ var interrupt_time;
 var offbalance_time;
 var cooldown_timer;
 
+### player vars ###
+var hp;
+var max_hp;
+var damage;
+
 ################## INITIALIZE_VARS ##################
 #Not actually neccessary mostly, but provides an easy
 #centrailized location for all default variable values.
