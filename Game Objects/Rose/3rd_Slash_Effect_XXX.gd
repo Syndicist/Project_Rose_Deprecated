@@ -29,10 +29,11 @@ func _physics_process(delta):
 	pass
 
 func handle(object):
-	object.add_collision_exception_with(self);
-	if(!damagedThis):
-		object.hp -= 1;
-		damagedThis = true;
-	self.position = player.position;
-	object.remove_collision_exception_with(self);
+	if(object.susceptible == "slash" || object.susceptible == "any"):
+		object.add_collision_exception_with(self);
+		if(!damagedThis):
+			object.hp -= 1;
+			damagedThis = true;
+		self.position = player.position;
+		object.remove_collision_exception_with(self);
 	pass

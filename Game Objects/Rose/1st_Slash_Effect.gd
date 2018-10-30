@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+####### TODO: CONVERT DAMAGE COLLISIONS TO USE AREA2D RATHER THAN REAL COLLISIONS ##########
 var spd = 600;
 var in_spd = spd;
 var velocity = Vector2(spd,0);
@@ -30,7 +30,6 @@ func _physics_process(delta):
 
 func handle(object):
 	object.add_collision_exception_with(self);
-	print(object.hp);
 	if(!damagedThis):
 		object.hp -= 1;
 		damagedThis = true;
