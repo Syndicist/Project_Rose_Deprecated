@@ -6,8 +6,6 @@ var spd;
 var gravity;
 var Direction;
 var floor_normal;
-var air_time;
-var on_wall;
 
 func _ready():
 	velocity = Vector2(0,0);
@@ -16,8 +14,6 @@ func _ready():
 	gravity = 250;
 	Direction = "right";
 	floor_normal = Vector2(0,-1);
-	air_time = 0;
-	on_wall = false;
 	pass
 
 func _physics_process(delta):
@@ -26,6 +22,7 @@ func _physics_process(delta):
 	velocity.y = gravity;
 	
 	move_and_slide(velocity,floor_normal);
+	
 	if(is_on_floor()):
 		if(Direction == "right"):
 			spd = move_spd;
