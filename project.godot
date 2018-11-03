@@ -16,10 +16,9 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=100
-window/size/height=50
+window/size/width=1280
+window/size/height=720
 window/size/borderless=true
-window/size/fullscreen=true
 window/vsync/use_vsync=false
 
 [importer_defaults]

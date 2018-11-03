@@ -313,9 +313,8 @@ func makeSlashEffect(effect):
 	effect.position = self.position;
 	if(Direction == "left"):
 		effect.scale.x = effect.scale.x * -1;
-	
 	get_parent().add_child(effect);
-	effect.get_node("animator").play("slash");
+	#effect.get_node("animator").play("slash");
 	pass
 	
 func firstSlash():
@@ -363,10 +362,28 @@ func thirdSlash():
 	pass
 
 ### PIERCE attacks ###
+func makePierceEffect(effect):
+	"""
+	position.y = position.y - 7;
+	effect.position = self.position;
+	if(Direction == "left"):
+		effect.scale.x = effect.scale.x * -1;
+	get_parent().add_child(effect);
+	#effect.get_node("animator").play("slash");"""
+	pass
 #TODO: this thing
 #Called until player unlocks true Pierce attacks.
 #Does no damage, but pushes enemies back.
 func defaultPierce():
+	changeSprite("DefaultPierceSprites","DefaultPierce");
+	if(anim == "DefaultPierce" && $DefaultPierceSprites.frame == 2):
+		var effect = preload("res://Game Objects/Rose/Default_Pierce_Effect.tscn").instance();
+		makePierceEffect(effect);
+		combo_step = 4;
+		interrupt_time = 35
+		offbalance_time = 15
+		dashing = false;
+		#TODO: Make root logic
 	pass
 #TODO: everything else
 func firstPierce():
@@ -377,11 +394,29 @@ func thirdPierce():
 	pass
 
 ### BASH attacks ###
+func makeBashEffect(effect):
+	"""
+	position.y = position.y - 7;
+	effect.position = self.position;
+	if(Direction == "left"):
+		effect.scale.x = effect.scale.x * -1;
+	get_parent().add_child(effect);
+	#effect.get_node("animator").play("slash");"""
+	pass
 #TODO: this thing
 #Called until player unlocks true Bash attacks.
 #Does no damage, but stuns the first enemy struck.
 #Stunned enemies deal no contact damage.
 func defaultBash():
+	changeSprite("DefaultBashSprites","DefaultBash");
+	if(anim == "DefaultBash" && $DefaultBashSprites.frame == 2):
+		var effect = preload("res://Game Objects/Rose/Default_Bash_Effect.tscn").instance();
+		makeBashEffect(effect);
+		combo_step = 4;
+		interrupt_time = 35
+		offbalance_time = 15
+		dashing = false;
+		#TODO: Make Knockback logic
 	pass
 #TODO: everything else
 func firstBash():

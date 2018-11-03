@@ -1,58 +1,21 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Game Objects/Rose/2nd_Slash_Effect_XXX.gd" type="Script" id=1]
-[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_effect_XXX.png" type="Texture" id=2]
+[ext_resource path="res://Game Objects/Rose/1st_Slash_Effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game Objects/Rose/2nd_Slash_Effect_XXX.gd" type="Script" id=2]
+[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_effect_XXX.png" type="Texture" id=3]
 
+[node name="Area2D" instance=ExtResource( 1 )]
 
+script = ExtResource( 2 )
 
-[sub_resource type="Animation" id=1]
+[node name="CollisionPolygon2D" parent="." index="0"]
 
-resource_name = "slash"
-length = 0.14
-loop = false
-step = 0.04
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.12 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 6 ]
-}
+polygon = PoolVector2Array( -38.1943, -14.0133, -31.9198, -14.4084, -39.2925, 61.6963, -27.6389, 61.6963, 10.889, 55.9884, 35.6231, 46.4753, 65.1136, 31.73, 78.4319, 14.8443, 79.6211, 1.28818, 74.3889, -11.3167, 64.638, -21.7811, 47.9901, -30.8185, 29.9152, -33.9102, 8.27295, -33.4346, -5.52103, -29.8672, -23.3581, -21.5432 )
 
-[node name="2nd_Slash_Effect_XXX" type="KinematicBody2D"]
+[node name="Sprite" parent="." index="1"]
 
-input_pickable = false
-collision_layer = 4
-collision_mask = 56
-collision/safe_margin = 0.08
-script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( -37.4805, -13.7975, -13.4895, -31.0936, 5.74742, -37.9451, 34.998, -40.0533, 51.8633, -35.5734, 71.3637, -25.0327, 85.3302, -8.16745, 87.7019, 10.8059, 81.3774, 27.1441, 64.7757, 41.3741, 42.6401, 52.7054, 25.2478, 59.5569, 3.63927, 61.4016, -26.6327, 61.9434, -37.0931, 61.5559 )
-
-[node name="Sprite" type="Sprite" parent="." index="1"]
-
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 hframes = 11
-frame = 6
-_sections_unfolded = [ "Animation", "Region" ]
-
-[node name="animator" type="AnimationPlayer" parent="." index="2"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/slash = SubResource( 1 )
-blend_times = [  ]
+frame = 10
 
 

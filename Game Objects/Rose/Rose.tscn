@@ -9,8 +9,6 @@
 [ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=8]
 
-
-
 [sub_resource type="Animation" id=1]
 
 resource_name = "1stSlash"
@@ -229,6 +227,7 @@ _sections_unfolded = [ "Animation" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="9"]
 
+editor/display_folded = true
 anchor_mode = 1
 rotating = false
 current = false
@@ -279,5 +278,7 @@ shadow_atlas_quad_1 = 2
 shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
+
+[node name="Node2D" type="Node2D" parent="." index="10"]
 
 
