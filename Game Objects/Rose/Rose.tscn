@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Game Objects/Rose/Rose.gd" type="Script" id=1]
+[ext_resource path="res://Game Objects/Rose/Rose_Separated_States.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Rose test sprites/1st_slash_attack.png" type="Texture" id=4]
@@ -8,6 +8,8 @@
 [ext_resource path="res://sprites/Rose test sprites/3rd_slash_attack_xxx.png" type="Texture" id=6]
 [ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=8]
+[ext_resource path="res://Game Objects/Rose/Attack.gd" type="Script" id=9]
+[ext_resource path="res://Game Objects/Rose/Move.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
 
@@ -145,7 +147,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 8.69928, 28.3636 )
 
-[node name="Rose" type="KinematicBody2D"]
+[node name="Rose" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -279,6 +281,14 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
-[node name="Node2D" type="Node2D" parent="." index="10"]
+[node name="States" type="Node2D" parent="." index="10"]
+
+[node name="Attack" type="Node2D" parent="States" index="0"]
+
+script = ExtResource( 9 )
+
+[node name="Move" type="Node2D" parent="States" index="1"]
+
+script = ExtResource( 10 )
 
 
