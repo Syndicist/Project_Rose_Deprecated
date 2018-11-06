@@ -29,6 +29,9 @@ func execute(delta):
 		host.velocity.x = -1*knockback_x;
 		host.vspd = knockback_y;
 	if(hurt_timer <= 0):
+		host.velocity.x = 0;
+		host.velocity.y = 0;
+		host.vspd = 0;
 		host.state = 'move';
 		host.set_collision_mask_bit(3,true);
 		host.set_collision_mask_bit(4,true);

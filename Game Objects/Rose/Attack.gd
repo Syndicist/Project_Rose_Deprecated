@@ -37,7 +37,8 @@ func _ready():
 	pass
 
 func _process(delta):
-	
+	if(host.state != 'attack'):
+		dashing = false;
 	pass
 
 ################## ATTACK_HANDLING ##################

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Game Objects/Rose/Rose_Separated_States.gd" type="Script" id=1]
 [ext_resource path="res://Game Objects/Rose/Area.gd" type="Script" id=2]
@@ -147,7 +147,12 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8.69928, 28.3636 )
+extents = Vector2( 6.53191, 27.1314 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.66274, 28.2937 )
 
 [node name="Rose" type="KinematicBody2D" index="0"]
 
@@ -197,7 +202,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="DamageCollider" type="CollisionShape2D" parent="Area" index="0"]
 
 position = Vector2( -0.524475, 2.62238 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="StillSprites" type="Sprite" parent="." index="3"]
 

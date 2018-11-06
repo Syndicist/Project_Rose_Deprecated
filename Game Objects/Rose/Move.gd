@@ -49,6 +49,7 @@ func execute(delta):
 	### moving in the air ###
 	#TODO: jump-based special attacks
 	elif(!host.on_floor):
+		print(host.velocity.y);
 		if(Input.is_action_just_released("ui_jump")):
 			if(host.fall_spd < jump_spd):
 				host.fall_spd = 2*jump_spd/3;

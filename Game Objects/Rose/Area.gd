@@ -9,6 +9,8 @@ func _ready():
 func on_area_entered(area):
 	var object = area.get_parent();
 	if(object.tag == "enemy" || object.tag == "enemy attack"):
+		host.velocity.x = 0;
+		host.velocity.y = 0;
 		host.states['hurt'].hurt_timer = 25;
 		host.state = 'hurt';
 		host.hp -= object.damage;
