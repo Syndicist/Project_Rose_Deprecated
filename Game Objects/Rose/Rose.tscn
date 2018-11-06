@@ -1,15 +1,17 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Game Objects/Rose/Rose_Separated_States.gd" type="Script" id=1]
-[ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=2]
-[ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=3]
-[ext_resource path="res://sprites/Rose test sprites/1st_slash_attack.png" type="Texture" id=4]
-[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_xxx.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Rose test sprites/3rd_slash_attack_xxx.png" type="Texture" id=6]
-[ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=8]
-[ext_resource path="res://Game Objects/Rose/Attack.gd" type="Script" id=9]
-[ext_resource path="res://Game Objects/Rose/Move.gd" type="Script" id=10]
+[ext_resource path="res://Game Objects/Rose/Area.gd" type="Script" id=2]
+[ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Rose test sprites/1st_slash_attack.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_xxx.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Rose test sprites/3rd_slash_attack_xxx.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=9]
+[ext_resource path="res://Game Objects/Rose/Attack.gd" type="Script" id=10]
+[ext_resource path="res://Game Objects/Rose/Move.gd" type="Script" id=11]
+[ext_resource path="res://Game Objects/Rose/Hurt.gd" type="Script" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -151,7 +153,7 @@ extents = Vector2( 8.69928, 28.3636 )
 
 input_pickable = false
 collision_layer = 2
-collision_mask = 57
+collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
@@ -173,61 +175,80 @@ anims/Run = SubResource( 7 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="collider" type="CollisionShape2D" parent="." index="1"]
+[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( -0.524475, 2.62238 )
 shape = SubResource( 8 )
 
-[node name="StillSprites" type="Sprite" parent="." index="2"]
+[node name="Area" type="Area2D" parent="." index="2"]
 
-texture = ExtResource( 2 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 24
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="DamageCollider" type="CollisionShape2D" parent="Area" index="0"]
+
+position = Vector2( -0.524475, 2.62238 )
+shape = SubResource( 8 )
+
+[node name="StillSprites" type="Sprite" parent="." index="3"]
+
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="RunSprites" type="Sprite" parent="." index="3"]
+[node name="RunSprites" type="Sprite" parent="." index="4"]
 
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 hframes = 8
 _sections_unfolded = [ "Animation" ]
 
-[node name="FirstSlashSprites" type="Sprite" parent="." index="4"]
+[node name="FirstSlashSprites" type="Sprite" parent="." index="5"]
 
 visible = false
 position = Vector2( -11.0446, 1.56506 )
-texture = ExtResource( 4 )
-hframes = 3
-_sections_unfolded = [ "Animation" ]
-
-[node name="SecondSlashSpritesXXX" type="Sprite" parent="." index="5"]
-
-visible = false
-position = Vector2( -5.83978, 0 )
 texture = ExtResource( 5 )
 hframes = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="ThirdSlashSpritesXXX" type="Sprite" parent="." index="6"]
+[node name="SecondSlashSpritesXXX" type="Sprite" parent="." index="6"]
+
+visible = false
+position = Vector2( -5.83978, 0 )
+texture = ExtResource( 6 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="ThirdSlashSpritesXXX" type="Sprite" parent="." index="7"]
 
 visible = false
 position = Vector2( -5.54779, 0 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 hframes = 2
 frame = 1
 _sections_unfolded = [ "Animation", "Visibility" ]
 
-[node name="JumpSprites" type="Sprite" parent="." index="7"]
-
-visible = false
-texture = ExtResource( 7 )
-_sections_unfolded = [ "Animation" ]
-
-[node name="FallSprites" type="Sprite" parent="." index="8"]
+[node name="JumpSprites" type="Sprite" parent="." index="8"]
 
 visible = false
 texture = ExtResource( 8 )
 _sections_unfolded = [ "Animation" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="9"]
+[node name="FallSprites" type="Sprite" parent="." index="9"]
+
+visible = false
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="Camera2D" type="Camera2D" parent="." index="10"]
 
 editor/display_folded = true
 anchor_mode = 1
@@ -281,14 +302,18 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
-[node name="States" type="Node2D" parent="." index="10"]
+[node name="States" type="Node2D" parent="." index="11"]
 
 [node name="Attack" type="Node2D" parent="States" index="0"]
 
-script = ExtResource( 9 )
+script = ExtResource( 10 )
 
 [node name="Move" type="Node2D" parent="States" index="1"]
 
-script = ExtResource( 10 )
+script = ExtResource( 11 )
+
+[node name="Hurt" type="Node2D" parent="States" index="2"]
+
+script = ExtResource( 12 )
 
 

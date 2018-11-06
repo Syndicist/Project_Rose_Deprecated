@@ -23,7 +23,8 @@ var Direction;
 #TODO: hurt_state 
 onready var states = {
 	'move' : $States/Move,
-	'attack' : $States/Attack
+	'attack' : $States/Attack,
+	'hurt' : $States/Hurt
 }
 var state;
 
@@ -36,6 +37,7 @@ var damage;
 #Not actually neccessary mostly, but provides an easy
 #centrailized location for all default variable values.
 func _ready():
+	hp = 3;
 	### default subnode controller vars ###
 	currentSprite = get_node("StillSprites");
 	anim = "Idle";
@@ -58,12 +60,13 @@ func _ready():
 	state = 'move';
 	pass
 
-
+################## PROCESS_FUNCTION ##################
+#Processes player variables, like hp, damage, and speed.
 func _process(delta):
 	$Camera2D.current = true;
 	pass
 
-################## MAIN_FUNCTION ##################
+################## PHYSICS_FUNCTION ##################
 #Processes physical interactions, switches states,
 #and manages timers.
 func _physics_process(delta):
@@ -77,6 +80,7 @@ func _physics_process(delta):
 	#timer for attacks
 	states['attack'].attack_timer -= 1;
 	states['attack'].cooldown_timer -= 1;
+	states['hurt'].hurt_timer -= 1;
 	
 	#add gravity
 	if(!states['attack'].dashing):

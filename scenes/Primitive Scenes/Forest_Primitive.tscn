@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Primitive Scenes/Primitive_TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Game Objects/Rose/Rose.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Obstacles/Dense_Foliage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game Objects/Enemies/woodeater.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -39,5 +40,9 @@ position = Vector2( 423.596, 429.917 )
 [node name="DenseFoliage2" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 775.465, 428.288 )
+
+[node name="woodeater" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( -47.4294, 452.185 )
 
 

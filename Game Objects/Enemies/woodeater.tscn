@@ -13,10 +13,10 @@ extents = Vector2( 9.97946, 7 )
 position = Vector2( 4, 0 )
 input_pickable = false
 collision_layer = 8
-collision_mask = 39
+collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index", "collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -32,7 +32,26 @@ cast_to = Vector2( 0, 15 )
 collision_mask = 33
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( -4, -1 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Audio Bus", "Collision" ]
+
+[node name="DamageCollider" type="CollisionShape2D" parent="Area2D" index="0"]
 
 position = Vector2( -4, -1 )
 shape = SubResource( 1 )

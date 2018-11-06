@@ -6,10 +6,16 @@ var spd;
 var gravity;
 var Direction;
 var floor_normal;
+var hp;
+var damage;
+var tag;
 
 func _ready():
+	tag = "enemy";
+	hp = 1;
+	damage = 1;
 	velocity = Vector2(0,0);
-	move_spd = 100;
+	move_spd = 50;
 	spd = move_spd;
 	gravity = 250;
 	Direction = "right";
