@@ -18,18 +18,29 @@ func _process(delta):
 	if(player.on_wall):
 		player.velocity.x = 0;
 	elif(!player.on_wall):
-		if(player.Direction == "left"):
-			player.velocity.x = -spd;
-		else:
-			player.velocity.x = spd;
+		player.velocity.x = spd * player.Direction;
+	
+	if(player.state != 'attack'):
+		queue_free();
 	
 	if(!$animator.is_playing()):
 		player.velocity.x = 0;
 		queue_free();
 	pass
 
+func on_area_entered(area):
+	var object = area.get_parent();
+	if(object.susceptible == "slash"):
+		if(!damagedThis):
+			object.hp -= 1;
+			damagedThis = true;
+	else:
+		player.velocity.x = -50;
+	pass
+
 func on_body_entered(object):
-	if(!damagedThis):
-		object.hp -= 1;
-		damagedThis = true;
+	if(object.susceptible == "slash"):
+		null;
+	else:
+		player.velocity.x = -50;
 	pass

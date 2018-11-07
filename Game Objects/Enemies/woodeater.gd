@@ -9,6 +9,7 @@ var floor_normal;
 var hp;
 var damage;
 var tag;
+var susceptible;
 
 func _ready():
 	tag = "enemy";
@@ -20,6 +21,12 @@ func _ready():
 	gravity = 250;
 	Direction = "right";
 	floor_normal = Vector2(0,-1);
+	susceptible = "slash"
+	pass
+
+func _process(delta):
+	if(hp <= 0):
+		queue_free();
 	pass
 
 func _physics_process(delta):

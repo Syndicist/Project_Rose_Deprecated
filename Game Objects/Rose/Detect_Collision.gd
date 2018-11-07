@@ -15,11 +15,11 @@ func on_area_entered(area):
 		host.state = 'hurt';
 		host.hp -= object.damage;
 		if(object.position.x >= host.position.x):
-			if(host.Direction != "right"):
+			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
-			host.Direction = "right";
+			host.Direction = 1;
 		else:
-			if(host.Direction != "left"):
+			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
-			host.Direction = "left";
+			host.Direction = -1;
 	pass

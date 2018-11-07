@@ -131,8 +131,7 @@ func execute(delta):
 func makeSlashEffect(effect):
 	host.position.y = host.position.y - 5;
 	effect.position = host.position;
-	if(host.Direction == "left"):
-		effect.scale.x = effect.scale.x * -1;
+	effect.scale.x = effect.scale.x * host.Direction;
 	host.get_parent().add_child(effect);
 	pass
 	
@@ -185,8 +184,7 @@ func makePierceEffect(effect):
 	"""
 	position.y = position.y - 7;
 	effect.position = self.position;
-	if(Direction == "left"):
-		effect.scale.x = effect.scale.x * -1;
+	effect.scale.x = effect.scale.x * Direction;
 	get_parent().add_child(effect);
 	#effect.get_node("animator").play("slash");"""
 	pass
@@ -217,8 +215,7 @@ func makeBashEffect(effect):
 	"""
 	position.y = position.y - 7;
 	effect.position = self.position;
-	if(Direction == "left"):
-		effect.scale.x = effect.scale.x * -1;
+	effect.scale.x = effect.scale.x * Direction;
 	get_parent().add_child(effect);
 	#effect.get_node("animator").play("slash");"""
 	pass

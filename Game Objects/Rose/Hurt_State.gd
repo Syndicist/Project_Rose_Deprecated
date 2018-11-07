@@ -22,12 +22,11 @@ func _ready():
 func execute(delta):
 	host.set_collision_mask_bit(3,false);
 	host.set_collision_mask_bit(4,false);
-	if(host.Direction == "right"):
-		host.velocity.x = knockback_x;
-		host.vspd = knockback_y;
-	else:
-		host.velocity.x = -1*knockback_x;
-		host.vspd = knockback_y;
+	
+	host.velocity.x = knockback_x * host.Direction;
+	host.vspd = knockback_y;
+	host.changeSprite("HurtSprites","Hurt");
+	
 	if(hurt_timer <= 0):
 		host.velocity.x = 0;
 		host.velocity.y = 0;

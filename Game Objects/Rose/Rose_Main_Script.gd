@@ -20,7 +20,7 @@ var Direction;
 
 
 ### state vars ###
-#TODO: hurt_state 
+#TODO: hurt_state
 onready var states = {
 	'move' : $States/Move,
 	'attack' : $States/Attack,
@@ -54,8 +54,9 @@ func _ready():
 	fall_spd = 0
 	on_ceiling = false;
 	on_floor = false;
-	Direction = "right";
-	
+	#1 is right, -1 is left
+	Direction = 1;
+
 	### default stat vars ###
 	state = 'move';
 	pass
@@ -63,6 +64,11 @@ func _ready():
 ################## PROCESS_FUNCTION ##################
 #Processes player variables, like hp, damage, and speed.
 func _process(delta):
+	if(hp<=0):
+		null
+		print("you technically just died right now");
+		hp = 3;
+		#TODO: go to game over
 	$Camera2D.current = true;
 	pass
 
@@ -73,15 +79,15 @@ func _physics_process(delta):
 	on_wall = is_on_wall();
 	on_floor = is_on_floor();
 	on_ceiling = is_on_ceiling();
-	
+
 	#count time in air
 	air_time += delta;
-	
+
 	#timer for attacks
 	states['attack'].attack_timer -= 1;
 	states['attack'].cooldown_timer -= 1;
 	states['hurt'].hurt_timer -= 1;
-	
+
 	#add gravity
 	if(!states['attack'].dashing):
 		fall_spd += gravity_vector.y * delta;
@@ -89,10 +95,10 @@ func _physics_process(delta):
 	if(fall_spd > 900):
 		fall_spd = 900;
 	velocity.y = vspd + fall_spd;
-	
+
 	#move across surfaces
 	velocity = move_and_slide(velocity, floor_normal);
-	
+
 	#no gravity acceleration when on floor
 	if(is_on_floor()):
 		air_time = 0;
@@ -101,11 +107,11 @@ func _physics_process(delta):
 		fall_spd = 0;
 	if(is_on_ceiling()):
 		fall_spd = 500;
-	
+
 	#state machine
 	#state = 'move' by default
 	states[state].execute(delta);
-	
+
 	#switch new animation
 	if(new_anim != anim):
 		Animate();
@@ -122,9 +128,9 @@ func Animate():
 	pass
 
 ################## CHANGE_SPRITE ##################
-#Makes the current sprite invisible, switches the 
+#Makes the current sprite invisible, switches the
 #sprite to the given sprite, and sets the new sprite
-#to visible. Sets the new animation to the given 
+#to visible. Sets the new animation to the given
 #animation.
 func changeSprite(sprite, animation):
 	currentSprite.visible = false;

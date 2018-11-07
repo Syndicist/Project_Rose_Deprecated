@@ -8,6 +8,7 @@ var animation;
 
 func _enter_tree():
 	#initializes collision handling
+	connect("area_entered", self, "on_area_entered");
 	connect("body_entered", self, "on_body_entered");
 	
 	#automatically generates animation based on a sprite.

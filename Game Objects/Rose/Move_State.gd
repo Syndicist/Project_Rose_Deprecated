@@ -29,16 +29,16 @@ func execute(delta):
 	### move triggers ###
 	elif(host.on_floor):
 		if(Input.is_action_pressed("ui_right")):
-			if(host.Direction != "right"):
+			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
 			host.velocity.x = run_spd;
-			host.Direction = "right";"."
+			host.Direction = 1;
 			host.changeSprite("RunSprites","Run");
 		elif(Input.is_action_pressed("ui_left")):
-			if(host.Direction != "left"):
+			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
 			host.velocity.x = -run_spd;
-			host.Direction = "left";
+			host.Direction = -1;
 			host.changeSprite("RunSprites","Run");
 		else:
 			host.velocity.x = 0;
@@ -49,7 +49,6 @@ func execute(delta):
 	### moving in the air ###
 	#TODO: jump-based special attacks
 	elif(!host.on_floor):
-		print(host.velocity.y);
 		if(Input.is_action_just_released("ui_jump")):
 			if(host.fall_spd < jump_spd):
 				host.fall_spd = 2*jump_spd/3;
@@ -58,15 +57,15 @@ func execute(delta):
 		if(host.velocity.y<0):
 			host.changeSprite("JumpSprites","Jump");
 		if(Input.is_action_pressed("ui_right")):
-			if(host.Direction != "right"):
+			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
 			host.velocity.x = run_spd;
-			host.Direction = "right";
+			host.Direction = 1;
 		elif(Input.is_action_pressed("ui_left")):
-			if(host.Direction != "left"):
+			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
 			host.velocity.x = -run_spd;
-			host.Direction = "left";
+			host.Direction = -1;
 		else:
 			host.velocity.x = 0;
 	pass
