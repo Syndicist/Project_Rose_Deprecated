@@ -11,6 +11,7 @@ extends "res://Game Objects/Rose/Attack_Effect.gd"
 #level script's _ready function anyways. This is just needed for the code to run
 #at all.
 var spd = 600;
+var ispd = spd;
 
 func _process(delta):
 	self.position = player.position;
@@ -30,17 +31,21 @@ func _process(delta):
 
 func on_area_entered(area):
 	var object = area.get_parent();
-	if(object.susceptible == "slash"):
+	if(object.tag == "interactable"):
+		if(object.type == "vine"):
+			object.velocity.x = 200 * player.Direction;
+	elif(object.susceptible == "slash"):
+		
 		if(!damagedThis):
 			object.hp -= 1;
 			damagedThis = true;
+	#Bounce off object
 	else:
-		player.velocity.x = -50;
+		spd = spd * player.Direction;
 	pass
 
 func on_body_entered(object):
-	if(object.susceptible == "slash"):
-		null;
-	else:
-		player.velocity.x = -50;
+	#Bounce off object
+	if(object.susceptible == "none"):
+		spd = spd * player.Direction;
 	pass

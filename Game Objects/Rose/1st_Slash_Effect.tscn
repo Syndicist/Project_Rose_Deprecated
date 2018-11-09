@@ -11,7 +11,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 4
-collision_mask = 32
+collision_mask = 57
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
@@ -20,7 +20,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -3.52231, -58.0337, -7.31818, 64.0178, 15.457, 64.0178, 37.6481, 55.842, 57.2114, 40.0747, 68.015, 20.5114, 70.0589, 11.7517, 70.0589, -5.76764, 64.8031, -20.3671, 52.8316, -37.5944, 38.2321, -47.8141, 23.6327, -54.2378 )
+polygon = PoolVector2Array( -3.52231, -58.0337, -5.99783, 25.7088, 21.0129, 32.4615, 40.4765, 34.4476, 57.5568, 29.2838, 68.015, 20.5114, 70.0589, 11.7517, 70.0589, -5.76764, 64.8031, -20.3671, 52.8316, -37.5944, 38.2321, -47.8141, 23.6327, -54.2378 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 

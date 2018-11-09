@@ -40,6 +40,12 @@ func execute(delta):
 			host.velocity.x = -run_spd;
 			host.Direction = -1;
 			host.changeSprite("RunSprites","Run");
+		elif(Input.is_action_pressed("ui_up")):
+			null;
+			#look up
+		elif(Input.is_action_pressed("ui_down")):
+			null;
+			#look down
 		else:
 			host.velocity.x = 0;
 			host.changeSprite("StillSprites","Idle");
