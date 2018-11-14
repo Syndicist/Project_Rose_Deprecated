@@ -7,11 +7,11 @@
 [ext_resource path="res://scenes/Obstacles/Dense_Foliage.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Game Objects/Enemies/woodeater.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
-position = Vector2( -247.429, -3.79871 )
+position = Vector2( -244.711, -3.79871 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )

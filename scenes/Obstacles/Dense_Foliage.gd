@@ -2,6 +2,8 @@ extends StaticBody2D
 
 var hp = 3;
 var susceptible = "slash";
+var tag = "interactable";
+var type = "obstacle";
 
 func _process(delta):
 	if(hp == 0):
