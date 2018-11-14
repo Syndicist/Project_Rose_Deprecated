@@ -32,20 +32,20 @@ func _process(delta):
 func on_area_entered(area):
 	var object = area.get_parent();
 	if(object.tag == "interactable"):
-		if(object.type == "vine"):
+		if(object.type == "blowable"):
 			object.velocity.x = 200 * player.Direction;
+			
 	elif(object.susceptible == "slash"):
-		
 		if(!damagedThis):
 			object.hp -= 1;
 			damagedThis = true;
 	#Bounce off object
 	else:
-		spd = spd * player.Direction;
+		spd = spd * -1;
 	pass
 
 func on_body_entered(object):
 	#Bounce off object
 	if(object.susceptible == "none"):
-		spd = spd * player.Direction;
+		spd = spd * -1;
 	pass

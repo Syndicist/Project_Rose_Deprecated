@@ -20,8 +20,6 @@ func _ready():
 #Allows the player to move and jump, as well as trigger attacks.
 #This is the default and primary state.
 func execute(delta):
-	host.set_collision_mask_bit(3,false);
-	host.set_collision_mask_bit(4,false);
 	
 	host.velocity.x = knockback_x * host.Direction;
 	host.vspd = knockback_y;
@@ -32,6 +30,4 @@ func execute(delta):
 		host.velocity.y = 0;
 		host.vspd = 0;
 		host.state = 'move';
-		host.set_collision_mask_bit(3,true);
-		host.set_collision_mask_bit(4,true);
 	pass

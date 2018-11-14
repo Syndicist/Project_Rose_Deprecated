@@ -138,6 +138,7 @@ func _physics_process(delta):
 #Allows the player to move and jump, as well as trigger attacks.
 #This is the default and primary state.
 func MoveState(delta):
+
 	if(is_on_ceiling()):
 		fall_spd = jump_spd;
 	### attack triggers ###
@@ -163,11 +164,12 @@ func MoveState(delta):
 			velocity.x = -run_spd;
 			Direction = "left";
 			changeSprite("RunSprites","Run");
+		#stand still
 		else:
 			velocity.x = 0;
 			changeSprite("StillSprites","Idle");
 		if(Input.is_action_just_pressed("ui_jump")):
-			vspd += -jump_spd;
+			vspd -= jump_spd;
 	
 	### moving in the air ###
 	#TODO: jump-based special attacks

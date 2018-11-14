@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Game Objects/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Game Objects/Rose/Detect_Collision.gd" type="Script" id=2]
@@ -168,16 +168,11 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 6.53191, 27.1314 )
 
-[sub_resource type="RectangleShape2D" id=10]
-
-custom_solver_bias = 0.0
-extents = Vector2( 9.08588, 28.0483 )
-
-[node name="Rose" type="KinematicBody2D"]
+[node name="Rose" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
-collision_mask = 33
+collision_mask = 297
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
@@ -219,22 +214,22 @@ audio_bus_name = "Master"
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision" ]
 
-[node name="DamageCollider" type="CollisionShape2D" parent="Area" index="0"]
+[node name="PhysicsCollider2" type="CollisionShape2D" parent="Area" index="0"]
 
 position = Vector2( -0.524475, 2.62238 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="StillSprites" type="Sprite" parent="." index="3"]
 
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="RunSprites" type="Sprite" parent="." index="4"]
 
 visible = false
 texture = ExtResource( 4 )
 hframes = 8
-_sections_unfolded = [ "Animation" ]
+_sections_unfolded = [ "Animation", "Offset" ]
 
 [node name="FirstSlashSprites" type="Sprite" parent="." index="5"]
 
@@ -341,6 +336,7 @@ script = ExtResource( 11 )
 [node name="Move" type="Node2D" parent="States" index="1"]
 
 script = ExtResource( 12 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="Hurt" type="Node2D" parent="States" index="2"]
 
