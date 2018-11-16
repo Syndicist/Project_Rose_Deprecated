@@ -39,6 +39,9 @@ func _ready():
 func _process(delta):
 	if(host.state != 'attack'):
 		dashing = false;
+		first_attack = ATTACK.NIL;
+		second_attack = ATTACK.NIL;
+		third_attack = ATTACK.NIL;
 	pass
 
 ################## ATTACK_HANDLING ##################
@@ -138,7 +141,7 @@ func makeSlashEffect(effect):
 func firstSlash():
 	host.changeSprite("FirstSlashSprites","1stSlash");
 	if(host.anim == "1stSlash" && host.get_node('FirstSlashSprites').frame == 2 && combo_step == 1):
-		var effect = preload("res://Game Objects/Rose/1st_Slash_Effect.tscn").instance();
+		var effect = preload("res://Game Objects/Rose/Effects/1st_Slash_Effect.tscn").instance();
 		makeSlashEffect(effect);
 		combo_step += 1;
 		interrupt_time = 35;
@@ -151,7 +154,7 @@ func secondSlash():
 		ATTACK.slash:
 			host.changeSprite("SecondSlashSpritesXXX","2ndSlashXXX");
 			if(host.anim == "2ndSlashXXX" && host.get_node('SecondSlashSpritesXXX').frame == 2 && combo_step == 2):
-				var effect = preload("res://Game Objects/Rose/2nd_Slash_Effect_XXX.tscn").instance();
+				var effect = preload("res://Game Objects/Rose/Effects/2nd_Slash_Effect_XXX.tscn").instance();
 				makeSlashEffect(effect);
 				combo_step += 1;
 				interrupt_time = 35;
@@ -171,7 +174,7 @@ func thirdSlash():
 	if(first_attack == ATTACK.slash && second_attack == ATTACK.slash):
 		host.changeSprite("ThirdSlashSpritesXXX","3rdSlashXXX");
 		if(host.anim == "3rdSlashXXX" && host.get_node('ThirdSlashSpritesXXX').frame == 1 && combo_step == 3):
-			var effect = preload("res://Game Objects/Rose/3rd_Slash_Effect_XXX.tscn").instance();
+			var effect = preload("res://Game Objects/Rose/Effects/3rd_Slash_Effect_XXX.tscn").instance();
 			makeSlashEffect(effect);
 			combo_step += 1;
 			interrupt_time = 35;
@@ -194,7 +197,7 @@ func makePierceEffect(effect):
 func defaultPierce():
 	host.changeSprite("DefaultPierceSprites","DefaultPierce");
 	if(host.anim == "DefaultPierce" && host.get_node('DefaultPierceSprites').frame == 2):
-		var effect = preload("res://Game Objects/Rose/Default_Pierce_Effect.tscn").instance();
+		var effect = preload("res://Game Objects/Rose/Effects/Default_Pierce_Effect.tscn").instance();
 		makePierceEffect(effect);
 		combo_step = 4;
 		interrupt_time = 35
@@ -226,7 +229,7 @@ func makeBashEffect(effect):
 func defaultBash():
 	host.changeSprite("DefaultBashSprites","DefaultBash");
 	if(host.anim == "DefaultBash" && host.get_node('DefaultBashSprites').frame == 2):
-		var effect = preload("res://Game Objects/Rose/Default_Bash_Effect.tscn").instance();
+		var effect = preload("res://Game Objects/Rose/Effects/Default_Bash_Effect.tscn").instance();
 		makeBashEffect(effect);
 		combo_step = 4;
 		interrupt_time = 35

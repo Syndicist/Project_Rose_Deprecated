@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game Objects/Rose/Effects/1st_Slash_Effect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game Objects/Rose/Effects/3rd_Slash_Effect_XXX.gd" type="Script" id=2]
+[ext_resource path="res://sprites/Rose test sprites/3rd_slash_attack_effect_XXX-sheet.png" type="Texture" id=3]
+
+
+[node name="Area2D" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" parent="." index="0"]
+
+polygon = PoolVector2Array( -46.165, -2.21927, -30.7062, 19.6608, -8.38113, 25.3116, 26.1767, 28.8865, 61.5289, 30.8726, 102.045, 24.5172, 130.247, 12.6007, 143.355, 3.06747, 145.999, -4.35971, 145.762, -8.40277, 131.016, -22.9102, 108.185, -31.7098, 81.786, -35.7529, 26.6101, -35.5151, 4.49223, -29.8072, -19.0527, -22.9102, -37.841, -10.5432 )
+
+[node name="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+hframes = 13
+frame = 6
+
+

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var susceptible = 'slash';
 var hp = 0;
-var tag = "interactable";
+var tag = "movable";
 var type = "blowable";
 var velocity = Vector2(0,0);
 var normal = Vector2(0,-1);
