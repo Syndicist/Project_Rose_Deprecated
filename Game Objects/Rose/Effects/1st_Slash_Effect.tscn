@@ -3,8 +3,7 @@
 [ext_resource path="res://Game Objects/Rose/Effects/1st_Slash_Effect.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Rose test sprites/1st_slash_attack_effect.png" type="Texture" id=2]
 
-
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
