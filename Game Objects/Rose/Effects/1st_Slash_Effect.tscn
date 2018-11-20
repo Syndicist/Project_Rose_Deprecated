@@ -3,7 +3,7 @@
 [ext_resource path="res://Game Objects/Rose/Effects/1st_Slash_Effect.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Rose test sprites/1st_slash_attack_effect.png" type="Texture" id=2]
 
-[node name="Area2D" type="Area2D" index="0"]
+[node name="Area2D" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -20,7 +20,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
-polygon = PoolVector2Array( -3.52231, -58.0337, -5.99783, 25.7088, 21.0129, 32.4615, 40.4765, 34.4476, 57.5568, 29.2838, 68.015, 20.5114, 70.0589, 11.7517, 70.0589, -5.76764, 64.8031, -20.3671, 52.8316, -37.5944, 38.2321, -47.8141, 23.6327, -54.2378 )
+polygon = PoolVector2Array( -3.52231, -58.0337, -6.05765, 29.2655, 37.9426, 28.942, 56.7074, 24.7361, 68.015, 20.5114, 70.0589, 11.7517, 70.0589, -5.76764, 64.8031, -20.3671, 52.8316, -37.5944, 38.2321, -47.8141, 23.6327, -54.2378 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 

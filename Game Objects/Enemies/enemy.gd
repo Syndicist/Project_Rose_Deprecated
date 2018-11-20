@@ -34,7 +34,6 @@ func _process(delta):
 
 ### Default Behavior ###
 func _physics_process(delta):
-	
 	velocity.x = spd;
 	velocity.y = gravity;
 	
@@ -43,7 +42,7 @@ func _physics_process(delta):
 	if(is_on_floor()):
 		spd = move_spd * Direction;
 	else:
-		spd = move_spd / 3;
+		spd = move_spd * Direction / 3;
 	if($forward_cast.is_colliding()):
 		if(Direction == 1):
 			Direction = -1;

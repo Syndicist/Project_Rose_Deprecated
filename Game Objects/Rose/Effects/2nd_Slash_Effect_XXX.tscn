@@ -4,7 +4,7 @@
 [ext_resource path="res://Game Objects/Rose/Effects/2nd_Slash_Effect_XXX.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_effect_XXX.png" type="Texture" id=3]
 
-[node name="Area2D" index="0" instance=ExtResource( 1 )]
+[node name="Area2D" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 

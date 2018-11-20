@@ -1,23 +1,14 @@
 extends KinematicBody2D
 
+### physics vars ###
+var on_wall;
+var on_floor;
+var on_ceiling;
+
 ### anim controller vars ###
 var currentSprite;
 var anim;
 var new_anim;
-
-### base movement control ###
-var velocity;
-var gravity;
-var gravity_vector;
-var air_time;
-var on_wall;
-var floor_normal;
-var fall_spd;
-var vspd;
-var on_ceiling;
-var on_floor;
-var Direction;
-
 
 ### state vars ###
 #TODO: hurt_state
@@ -38,25 +29,12 @@ var damage;
 #centrailized location for all default variable values.
 func _ready():
 	hp = 3;
+	
 	### default subnode controller vars ###
 	currentSprite = get_node("StillSprites");
 	anim = "Idle";
 	new_anim = "Idle";
-
-	### default movement controller vars ###
-	velocity = Vector2(0,0);
-	gravity = 1200;
-	gravity_vector = Vector2(0,gravity);
-	floor_normal = Vector2(0,-1);
-	air_time = 0;
-	on_wall = false;
-	vspd = 0;
-	fall_spd = 0
-	on_ceiling = false;
-	on_floor = false;
-	#1 is right, -1 is left
-	Direction = 1;
-
+	
 	### default stat vars ###
 	state = 'move';
 	pass
@@ -64,57 +42,29 @@ func _ready():
 ################## PROCESS_FUNCTION ##################
 #Processes player variables, like hp, damage, and speed.
 func _process(delta):
+	
+	#state machine
+	#state = 'move' by default
+	states[state].execute(delta);
+	
+	#TODO: handle_input methods for each state
+	
 	if(hp<=0):
-		null
 		print("you technically just died right now");
 		hp = 3;
 		#TODO: go to game over
+	
+	#switch new animation
+	if(new_anim != anim):
+		Animate();
+	
 	$Camera2D.current = true;
 	pass
-
-################## PHYSICS_FUNCTION ##################
-#Processes physical interactions, switches states,
-#and manages timers.
+	
 func _physics_process(delta):
 	on_wall = is_on_wall();
 	on_floor = is_on_floor();
 	on_ceiling = is_on_ceiling();
-
-	#count time in air
-	air_time += delta;
-
-	#timer for attacks
-	states['attack'].attack_timer -= 1;
-	states['attack'].cooldown_timer -= 1;
-	states['hurt'].hurt_timer -= 1;
-
-	#add gravity
-	if(!states['attack'].dashing):
-		fall_spd += gravity_vector.y * delta;
-	#cap gravity
-	if(fall_spd > 900):
-		fall_spd = 900;
-	velocity.y = vspd + fall_spd;
-
-	#move across surfaces
-	velocity = move_and_slide(velocity, floor_normal);
-
-	#no gravity acceleration when on floor
-	if(is_on_floor()):
-		air_time = 0;
-		velocity.y = 0
-		vspd = 0;
-		fall_spd = 0;
-	if(is_on_ceiling()):
-		fall_spd = 500;
-
-	#state machine
-	#state = 'move' by default
-	states[state].execute(delta);
-
-	#switch new animation
-	if(new_anim != anim):
-		Animate();
 	pass
 
 ################## ANIMATE_NEW_ANIMATION ##################

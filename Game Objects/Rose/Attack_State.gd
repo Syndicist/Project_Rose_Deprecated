@@ -1,6 +1,6 @@
 extends Node2D
 
-#parent
+#node references
 onready var host = get_parent().get_parent();
 onready var move = get_parent().get_node("Move");
 
@@ -42,6 +42,11 @@ func _process(delta):
 		first_attack = ATTACK.NIL;
 		second_attack = ATTACK.NIL;
 		third_attack = ATTACK.NIL;
+	pass
+
+func _physics_process(delta):
+	attack_timer -= 1;
+	cooldown_timer -= 1;
 	pass
 
 ################## ATTACK_HANDLING ##################
@@ -86,12 +91,12 @@ func execute(delta):
 	#can have its own interruptable window.
 	if(attack_timer <= interrupt_time):
 		interruptable = true;
-		host.velocity.x = 0;
+		move.velocity.x = 0;
 		dashing = false;
 	else:
 		interruptable = false;
 		if(dashing):
-			host.velocity.y = 0;
+			move.velocity.y = 0;
 			#host.fall_spd = 0;
 	if(interruptable):
 		#reposition Rose.
@@ -115,9 +120,6 @@ func execute(delta):
 	if(attack_timer <= 0):
 		combo_step = 0;
 	if(combo_step == 0):
-		first_attack = ATTACK.NIL;
-		second_attack = ATTACK.NIL;
-		third_attack = ATTACK.NIL;
 		host.currentSprite.visible = false;
 		host.state = 'move';
 		cooldown_timer = 15;
@@ -134,7 +136,7 @@ func execute(delta):
 func makeSlashEffect(effect):
 	host.position.y = host.position.y - 5;
 	effect.position = host.position;
-	effect.scale.x = effect.scale.x * host.Direction;
+	effect.scale.x = effect.scale.x * move.Direction;
 	host.get_parent().add_child(effect);
 	pass
 	
@@ -180,6 +182,10 @@ func thirdSlash():
 			interrupt_time = 35;
 			offbalance_time = 15
 			dashing = true;
+	#BYX COMBO
+	if(first_attack == ATTACK.bash && second_attack == ATTACK.pierce):
+		null
+		#TODO: make this combo
 	pass
 
 ### PIERCE attacks ###

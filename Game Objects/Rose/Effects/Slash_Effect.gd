@@ -18,9 +18,9 @@ func _process(delta):
 	self.position = player.position;
 	
 	if(player.on_wall):
-		player.velocity.x = 0;
+		player.states['move'].velocity.x = 0;
 	elif(!player.on_wall):
-		player.velocity.x = spd * player.Direction;
+		player.states['move'].velocity.x = spd * player.states['move'].Direction;
 	
 	if(bounced):
 		null;
@@ -34,11 +34,10 @@ func _process(delta):
 	pass
 
 func on_area_entered(area):
-	print("!!!");
 	var object = area.get_parent();
 	if(object.tag == "movable"):
 		if(object.type == "blowable"):
-			object.velocity.x = 200 * player.Direction;
+			object.velocity.x = 200 * player.states['move'].Direction;
 	
 	elif(object.susceptible == "slash"):
 		if(!damagedThis):
