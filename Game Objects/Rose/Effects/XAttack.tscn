@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game Objects/Rose/Effects/AttackEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game Objects/Rose/Effects/X_Attack.gd" type="Script" id=2]
+[ext_resource path="res://sprites/Rose test sprites/X_attack_effect.png" type="Texture" id=3]
+
+[node name="XAttack" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="HitBox" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -3.51176, -57.831, 22.6578, -54.2461, 49.9029, -38.4727, 68.9027, -8.35974, 69.2612, 23.9041, 20.1484, 23.5457, 19.073, -23.4162 )
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 3 )
+hframes = 7
+frame = 3
+_sections_unfolded = [ "Animation" ]
+
+

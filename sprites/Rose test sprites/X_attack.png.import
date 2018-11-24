@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1st_slash_attack_xxx.png-22220f01d21c026949a82686dee70130.stex"
+path="res://.import/X_attack.png-990dab4843d0655a21dc5b501e46a974.stex"
 
 [deps]
 
-source_file="res://sprites/Rose test sprites/1st_slash_attack_xxx.png"
-dest_files=[ "res://.import/1st_slash_attack_xxx.png-22220f01d21c026949a82686dee70130.stex" ]
+source_file="res://sprites/Rose test sprites/X_attack.png"
+dest_files=[ "res://.import/X_attack.png-990dab4843d0655a21dc5b501e46a974.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -25,5 +25,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

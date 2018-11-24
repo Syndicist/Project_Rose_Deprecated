@@ -107,11 +107,11 @@ func execute(delta):
 		#may need tweaking. Potentially set up a variable that changes based on the attack, so that each attack
 		#can have its own interruptable window.
 		#TODO: pierce and bash attacks
-		elif(combo_step == 2 && attack_timer > offbalance_time):
+		elif(combo_step == 2):
 			if(Input.is_action_just_pressed("ui_slash")):
 				second_attack = ATTACK.slash;
 				attack_timer = 75;
-		elif(combo_step == 3 && attack_timer > offbalance_time):
+		elif(combo_step == 3):
 			if(Input.is_action_just_pressed("ui_slash")):
 				third_attack = ATTACK.slash;
 				attack_timer = 60;
@@ -141,26 +141,24 @@ func makeSlashEffect(effect):
 	pass
 	
 func firstSlash():
-	host.changeSprite("FirstSlashSprites","1stSlash");
-	if(host.anim == "1stSlash" && host.get_node('FirstSlashSprites').frame == 2 && combo_step == 1):
-		var effect = preload("res://Game Objects/Rose/Effects/1st_Slash_Effect.tscn").instance();
+	host.changeSprite("XAttackSprites","XAttack");
+	if(host.anim == "XAttack" && host.get_node('XAttackSprites').frame == 2 && combo_step == 1):
+		var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
 		makeSlashEffect(effect);
 		combo_step += 1;
 		interrupt_time = 35;
-		offbalance_time = 15;
 		dashing = true;
 	pass
 func secondSlash():
 	match(first_attack):
 		#The slash attack that happens when the first attack is a slash
 		ATTACK.slash:
-			host.changeSprite("SecondSlashSpritesXXX","2ndSlashXXX");
-			if(host.anim == "2ndSlashXXX" && host.get_node('SecondSlashSpritesXXX').frame == 2 && combo_step == 2):
-				var effect = preload("res://Game Objects/Rose/Effects/2nd_Slash_Effect_XXX.tscn").instance();
+			host.changeSprite("XXAttackSprites","XXAttack");
+			if(host.anim == "XXAttack" && host.get_node('XXAttackSprites').frame == 2 && combo_step == 2):
+				var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
 				makeSlashEffect(effect);
 				combo_step += 1;
 				interrupt_time = 35;
-				offbalance_time = 15
 				dashing = true;
 		#The slash attack that happens when the first attack is a pierce
 		ATTACK.pierce:
@@ -174,9 +172,9 @@ func secondSlash():
 func thirdSlash():
 	#XXX COMBO
 	if(first_attack == ATTACK.slash && second_attack == ATTACK.slash):
-		host.changeSprite("ThirdSlashSpritesXXX","3rdSlashXXX");
-		if(host.anim == "3rdSlashXXX" && host.get_node('ThirdSlashSpritesXXX').frame == 1 && combo_step == 3):
-			var effect = preload("res://Game Objects/Rose/Effects/3rd_Slash_Effect_XXX.tscn").instance();
+		host.changeSprite("XXXAttackSprites","XXXAttack");
+		if(host.anim == "XXXAttack" && host.get_node('XXXAttackSprites').frame == 1 && combo_step == 3):
+			var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
 			makeSlashEffect(effect);
 			combo_step += 1;
 			interrupt_time = 35;

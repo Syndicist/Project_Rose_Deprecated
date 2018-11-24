@@ -6,7 +6,7 @@
 [ext_resource path="res://Game Objects/Rose/Rose.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Game Objects/Platforms/LeafPlatform.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
