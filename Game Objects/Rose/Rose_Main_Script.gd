@@ -4,6 +4,7 @@ extends KinematicBody2D
 var on_wall;
 var on_floor;
 var on_ceiling;
+var Direction;
 
 ### anim controller vars ###
 var currentSprite;
@@ -37,6 +38,8 @@ func _ready():
 	
 	### default stat vars ###
 	state = 'move';
+	
+	Direction = 1;
 	pass
 
 ################## PROCESS_FUNCTION ##################

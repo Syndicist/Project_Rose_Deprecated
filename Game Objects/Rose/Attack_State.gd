@@ -1,8 +1,4 @@
-extends Node2D
-
-#node references
-onready var host = get_parent().get_parent();
-onready var move = get_parent().get_node("Move");
+extends "res://Game Objects/Rose/Move.gd"
 
 ### attack vars ###
 enum ATTACK{
@@ -37,14 +33,23 @@ func _ready():
 	pass
 
 func _process(delta):
+	if(host.state == 'attack'):
+		this_state = true;
 	if(host.state != 'attack'):
+		this_state = false;
 		dashing = false;
 		first_attack = ATTACK.NIL;
 		second_attack = ATTACK.NIL;
 		third_attack = ATTACK.NIL;
+		velocity = Vector2(0,0);
+		vspd = 0;
+		fall_spd = 0;
 	pass
 
 func _physics_process(delta):
+	._physics_process(delta);
+	if(dashing):
+		fall_spd = 0;
 	attack_timer -= 1;
 	cooldown_timer -= 1;
 	pass
@@ -91,13 +96,10 @@ func execute(delta):
 	#can have its own interruptable window.
 	if(attack_timer <= interrupt_time):
 		interruptable = true;
-		move.velocity.x = 0;
+		velocity.x = 0;
 		dashing = false;
 	else:
 		interruptable = false;
-		if(dashing):
-			move.velocity.y = 0;
-			#host.fall_spd = 0;
 	if(interruptable):
 		#reposition Rose.
 		#TODO: handle special cases like "jump" to trigger as normal when they are pressed.
@@ -136,7 +138,7 @@ func execute(delta):
 func makeSlashEffect(effect):
 	host.position.y = host.position.y - 5;
 	effect.position = host.position;
-	effect.scale.x = effect.scale.x * move.Direction;
+	effect.scale.x = effect.scale.x * host.Direction;
 	host.get_parent().add_child(effect);
 	pass
 	

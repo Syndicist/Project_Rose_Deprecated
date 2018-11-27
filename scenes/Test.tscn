@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Primitive Scenes/Primitive_TileMap.tres" type="TileSet" id=1]
-[ext_resource path="res://Game Objects/Enemies/Woodeater.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Game Objects/Obstacles/DenseFoliage.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Game Objects/Rose/Rose.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Game Objects/Platforms/LeafPlatform.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Game Objects/Obstacles/DenseFoliage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game Objects/Rose/Rose.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game Objects/Platforms/LeafPlatform.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -27,25 +26,21 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 262144, 1, 0, 262168, 1, 0, 327680, 1, 0, 327704, 1, 0, 393216, 1, 0, 393240, 1, 0, 458752, 1, 0, 458776, 1, 0, 524288, 1, 0, 524292, 1, 0, 524293, 1, 0, 524296, 1, 0, 524299, 1, 0, 524302, 1, 0, 524303, 1, 0, 524304, 1, 0, 524305, 1, 0, 524306, 1, 0, 524312, 1, 0, 589824, 1, 0, 589830, 1, 0, 589831, 1, 0, 589833, 1, 0, 589834, 1, 0, 589836, 1, 0, 589837, 1, 0, 589848, 1, 0, 655360, 1, 0, 655361, 1, 0, 655382, 1, 0, 655383, 1, 0, 655384, 1, 0, 720896, 1, 0, 720920, 1, 0, 786432, 1, 0, 786456, 1, 0, 851968, 1, 0, 851971, 1, 0, 851989, 1, 0, 851990, 1, 0, 851991, 1, 0, 851992, 1, 0, 917504, 1, 0, 917528, 1, 0, 983040, 1, 0, 983064, 1, 0, 1048576, 1, 0, 1048577, 1, 0, 1048595, 1, 0, 1048596, 1, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1114112, 1, 0, 1114136, 1, 0, 1179648, 1, 0, 1179672, 1, 0, 1245184, 1, 0, 1245185, 1, 0, 1245186, 1, 0, 1245187, 1, 0, 1245188, 1, 0, 1245189, 1, 0, 1245190, 1, 0, 1245191, 1, 0, 1245192, 1, 0, 1245193, 1, 0, 1245194, 1, 0, 1245195, 1, 0, 1245196, 1, 0, 1245197, 1, 0, 1245198, 1, 0, 1245199, 1, 0, 1245200, 1, 0, 1245201, 1, 0, 1245202, 1, 0, 1245203, 1, 0, 1245204, 1, 0, 1245205, 1, 0, 1245206, 1, 0, 1245207, 1, 0, 1245208, 1, 0 )
+tile_data = PoolIntArray( 262144, 1, 0, 262168, 1, 0, 327680, 1, 0, 327704, 1, 0, 393216, 1, 0, 393240, 1, 0, 458752, 1, 0, 458776, 1, 0, 524288, 1, 0, 524292, 1, 0, 524293, 1, 0, 524296, 1, 0, 524299, 1, 0, 524302, 1, 0, 524303, 1, 0, 524304, 1, 0, 524305, 1, 0, 524306, 1, 0, 524308, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 589824, 1, 0, 589830, 1, 0, 589831, 1, 0, 589833, 1, 0, 589834, 1, 0, 589836, 1, 0, 589837, 1, 0, 589843, 1, 0, 589845, 1, 0, 589848, 1, 0, 655360, 1, 0, 655361, 1, 0, 655384, 1, 0, 720896, 1, 0, 720917, 1, 0, 720918, 1, 0, 720919, 1, 0, 720920, 1, 0, 786432, 1, 0, 786456, 1, 0, 851968, 1, 0, 851971, 1, 0, 851992, 1, 0, 917504, 1, 0, 917528, 1, 0, 983040, 1, 0, 983064, 1, 0, 1048576, 1, 0, 1048577, 1, 0, 1048595, 1, 0, 1048596, 1, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1114112, 1, 0, 1114136, 1, 0, 1179648, 1, 0, 1179672, 1, 0, 1245184, 1, 0, 1245185, 1, 0, 1245186, 1, 0, 1245187, 1, 0, 1245188, 1, 0, 1245189, 1, 0, 1245190, 1, 0, 1245191, 1, 0, 1245192, 1, 0, 1245193, 1, 0, 1245194, 1, 0, 1245195, 1, 0, 1245196, 1, 0, 1245197, 1, 0, 1245198, 1, 0, 1245199, 1, 0, 1245200, 1, 0, 1245201, 1, 0, 1245202, 1, 0, 1245203, 1, 0, 1245204, 1, 0, 1245205, 1, 0, 1245206, 1, 0, 1245207, 1, 0, 1245208, 1, 0 )
 
-[node name="Woodeater" parent="." index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 404.704, 478.89 )
-
-[node name="DenseFoliage" parent="." index="2" instance=ExtResource( 3 )]
+[node name="DenseFoliage" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 587.053, 562.546 )
 
-[node name="Rose" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Rose" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 197.405, 375.978 )
+position = Vector2( 590.811, 189.456 )
 
-[node name="LeafPlatform3" parent="." index="4" instance=ExtResource( 5 )]
+[node name="LeafPlatform3" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 78.7661, 432.463 )
 
-[node name="LeafPlatform4" parent="." index="5" instance=ExtResource( 5 )]
+[node name="LeafPlatform4" parent="." index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 46.3231, 432.463 )
 

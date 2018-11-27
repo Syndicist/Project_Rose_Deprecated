@@ -1,8 +1,4 @@
-extends Node2D
-
-#node references
-onready var host = get_parent().get_parent();
-onready var move = get_parent().get_node("Move");
+extends "res://Game Objects/Rose/Move.gd"
 
 ### hurt spd vars ###
 var knockback_x;
@@ -16,22 +12,35 @@ func _ready():
 	hurt_timer = 0;
 	pass
 
+func _process(delta):
+	if(host.state == 'hurt'):
+		this_state = true;
+	if(host.state != 'hurt'):
+		this_state = false;
+		velocity = Vector2(0,0);
+		vspd = 0;
+		fall_spd = 0;
+	pass
+
 func _physics_process(delta):
+	._physics_process(delta);
 	hurt_timer -= 1;
 	pass
 
-################## MOVE_PLAYER ##################
-#Allows the player to move and jump, as well as trigger attacks.
-#This is the default and primary state.
+################## HURT_PLAYER ##################
+#Puts the player in a state where they are unable to move until this
+#state passes. goes to the move state when it's over.
+#This state persists as long as the player's hurt timer is still 
+#ticking and the player is not on the floor.
+#TODO: give the player the ability to break out?
 func execute(delta):
-	
-	move.velocity.x = knockback_x * move.Direction;
-	move.vspd = knockback_y;
+	velocity.x = knockback_x * host.Direction;
+	vspd = knockback_y;
 	host.changeSprite("HurtSprites","Hurt");
 	
-	if(hurt_timer <= 0):
-		move.velocity.x = 0;
-		move.velocity.y = 0;
-		move.vspd = 0;
+	if(hurt_timer <= 0 && host.on_floor):
+		velocity.x = 0;
+		velocity.y = 0;
+		vspd = 0;
 		host.state = 'move';
 	pass
