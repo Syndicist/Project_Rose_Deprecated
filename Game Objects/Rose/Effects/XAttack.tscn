@@ -7,11 +7,12 @@
 [node name="XAttack" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="HitBox" type="CollisionPolygon2D" parent="." index="1"]
 
 build_mode = 0
-polygon = PoolVector2Array( -3.51176, -57.831, 22.6578, -54.2461, 49.9029, -38.4727, 68.9027, -8.35974, 69.2612, 23.9041, 20.1484, 23.5457, 19.073, -23.4162 )
+polygon = PoolVector2Array( -3.51176, -57.831, 22.6578, -54.2461, 49.9029, -38.4727, 68.9027, -8.35974, 68.9027, 27.489, 20.1484, 27.489, 19.073, -23.4162 )
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 

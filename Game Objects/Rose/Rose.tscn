@@ -4,9 +4,9 @@
 [ext_resource path="res://Game Objects/Rose/Detect_Collision.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=4]
-[ext_resource path="res://sprites/Rose test sprites/1st_slash_attack.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Rose test sprites/2nd_slash_attack_xx.png" type="Texture" id=6]
-[ext_resource path="res://sprites/Rose test sprites/3rd_slash_attack_xxx.png" type="Texture" id=7]
+[ext_resource path="res://sprites/Rose test sprites/X_attack.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Rose test sprites/XX_attack.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Rose test sprites/XXX_attack.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=8]
 [ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=9]
 [ext_resource path="res://sprites/Rose test sprites/hurt.png" type="Texture" id=10]
@@ -14,7 +14,7 @@
 [ext_resource path="res://Game Objects/Rose/Move_State.gd" type="Script" id=12]
 [ext_resource path="res://Game Objects/Rose/Hurt_State.gd" type="Script" id=13]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 
 resource_name = "Fall"
 length = 1.0
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 
 resource_name = "Hurt"
 length = 1.0
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 
 length = 1.0
 loop = false
@@ -70,7 +70,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 
 length = 1.0
 loop = false
@@ -88,7 +88,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 
 length = 1.05
 loop = true
@@ -106,9 +106,8 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=6]
 
-resource_name = "XAttack"
 length = 1.0
 loop = false
 step = 0.25
@@ -125,9 +124,8 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=7]
 
-resource_name = "XXAttack"
 length = 1.0
 loop = false
 step = 0.25
@@ -144,9 +142,8 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=8]
 
-resource_name = "XXXAttack"
 length = 0.5
 loop = false
 step = 0.25
@@ -168,7 +165,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 6.53191, 27.1314 )
 
-[node name="Rose" type="KinematicBody2D" index="0"]
+[node name="Rose" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -184,14 +181,14 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Fall = SubResource( 4 )
-anims/Hurt = SubResource( 5 )
-anims/Idle = SubResource( 6 )
-anims/Jump = SubResource( 7 )
-anims/Run = SubResource( 8 )
-anims/XAttack = SubResource( 1 )
-anims/XXAttack = SubResource( 2 )
-anims/XXXAttack = SubResource( 3 )
+anims/Fall = SubResource( 1 )
+anims/Hurt = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
+anims/Run = SubResource( 5 )
+anims/XAttack = SubResource( 6 )
+anims/XXAttack = SubResource( 7 )
+anims/XXXAttack = SubResource( 8 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 

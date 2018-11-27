@@ -34,6 +34,7 @@ func _process(delta):
 	pass
 
 func on_area_entered(area):
+	print("!!!");
 	var object = area.get_parent();
 	if(object.tag == "movable"):
 		if(object.type == "blowable"):
