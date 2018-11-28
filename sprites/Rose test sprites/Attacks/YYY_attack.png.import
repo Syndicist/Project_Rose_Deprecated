@@ -1,0 +1,29 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/YYY_attack.png-fbcd6f7ec57a1af426e58c100f06df62.stex"
+
+[deps]
+
+source_file="res://sprites/Rose test sprites/Attacks/YYY_attack.png"
+dest_files=[ "res://.import/YYY_attack.png-fbcd6f7ec57a1af426e58c100f06df62.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

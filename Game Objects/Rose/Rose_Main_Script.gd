@@ -32,7 +32,7 @@ func _ready():
 	hp = 3;
 	
 	### default subnode controller vars ###
-	currentSprite = get_node("StillSprites");
+	currentSprite = get_node("Default Movement").get_node("StillSprites");
 	anim = "Idle";
 	new_anim = "Idle";
 	
@@ -87,7 +87,7 @@ func Animate():
 #animation.
 func changeSprite(sprite, animation):
 	currentSprite.visible = false;
-	currentSprite = get_node(sprite);
+	currentSprite = sprite
 	currentSprite.visible = true;
 	new_anim = animation;
 	pass

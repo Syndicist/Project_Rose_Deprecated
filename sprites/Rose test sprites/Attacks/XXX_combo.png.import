@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/XXX_attack_effect.png-ccd9eb50b8b9e15d29a0e280c4479731.stex"
+path="res://.import/XXX_combo.png-2a792a84f5ca3a8fc18078af4ac3593e.stex"
 
 [deps]
 
-source_file="res://sprites/Rose test sprites/XXX_attack_effect.png"
-dest_files=[ "res://.import/XXX_attack_effect.png-ccd9eb50b8b9e15d29a0e280c4479731.stex" ]
+source_file="res://sprites/Rose test sprites/Attacks/XXX_combo.png"
+dest_files=[ "res://.import/XXX_combo.png-2a792a84f5ca3a8fc18078af4ac3593e.stex" ]
 
 [params]
 

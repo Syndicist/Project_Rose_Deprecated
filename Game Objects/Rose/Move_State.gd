@@ -30,13 +30,13 @@ func execute(delta):
 				host.scale.x = host.scale.x * -1;
 			velocity.x = run_spd;
 			host.Direction = 1;
-			host.changeSprite("RunSprites","Run");
+			host.changeSprite(host.get_node("Default Movement").get_node("RunSprites"),"Run");
 		elif(Input.is_action_pressed("ui_left")):
 			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
 			velocity.x = -run_spd;
 			host.Direction = -1;
-			host.changeSprite("RunSprites","Run");
+			host.changeSprite(host.get_node("Default Movement").get_node("RunSprites"),"Run");
 		elif(Input.is_action_pressed("ui_up")):
 			null;
 			#look up
@@ -45,7 +45,7 @@ func execute(delta):
 			#look down
 		else:
 			velocity.x = 0;
-			host.changeSprite("StillSprites","Idle");
+			host.changeSprite(host.get_node("Default Movement").get_node("StillSprites"),"Idle");
 		if(Input.is_action_just_pressed("ui_jump")):
 			vspd += -jump_spd;
 	
@@ -56,9 +56,9 @@ func execute(delta):
 			if(fall_spd < jump_spd):
 				fall_spd = 2*jump_spd/3;
 		if(velocity.y>0):
-			host.changeSprite("FallSprites","Fall");
+			host.changeSprite(host.get_node("Default Movement").get_node("FallSprites"),"Fall");
 		if(velocity.y<0):
-			host.changeSprite("JumpSprites","Jump");
+			host.changeSprite(host.get_node("Default Movement").get_node("JumpSprites"),"Jump");
 		if(Input.is_action_pressed("ui_right")):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;

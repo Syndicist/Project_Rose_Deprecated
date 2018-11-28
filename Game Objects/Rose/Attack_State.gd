@@ -143,8 +143,8 @@ func makeSlashEffect(effect):
 	pass
 	
 func firstSlash():
-	host.changeSprite("XAttackSprites","XAttack");
-	if(host.anim == "XAttack" && host.get_node('XAttackSprites').frame == 2 && combo_step == 1):
+	host.changeSprite(host.get_node("X Attacks").get_node("XAttackSprites"),"XAttack");
+	if(host.anim == "XAttack" && host.get_node("X Attacks").get_node('XAttackSprites').frame == 2 && combo_step == 1):
 		var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
 		makeSlashEffect(effect);
 		combo_step += 1;
@@ -155,8 +155,8 @@ func secondSlash():
 	match(first_attack):
 		#The slash attack that happens when the first attack is a slash
 		ATTACK.slash:
-			host.changeSprite("XXAttackSprites","XXAttack");
-			if(host.anim == "XXAttack" && host.get_node('XXAttackSprites').frame == 2 && combo_step == 2):
+			host.changeSprite(host.get_node("X Attacks").get_node("XXAttackSprites"),"XXAttack");
+			if(host.anim == "XXAttack" && host.get_node("X Attacks").get_node('XXAttackSprites').frame == 2 && combo_step == 2):
 				var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
 				makeSlashEffect(effect);
 				combo_step += 1;
@@ -174,8 +174,8 @@ func secondSlash():
 func thirdSlash():
 	#XXX COMBO
 	if(first_attack == ATTACK.slash && second_attack == ATTACK.slash):
-		host.changeSprite("XXXAttackSprites","XXXAttack");
-		if(host.anim == "XXXAttack" && host.get_node('XXXAttackSprites').frame == 1 && combo_step == 3):
+		host.changeSprite(host.get_node("X Attacks").get_node("XXXAttackSprites"),"XXXAttack");
+		if(host.anim == "XXXAttack" && host.get_node("X Attacks").get_node('XXXAttackSprites').frame == 1 && combo_step == 3):
 			var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
 			makeSlashEffect(effect);
 			combo_step += 1;

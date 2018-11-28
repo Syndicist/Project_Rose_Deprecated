@@ -36,7 +36,7 @@ func _physics_process(delta):
 func execute(delta):
 	velocity.x = knockback_x * host.Direction;
 	vspd = knockback_y;
-	host.changeSprite("HurtSprites","Hurt");
+	host.changeSprite(host.get_node("Default Movement").get_node("HurtSprites"),"Hurt");
 	
 	if(hurt_timer <= 0 && host.on_floor):
 		velocity.x = 0;

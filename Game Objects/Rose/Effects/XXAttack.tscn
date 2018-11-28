@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Game Objects/Rose/Effects/AttackEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game Objects/Rose/Effects/XX_Attack.gd" type="Script" id=2]
-[ext_resource path="res://sprites/Rose test sprites/XX_attack_effect.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Rose test sprites/Attacks/XX_attack_effect.png" type="Texture" id=3]
+
 
 [node name="AttackEffect" instance=ExtResource( 1 )]
 
