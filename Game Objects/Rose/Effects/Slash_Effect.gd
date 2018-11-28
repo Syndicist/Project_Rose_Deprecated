@@ -48,7 +48,7 @@ func on_area_entered(area):
 		spd = spd * -1;
 		bounced = true;
 	pass
-	
+
 func on_body_entered(object):
 	#Bounce off object
 	if(!"susceptible" in object):
