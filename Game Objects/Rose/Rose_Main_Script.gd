@@ -11,6 +11,21 @@ var currentSprite;
 var anim;
 var new_anim;
 
+onready var attack = get_node("States").get_node("Attack");
+onready var move = get_node("States").get_node("Move");
+onready var hurt = get_node("States").get_node("Hurt");
+
+### movement controller vars ###
+var run_spd;
+var jump_spd;
+var velocity;
+var gravity;
+var gravity_vector;
+var air_time;
+var floor_normal;
+var fall_spd;
+var vspd;
+
 ### state vars ###
 #TODO: hurt_state
 onready var states = {
@@ -36,10 +51,19 @@ func _ready():
 	anim = "Idle";
 	new_anim = "Idle";
 	
-	### default stat vars ###
+	### default state vars ###
 	state = 'move';
-	
 	Direction = 1;
+	
+	### default movement controller vars ###
+	run_spd = 250;
+	jump_spd = 500;
+	velocity = Vector2(0,0);
+	gravity = 1200;
+	floor_normal = Vector2(0,-1);
+	air_time = 0;
+	vspd = 0;
+	fall_spd = 0;
 	pass
 
 ################## PROCESS_FUNCTION ##################
@@ -63,11 +87,35 @@ func _process(delta):
 	
 	$Camera2D.current = true;
 	pass
-	
+
+################## PHYSICS_FUNCTION ##################
+#Processes physical interactions.
 func _physics_process(delta):
-	on_wall = is_on_wall();
-	on_floor = is_on_floor();
-	on_ceiling = is_on_ceiling();
+	#count time in air
+	air_time += delta;
+	
+	velocity.y = vspd + fall_spd;
+	
+	#move across surfaces
+	velocity = move_and_slide(velocity, floor_normal);
+	
+	
+	#no gravity acceleration when on floor
+	if(is_on_floor()):
+		air_time = 0;
+		velocity.y = 0
+		vspd = 0;
+		fall_spd = 0;
+	
+	#add gravity
+	fall_spd += gravity * delta;
+	
+	#cap gravity
+	if(fall_spd > 900):
+		fall_spd = 900;
+	
+	if(is_on_ceiling()):
+		fall_spd = 500;
 	pass
 
 ################## ANIMATE_NEW_ANIMATION ##################

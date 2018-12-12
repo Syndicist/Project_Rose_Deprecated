@@ -10,7 +10,7 @@
 [ext_resource path="res://Game Objects/Platforms/LeafVineType2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Game Objects/Obstacles/DenseFoliage.tscn" type="PackedScene" id=9]
 
-[node name="Level 1" type="Node2D" index="0"]
+[node name="Level 1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 

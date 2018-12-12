@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Game Objects/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Game Objects/Rose/Detect_Collision.gd" type="Script" id=2]
-[ext_resource path="res://sprites/Rose test sprites/idle.png" type="Texture" id=3]
-[ext_resource path="res://sprites/Rose test sprites/run_strip8.png" type="Texture" id=4]
-[ext_resource path="res://sprites/Rose test sprites/jump.png" type="Texture" id=5]
-[ext_resource path="res://sprites/Rose test sprites/spr_Rose_fall.png" type="Texture" id=6]
+[ext_resource path="res://sprites/Rose Sprites/Rose_Idle.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Rose Sprites/Rose_Run.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Rose Sprites/Rose_Jump.png" type="Texture" id=5]
+[ext_resource path="res://sprites/Rose Sprites/Rose_Fall.png" type="Texture" id=6]
 [ext_resource path="res://sprites/Rose test sprites/hurt.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Rose test sprites/Attacks/X_attack.png" type="Texture" id=8]
 [ext_resource path="res://sprites/Rose test sprites/Attacks/XX_attack.png" type="Texture" id=9]
@@ -17,8 +17,8 @@
 [sub_resource type="Animation" id=1]
 
 resource_name = "Fall"
-length = 1.0
-loop = false
+length = 0.3
+loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Default Movement/FallSprites:frame")
@@ -27,10 +27,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -55,7 +55,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=3]
 
 length = 1.0
-loop = false
+loop = true
 step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Default Movement/StillSprites:frame")
@@ -64,16 +64,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
 [sub_resource type="Animation" id=4]
 
-length = 1.0
-loop = false
+length = 0.3
+loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Default Movement/JumpSprites:frame")
@@ -82,17 +82,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=5]
 
-length = 1.05
+length = 0.8
 loop = true
-step = 0.15
+step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Default Movement/RunSprites:frame")
 tracks/0/interp = 1
@@ -100,7 +100,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
@@ -163,7 +163,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-extents = Vector2( 6.53191, 27.1314 )
+extents = Vector2( 6.53191, 18.3738 )
 
 [node name="Rose" type="KinematicBody2D" index="0"]
 
@@ -194,8 +194,9 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( -0.524475, 2.62238 )
+position = Vector2( 0, 5 )
 shape = SubResource( 9 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Area" type="Area2D" parent="." index="2"]
 
@@ -213,33 +214,40 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="TriggerCollider" type="CollisionShape2D" parent="Area" index="0"]
 
-position = Vector2( -0.524475, 2.62238 )
+position = Vector2( 0, 5 )
 shape = SubResource( 9 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Default Movement" type="Node2D" parent="." index="3"]
 
 [node name="StillSprites" type="Sprite" parent="Default Movement" index="0"]
 
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Offset", "Transform" ]
+hframes = 5
+frame = 3
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="RunSprites" type="Sprite" parent="Default Movement" index="1"]
 
 visible = false
 texture = ExtResource( 4 )
 hframes = 8
+frame = 6
 _sections_unfolded = [ "Animation", "Offset" ]
 
 [node name="JumpSprites" type="Sprite" parent="Default Movement" index="2"]
 
 visible = false
 texture = ExtResource( 5 )
+hframes = 3
 _sections_unfolded = [ "Animation" ]
 
 [node name="FallSprites" type="Sprite" parent="Default Movement" index="3"]
 
 visible = false
 texture = ExtResource( 6 )
+hframes = 3
+frame = 2
 _sections_unfolded = [ "Animation" ]
 
 [node name="HurtSprites" type="Sprite" parent="Default Movement" index="4"]
@@ -249,6 +257,8 @@ texture = ExtResource( 7 )
 _sections_unfolded = [ "Animation" ]
 
 [node name="X Attacks" type="Node2D" parent="." index="4"]
+
+editor/display_folded = true
 
 [node name="XAttackSprites" type="Sprite" parent="X Attacks" index="0"]
 
@@ -278,6 +288,7 @@ _sections_unfolded = [ "Animation", "Visibility" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 
+editor/display_folded = true
 anchor_mode = 1
 rotating = false
 current = false

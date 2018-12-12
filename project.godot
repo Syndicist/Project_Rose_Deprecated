@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Project_Rose"
-run/main_scene="res://scenes/Primitive Scenes/The Tree Stump/Forest_Primitive.tscn"
+run/main_scene="res://scenes/Test.tscn"
 config/icon="res://icon.png"
 
 [display]

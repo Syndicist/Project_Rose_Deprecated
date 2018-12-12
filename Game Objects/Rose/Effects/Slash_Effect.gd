@@ -10,7 +10,7 @@ extends "res://Game Objects/Rose/Effects/Attack_Effect.gd"
 #this makes virtually no difference, since spd is re-initialized in each higher-
 #level script's _ready function anyways. This is just needed for the code to run
 #at all.
-var spd = 600;
+var spd = 1200;
 var ispd = spd;
 var bounced = false;
 
@@ -18,18 +18,19 @@ func _process(delta):
 	self.position = player.position;
 	
 	if(player.on_wall):
-		player.states[player.state].velocity.x = 0;
+		player.velocity.x = 0;
 	elif(!player.on_wall):
-		player.states[player.state].velocity.x = spd * player.Direction;
+		player.velocity.x = spd * player.Direction;
 	
 	if(bounced):
 		null;
 		#TODO: reduce travel time
-	
 	if(player.state != 'attack'):
+		player.attack.dashing = false;
 		queue_free();
 	
 	if(!$animator.is_playing()):
+		player.attack.dashing = false;
 		queue_free();
 	pass
 
@@ -44,13 +45,13 @@ func on_area_entered(area):
 			object.hp -= 1;
 			damagedThis = true;
 	#Bounce off object
-	else:
-		spd = spd * -1;
-		bounced = true;
+	#else:
+		#spd = spd * -1;
+		#bounced = true;
 	pass
 
 func on_body_entered(object):
 	#Bounce off object
-	if(!"susceptible" in object):
-		spd = spd * -1;
+	#if(!"susceptible" in object):
+		#spd = spd * -1;
 	pass
