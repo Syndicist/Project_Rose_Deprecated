@@ -1,9 +1,6 @@
 extends KinematicBody2D
 
 ### physics vars ###
-var on_wall;
-var on_floor;
-var on_ceiling;
 var Direction;
 
 ### anim controller vars ###
@@ -39,12 +36,16 @@ var state;
 var hp;
 var max_hp;
 var damage;
+var tag;
 
 ################## INITIALIZE_VARS ##################
 #Not actually neccessary mostly, but provides an easy
 #centrailized location for all default variable values.
 func _ready():
-	hp = 3;
+	max_hp = 3;
+	hp = max_hp;
+	damage = 1;
+	tag = "player";
 	
 	### default subnode controller vars ###
 	currentSprite = get_node("Default Movement").get_node("StillSprites");
@@ -64,6 +65,7 @@ func _ready():
 	air_time = 0;
 	vspd = 0;
 	fall_spd = 0;
+	$animator.play(anim);
 	pass
 
 ################## PROCESS_FUNCTION ##################
@@ -99,7 +101,6 @@ func _physics_process(delta):
 	#move across surfaces
 	velocity = move_and_slide(velocity, floor_normal);
 	
-	
 	#no gravity acceleration when on floor
 	if(is_on_floor()):
 		air_time = 0;
@@ -108,7 +109,8 @@ func _physics_process(delta):
 		fall_spd = 0;
 	
 	#add gravity
-	fall_spd += gravity * delta;
+	if(!attack.dashing):
+		fall_spd += gravity * delta;
 	
 	#cap gravity
 	if(fall_spd > 900):

@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Game Objects/Enemies/enemy.gd" type="Script" id=1]
+[ext_resource path="res://Game Objects/Enemies/Sight.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 9.97946, 7 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 187.389, 22.4129 )
 
 [node name="Enemy" type="KinematicBody2D"]
 
@@ -35,6 +41,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -51,5 +58,48 @@ _sections_unfolded = [ "Audio Bus", "Collision" ]
 position = Vector2( -4, -1 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="States" type="Node2D" parent="." index="3"]
+
+[node name="Default" type="Node2D" parent="States" index="0"]
+
+[node name="Attack" type="Node2D" parent="States" index="1"]
+
+[node name="AttackTimer" type="Timer" parent="States/Attack" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Chase" type="Node2D" parent="States" index="2"]
+
+[node name="ActionTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Sight" type="Area2D" parent="." index="5"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 512
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" index="0"]
+
+position = Vector2( 0, -10 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 

@@ -2,8 +2,7 @@
 
 [ext_resource path="res://Game Objects/Rose/Effects/AttackEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game Objects/Rose/Effects/XXX_Attack.gd" type="Script" id=2]
-[ext_resource path="res://sprites/Rose test sprites/Attacks/XXX_attack_effect.png" type="Texture" id=3]
-
+[ext_resource path="res://sprites/Rose Sprites/Rose_XXX_Effect.png" type="Texture" id=3]
 
 [node name="AttackEffect" instance=ExtResource( 1 )]
 
@@ -11,14 +10,14 @@ script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
 
+position = Vector2( 0, 1.05408 )
 build_mode = 0
-polygon = PoolVector2Array( -45.4548, -4.05789, -18.2097, -23.0577, 24.4502, -35.2463, 85.0346, -35.6048, 129.487, -21.9823, 146.694, -5.13336, 130.562, 19.6023, 113.355, 28.5644, 64.6008, 28.5644, 85.3931, 10.2816, 90.7704, -15.171, 49.9028, -21.6238, -0.64386, -18.0389 )
+polygon = PoolVector2Array( -45.4548, -4.05789, -31.0176, -24.9856, 0.868118, -28.9383, 26.1659, -31.5735, 45.1392, -21.5598, 49.3555, -1.26891, 41.977, 18.2315, -37.0785, 17.9679 )
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 3 )
-hframes = 13
-frame = 6
+hframes = 3
 _sections_unfolded = [ "Animation" ]
 
 

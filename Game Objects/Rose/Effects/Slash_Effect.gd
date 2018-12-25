@@ -1,4 +1,4 @@
-extends "res://Game Objects/Rose/Effects/Attack_Effect.gd"
+extends "res://Game Objects/Rose/Effects/Attack_Effect_Player.gd"
 
 
 ### SLASH ATTACK TEMPLATE ###
@@ -17,20 +17,18 @@ var bounced = false;
 func _process(delta):
 	self.position = player.position;
 	
-	if(player.on_wall):
+	if(player.is_on_wall()):
 		player.velocity.x = 0;
-	elif(!player.on_wall):
+	elif(!player.is_on_wall()):
 		player.velocity.x = spd * player.Direction;
 	
 	if(bounced):
 		null;
 		#TODO: reduce travel time
 	if(player.state != 'attack'):
-		player.attack.dashing = false;
 		queue_free();
 	
 	if(!$animator.is_playing()):
-		player.attack.dashing = false;
 		queue_free();
 	pass
 

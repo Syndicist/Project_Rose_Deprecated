@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game Objects/Enemies/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/enemy sprites/wasp.png" type="Texture" id=2]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+
+position = Vector2( 0, 0 )
+
+[node name="PhysicsCollider" parent="." index="1"]
+
+position = Vector2( 0, 0 )
+
+[node name="Area2D" parent="." index="2"]
+
+editor/display_folded = false
+
+[node name="DamageCollider" parent="Area2D" index="0"]
+
+position = Vector2( 0, 0 )
+
+[node name="States" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="Attack" parent="States" index="1"]
+
+editor/display_folded = true
+
+[node name="Sight" parent="." index="5"]
+
+editor/display_folded = false
+
+[node name="Idle_Sprites" type="Sprite" parent="." index="6"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+

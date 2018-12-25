@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Game Objects/Rose/Effects/AttackEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game Objects/Enemies/Attack_Effect_Enemy.gd" type="Script" id=2]
+[ext_resource path="res://sprites/enemy sprites/woodeate_attack_effect.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 14, 5 )
+
+[node name="WoodeaterAttackEffect" instance=ExtResource( 1 )]
+
+collision_layer = 16
+collision_mask = 227
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+hframes = 5
+frame = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( 14, 0 )
+shape = SubResource( 1 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+
+

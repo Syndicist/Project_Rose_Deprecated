@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Project_Rose"
-run/main_scene="res://scenes/Test.tscn"
+run/main_scene="res://scenes/Primitive Scenes/The Tree Stump/Forest_Primitive.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -86,7 +86,10 @@ ui_jump=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
 2d_physics/layer_7="Platform Controllers"
 2d_physics/layer_8="Interactables"
 2d_physics/layer_9="Platforms"
+2d_physics/layer_10="Uninteractables"
+2d_physics/layer_11="Hazards"
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

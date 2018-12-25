@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Game Objects/Rose/Rose_Main_Script.gd" type="Script" id=1]
 [ext_resource path="res://Game Objects/Rose/Detect_Collision.gd" type="Script" id=2]
@@ -7,17 +7,24 @@
 [ext_resource path="res://sprites/Rose Sprites/Rose_Jump.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Rose Sprites/Rose_Fall.png" type="Texture" id=6]
 [ext_resource path="res://sprites/Rose test sprites/hurt.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Rose test sprites/Attacks/X_attack.png" type="Texture" id=8]
-[ext_resource path="res://sprites/Rose test sprites/Attacks/XX_attack.png" type="Texture" id=9]
-[ext_resource path="res://sprites/Rose test sprites/Attacks/XXX_attack.png" type="Texture" id=10]
-[ext_resource path="res://Game Objects/Rose/Attack_State.gd" type="Script" id=11]
-[ext_resource path="res://Game Objects/Rose/Move_State.gd" type="Script" id=12]
-[ext_resource path="res://Game Objects/Rose/Hurt_State.gd" type="Script" id=13]
+[ext_resource path="res://sprites/Rose Sprites/Rose_Jump_To_Fall.png" type="Texture" id=8]
+[ext_resource path="res://sprites/Rose Sprites/Rose_X_Attack.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Rose Sprites/Rose_XX_Attack.png" type="Texture" id=10]
+[ext_resource path="res://sprites/Rose Sprites/Rose_XXX_Attack.png" type="Texture" id=11]
+[ext_resource path="res://Game Objects/Rose/Attack_State.gd" type="Script" id=12]
+[ext_resource path="res://Game Objects/Rose/Move_State.gd" type="Script" id=13]
+[ext_resource path="res://Game Objects/Rose/Hurt_State.gd" type="Script" id=14]
+[ext_resource path="res://sprites/Rose test sprites/Attacks/Y_attack.png" type="Texture" id=15]
+[ext_resource path="res://sprites/Rose test sprites/Attacks/YY_attack.png" type="Texture" id=16]
+[ext_resource path="res://sprites/Rose test sprites/Attacks/YYY_attack.png" type="Texture" id=17]
+[ext_resource path="res://Design and Prototypes/forest_bg1.png" type="Texture" id=18]
+[ext_resource path="res://Design and Prototypes/forest_bg2.png" type="Texture" id=19]
+[ext_resource path="res://Design and Prototypes/Capture.PNG" type="Texture" id=20]
 
 [sub_resource type="Animation" id=1]
 
 resource_name = "Fall"
-length = 0.3
+length = 0.2
 loop = true
 step = 0.1
 tracks/0/type = "value"
@@ -27,10 +34,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -108,9 +115,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 
-length = 1.0
+length = 0.8
 loop = false
-step = 0.25
+step = 0.08
 tracks/0/type = "value"
 tracks/0/path = NodePath("X Attacks/XAttackSprites:frame")
 tracks/0/interp = 1
@@ -118,17 +125,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.08, 0.32, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=7]
 
-length = 1.0
+length = 0.7
 loop = false
-step = 0.25
+step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("X Attacks/XXAttackSprites:frame")
 tracks/0/interp = 1
@@ -136,17 +143,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
 [sub_resource type="Animation" id=8]
 
-length = 0.5
+length = 1.0
 loop = false
-step = 0.25
+step = 0.14
 tracks/0/type = "value"
 tracks/0/path = NodePath("X Attacks/XXXAttackSprites:frame")
 tracks/0/interp = 1
@@ -154,13 +161,70 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25 ),
+"times": PoolRealArray( 0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "YAttack"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Y Attacks/YAttackSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="Animation" id=10]
+
+resource_name = "YYAttack"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Y Attacks/YYAttackSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=11]
+
+resource_name = "YYYAttack"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Y Attacks/YYYAttackSprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
 extents = Vector2( 6.53191, 18.3738 )
@@ -189,13 +253,15 @@ anims/Run = SubResource( 5 )
 anims/XAttack = SubResource( 6 )
 anims/XXAttack = SubResource( 7 )
 anims/XXXAttack = SubResource( 8 )
+anims/YAttack = SubResource( 9 )
+anims/YYAttack = SubResource( 10 )
+anims/YYYAttack = SubResource( 11 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, 5 )
-shape = SubResource( 9 )
+shape = SubResource( 12 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Area" type="Area2D" parent="." index="2"]
@@ -206,7 +272,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 2
-collision_mask = 24
+collision_mask = 1048
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 2 )
@@ -214,8 +280,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="TriggerCollider" type="CollisionShape2D" parent="Area" index="0"]
 
-position = Vector2( 0, 5 )
-shape = SubResource( 9 )
+shape = SubResource( 12 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Default Movement" type="Node2D" parent="." index="3"]
@@ -246,8 +311,8 @@ _sections_unfolded = [ "Animation" ]
 
 visible = false
 texture = ExtResource( 6 )
-hframes = 3
-frame = 2
+hframes = 2
+frame = 1
 _sections_unfolded = [ "Animation" ]
 
 [node name="HurtSprites" type="Sprite" parent="Default Movement" index="4"]
@@ -256,35 +321,38 @@ visible = false
 texture = ExtResource( 7 )
 _sections_unfolded = [ "Animation" ]
 
-[node name="X Attacks" type="Node2D" parent="." index="4"]
+[node name="JumpToFallSprites" type="Sprite" parent="Default Movement" index="5"]
 
-editor/display_folded = true
+visible = false
+texture = ExtResource( 8 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="X Attacks" type="Node2D" parent="." index="4"]
 
 [node name="XAttackSprites" type="Sprite" parent="X Attacks" index="0"]
 
 visible = false
-position = Vector2( -11.0446, 1.56506 )
-texture = ExtResource( 8 )
-hframes = 3
-frame = 2
+texture = ExtResource( 9 )
+hframes = 6
+frame = 5
 _sections_unfolded = [ "Animation" ]
 
 [node name="XXAttackSprites" type="Sprite" parent="X Attacks" index="1"]
 
 visible = false
-position = Vector2( -5.83978, 0 )
-texture = ExtResource( 9 )
-hframes = 3
-_sections_unfolded = [ "Animation" ]
+texture = ExtResource( 10 )
+hframes = 5
+frame = 4
+_sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="XXXAttackSprites" type="Sprite" parent="X Attacks" index="2"]
 
 visible = false
-position = Vector2( -5.54779, 0 )
-texture = ExtResource( 10 )
-hframes = 2
-frame = 1
-_sections_unfolded = [ "Animation", "Visibility" ]
+texture = ExtResource( 11 )
+hframes = 7
+frame = 6
+_sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 
@@ -296,7 +364,7 @@ zoom = Vector2( 0.5, 0.5 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
-limit_bottom = 650
+limit_bottom = 10000000
 limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -311,7 +379,7 @@ drag_margin_bottom = 0.03
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Offset" ]
+_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
 
 [node name="Viewport" type="Viewport" parent="Camera2D" index="0"]
 
@@ -344,19 +412,102 @@ _sections_unfolded = [ "Pause" ]
 
 [node name="Attack" type="Node2D" parent="States" index="0"]
 
-script = ExtResource( 11 )
+script = ExtResource( 12 )
 
 [node name="Move" type="Node2D" parent="States" index="1"]
 
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 _sections_unfolded = [ "Pause" ]
 
 [node name="Hurt" type="Node2D" parent="States" index="2"]
 
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
 [node name="Helpers" type="Node2D" parent="." index="7"]
 
+editor/display_folded = true
+
 [node name="Collide" type="Node2D" parent="Helpers" index="0"]
+
+[node name="Y Attacks" type="Node2D" parent="." index="8"]
+
+editor/display_folded = true
+
+[node name="YAttackSprites" type="Sprite" parent="Y Attacks" index="0"]
+
+visible = false
+texture = ExtResource( 15 )
+hframes = 2
+frame = 1
+_sections_unfolded = [ "Animation" ]
+
+[node name="YYAttackSprites" type="Sprite" parent="Y Attacks" index="1"]
+
+visible = false
+texture = ExtResource( 16 )
+hframes = 2
+_sections_unfolded = [ "Animation" ]
+
+[node name="YYYAttackSprites" type="Sprite" parent="Y Attacks" index="2"]
+
+visible = false
+texture = ExtResource( 17 )
+hframes = 10
+_sections_unfolded = [ "Animation" ]
+
+[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="9"]
+
+editor/display_folded = true
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground1" index="0"]
+
+motion_scale = Vector2( 0.25, 0.1 )
+motion_offset = Vector2( 0, -300 )
+motion_mirroring = Vector2( 900, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer" index="0"]
+
+texture = ExtResource( 18 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground1" index="1"]
+
+motion_scale = Vector2( 0.5, 0.15 )
+motion_offset = Vector2( 0, -300 )
+motion_mirroring = Vector2( 900, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer2" index="0"]
+
+texture = ExtResource( 19 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground1" index="2"]
+
+motion_scale = Vector2( 0.8, 0.8 )
+motion_offset = Vector2( 0, -100 )
+motion_mirroring = Vector2( 900, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer3" index="0"]
+
+texture = ExtResource( 20 )
+centered = false
+_sections_unfolded = [ "Offset" ]
 
 

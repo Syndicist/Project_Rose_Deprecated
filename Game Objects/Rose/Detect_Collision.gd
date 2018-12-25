@@ -7,8 +7,11 @@ func _ready():
 	pass
 
 func on_area_entered(area):
+	if(("sight" in area)):
+		return;
 	var object = area.get_parent();
-	if(object.tag == "enemy" || object.tag == "enemy attack" && host.state != 'hurt'):
+	print("!!!");
+	if(host.state != 'hurt'):
 		host.velocity.x = 0;
 		host.velocity.y = 0;
 		host.states['hurt'].hurt_timer = 7;

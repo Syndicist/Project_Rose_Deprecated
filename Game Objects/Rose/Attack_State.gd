@@ -34,16 +34,13 @@ func _ready():
 
 func _process(delta):
 	if(host.state != 'attack'):
-		#dashing = false;
+		dashing = false;
 		first_attack = ATTACK.NIL;
 		second_attack = ATTACK.NIL;
 		third_attack = ATTACK.NIL;
 	pass
 
 func _physics_process(delta):
-	if(dashing):
-		host.velocity.y = 0;
-		host.fall_spd = host.jump_spd;
 	attack_timer -= 1;
 	cooldown_timer -= 1;
 	pass
@@ -106,6 +103,8 @@ func execute(delta):
 			if(Input.is_action_just_pressed("ui_slash")):
 				second_attack = ATTACK.slash;
 				attack_timer = 75;
+			#elif(Input.is_action_just_pressed("ui_pierce")):
+			#	second_attack = Attack.pierce;
 		elif(combo_step == 3):
 			if(Input.is_action_just_pressed("ui_slash")):
 				third_attack = ATTACK.slash;
@@ -129,7 +128,6 @@ func execute(delta):
 ### SLASH attacks ###
 #initializes and plays the given effect
 func makeSlashEffect(effect):
-	host.position.y = host.position.y - 5;
 	effect.position = host.position;
 	effect.scale.x = effect.scale.x * host.Direction;
 	host.get_parent().add_child(effect);
@@ -137,7 +135,7 @@ func makeSlashEffect(effect):
 	
 func firstSlash():
 	host.changeSprite(host.get_node("X Attacks").get_node("XAttackSprites"),"XAttack");
-	if(host.anim == "XAttack" && host.get_node("X Attacks").get_node('XAttackSprites').frame == 2 && combo_step == 1):
+	if(host.anim == "XAttack" && host.get_node("X Attacks").get_node('XAttackSprites').frame == 3 && combo_step == 1):
 		var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
 		makeSlashEffect(effect);
 		combo_step += 1;
@@ -149,7 +147,7 @@ func secondSlash():
 		#The slash attack that happens when the first attack is a slash
 		ATTACK.slash:
 			host.changeSprite(host.get_node("X Attacks").get_node("XXAttackSprites"),"XXAttack");
-			if(host.anim == "XXAttack" && host.get_node("X Attacks").get_node('XXAttackSprites').frame == 2 && combo_step == 2):
+			if(host.anim == "XXAttack" && host.get_node("X Attacks").get_node('XXAttackSprites').frame == 3 && combo_step == 2):
 				var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
 				makeSlashEffect(effect);
 				combo_step += 1;
@@ -168,7 +166,7 @@ func thirdSlash():
 	#XXX COMBO
 	if(first_attack == ATTACK.slash && second_attack == ATTACK.slash):
 		host.changeSprite(host.get_node("X Attacks").get_node("XXXAttackSprites"),"XXXAttack");
-		if(host.anim == "XXXAttack" && host.get_node("X Attacks").get_node('XXXAttackSprites').frame == 1 && combo_step == 3):
+		if(host.anim == "XXXAttack" && host.get_node("X Attacks").get_node('XXXAttackSprites').frame == 4 && combo_step == 3):
 			var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
 			makeSlashEffect(effect);
 			combo_step += 1;
@@ -195,7 +193,7 @@ func makePierceEffect(effect):
 #Does no damage, but pushes enemies back.
 func defaultPierce():
 	host.changeSprite("DefaultPierceSprites","DefaultPierce");
-	if(host.anim == "DefaultPierce" && host.get_node('DefaultPierceSprites').frame == 2):
+	if(host.anim == "DefaultPierce" && host.get_node('DefaultPierceSprites').frame == 4):
 		var effect = preload("res://Game Objects/Rose/Effects/Default_Pierce_Effect.tscn").instance();
 		makePierceEffect(effect);
 		combo_step = 4;
