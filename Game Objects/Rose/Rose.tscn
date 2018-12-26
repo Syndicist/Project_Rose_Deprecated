@@ -266,6 +266,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Area" type="Area2D" parent="." index="2"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -284,6 +285,8 @@ shape = SubResource( 12 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Default Movement" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
 
 [node name="StillSprites" type="Sprite" parent="Default Movement" index="0"]
 
@@ -329,6 +332,8 @@ hframes = 3
 _sections_unfolded = [ "Animation" ]
 
 [node name="X Attacks" type="Node2D" parent="." index="4"]
+
+editor/display_folded = true
 
 [node name="XAttackSprites" type="Sprite" parent="X Attacks" index="0"]
 
@@ -409,6 +414,8 @@ shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
 [node name="States" type="Node2D" parent="." index="6"]
+
+editor/display_folded = true
 
 [node name="Attack" type="Node2D" parent="States" index="0"]
 

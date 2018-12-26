@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/enemy sprites/infant woodeater queen.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25.6428, 29.1046 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -30.7993, 28.9951, 1.99831, 29.0042, 10.6182, 16.2499, 24.1404, 12.3864, 28.2185, -1.77966, 22.6379, -9.29199, 18.3452, -27.7508, -3.76256, -38.0535, -11.9188, -26.6777, -17.2847, -16.8043, -10.7047, 8.83861, -18.4345, 14.8387, -27.0986, 14.9302, -32.0985, 23.3327 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 1 )
+
+

@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game Objects/Enemies/enemy.gd" type="Script" id=1]
-[ext_resource path="res://Game Objects/Enemies/Sight.gd" type="Script" id=2]
+[ext_resource path="res://Game Objects/Enemies/Default_State_Enemy.gd" type="Script" id=2]
+[ext_resource path="res://Game Objects/Enemies/Attack_State_Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Game Objects/Enemies/Chase_State_Enemy.gd" type="Script" id=4]
+[ext_resource path="res://Game Objects/Enemies/Sight.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 9.97946, 7 )
+extents = Vector2( 9.99699, 7 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -63,7 +66,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Default" type="Node2D" parent="States" index="0"]
 
+script = ExtResource( 2 )
+
 [node name="Attack" type="Node2D" parent="States" index="1"]
+
+editor/display_folded = true
+script = ExtResource( 3 )
 
 [node name="AttackTimer" type="Timer" parent="States/Attack" index="0"]
 
@@ -73,6 +81,8 @@ one_shot = false
 autostart = false
 
 [node name="Chase" type="Node2D" parent="States" index="2"]
+
+script = ExtResource( 4 )
 
 [node name="ActionTimer" type="Timer" parent="." index="4"]
 
@@ -93,7 +103,7 @@ collision_layer = 512
 collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" index="0"]
