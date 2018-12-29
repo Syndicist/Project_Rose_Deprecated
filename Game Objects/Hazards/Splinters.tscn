@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game Objects/Hazards/Hazard_Parent.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/splinter_hazard.png" type="Texture" id=2]
+[ext_resource path="res://Game Objects/Hazards/Hazard.gd" type="Script" id=2]
+[ext_resource path="res://sprites/splinter_hazard.png" type="Texture" id=3]
 
 [node name="Splinters" instance=ExtResource( 1 )]
 
@@ -9,6 +10,7 @@
 
 collision_layer = 1024
 collision_mask = 10
+script = ExtResource( 2 )
 _sections_unfolded = [ "Audio Bus", "Collision" ]
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
@@ -18,6 +20,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 

@@ -27,7 +27,7 @@ func execute(delta):
 		effect.col.disabled = false;
 	if(started && attacking && (host.get_node("Attack_Sprites").frame == host.get_node("Attack_Sprites").hframes-1) && host.is_on_floor()):
 		effect.queue_free();
-		if(host.target != null):
+		if(host.canSeePlayer()):
 			host.state = 'chase';
 		else:
 			host.state = 'default';

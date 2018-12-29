@@ -9,7 +9,7 @@ func _process(delta):
 func execute(delta):
 	### attack triggers ###
 	#TODO: pierce and bash attack triggers (these need animations first)
-	if(attack.cooldown_timer <= 0 && host.is_on_floor()):
+	if(attack.cooldown_timer <= 0 && host.on_floor()):
 		if(Input.is_action_just_pressed("ui_slash")):
 			attack.combo_step = 1;
 			attack.attack_timer = 75;
@@ -22,7 +22,7 @@ func execute(delta):
 			attack.first_attack = attack.ATTACK.pierce;
 			host.state = 'attack';
 			host.velocity.x = 0;
-	elif(attack.cooldown_timer <= 0 && !host.is_on_floor()):
+	elif(attack.cooldown_timer <= 0 && !host.on_floor()):
 		if(Input.is_action_just_pressed("ui_slash")):
 			attack.combo_step = 1;
 			attack.attack_timer = 75;
@@ -32,7 +32,7 @@ func execute(delta):
 		#TODO: aerial attack
 		null
 	### move triggers ###
-	if(host.is_on_floor() && host.state == 'move'):
+	if(host.on_floor() && host.state == 'move'):
 		if(Input.is_action_pressed("ui_right")):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
@@ -60,7 +60,7 @@ func execute(delta):
 	
 	### moving in the air ###
 	#TODO: jump-based special attacks
-	elif(!host.is_on_floor()):
+	elif(!host.on_floor()):
 		if(Input.is_action_just_released("ui_jump")):
 			if(host.fall_spd < host.jump_spd - 100):
 				host.fall_spd = 2*host.jump_spd/3;

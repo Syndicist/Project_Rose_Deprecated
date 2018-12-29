@@ -7,10 +7,8 @@ func _ready():
 	pass
 
 func on_area_entered(area):
-	if(("sight" in area)):
-		return;
 	var object = area.get_parent();
-	print("!!!");
+
 	if(host.state != 'hurt'):
 		host.velocity.x = 0;
 		host.velocity.y = 0;

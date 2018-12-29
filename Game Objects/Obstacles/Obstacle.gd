@@ -1,8 +1,9 @@
 extends StaticBody2D
 
-var hp = 3;
+export(int) var hp = 3;
 var tag = "immovable";
 var type = "obstacle";
+export(String, "slash", "bash", "pierce") var susceptible;
 
 func _process(delta):
 	if(hp <= 0):

@@ -22,6 +22,7 @@ var air_time;
 var floor_normal;
 var fall_spd;
 var vspd;
+var min_air_time = 0.1;
 
 ### state vars ###
 #TODO: hurt_state
@@ -141,3 +142,6 @@ func changeSprite(sprite, animation):
 	currentSprite.visible = true;
 	new_anim = animation;
 	pass
+
+func on_floor():
+	return ($floor_cast.is_colliding() || $floor_cast2.is_colliding() || $floor_cast3.is_colliding());

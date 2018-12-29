@@ -1,17 +1,23 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game Objects/Obstacles/Obstacle.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Game Objects/Obstacles/bash_obstacle.gd" type="Script" id=2]
-[ext_resource path="res://sprites/obstacle sprites/breakable_rotted_floor.png" type="Texture" id=3]
+[ext_resource path="res://sprites/obstacle sprites/breakable_rotted_floor.png" type="Texture" id=2]
 
-[node name="Obstacle" index="0" instance=ExtResource( 1 )]
+[sub_resource type="RectangleShape2D" id=1]
 
-script = ExtResource( 2 )
+custom_solver_bias = 0.0
+extents = Vector2( 7.03037, 32.0864 )
+
+[node name="Obstacle" instance=ExtResource( 1 )]
+
 _sections_unfolded = [ "Collision", "Pause" ]
+hp = 1
+susceptible = "bash"
 
 [node name="CollisionShape2D" parent="." index="0"]
 
 rotation = 1.5708
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Area2D" parent="." index="1"]
@@ -19,8 +25,12 @@ _sections_unfolded = [ "Transform" ]
 rotation = 1.5708
 _sections_unfolded = [ "Collision", "Transform" ]
 
+[node name="CollisionShape2D2" parent="Area2D" index="0"]
+
+shape = SubResource( 1 )
+
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 

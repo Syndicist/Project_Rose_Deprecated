@@ -1,20 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game Objects/Enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://Game Objects/Enemies/Default_State_Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Game Objects/Enemies/Attack_State_Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Game Objects/Enemies/Chase_State_Enemy.gd" type="Script" id=4]
-[ext_resource path="res://Game Objects/Enemies/Sight.gd" type="Script" id=5]
+[ext_resource path="res://Game Objects/Enemies/DefaultStun_State_Enemy.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 9.99699, 7 )
-
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 187.389, 22.4129 )
 
 [node name="Enemy" type="KinematicBody2D"]
 
@@ -25,10 +20,17 @@ collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform", "Z Index", "collision" ]
+hp = 1
+damage = 1
+arange = 50
+srange = Vector2( 160, 32 )
+spd = 50
+jspd = 75
+gravity = 250
 
-[node name="forward_cast" type="RayCast2D" parent="." index="0"]
+[node name="jump_cast_head" type="RayCast2D" parent="." index="0"]
 
-position = Vector2( 0, -6.46855 )
+position = Vector2( 0, -9 )
 rotation = -1.5708
 enabled = true
 exclude_parent = true
@@ -36,15 +38,24 @@ cast_to = Vector2( 0, 15 )
 collision_mask = 33
 _sections_unfolded = [ "Transform" ]
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="1"]
+[node name="jump_cast_feet" type="RayCast2D" parent="." index="1"]
+
+position = Vector2( 0, 2 )
+rotation = -1.5708
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 15 )
+collision_mask = 33
+_sections_unfolded = [ "Transform" ]
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="2"]
 
 position = Vector2( -4, -1 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area2D" type="Area2D" parent="." index="2"]
+[node name="Area2D" type="Area2D" parent="." index="3"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -62,7 +73,7 @@ position = Vector2( -4, -1 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="States" type="Node2D" parent="." index="3"]
+[node name="States" type="Node2D" parent="." index="4"]
 
 [node name="Default" type="Node2D" parent="States" index="0"]
 
@@ -84,32 +95,22 @@ autostart = false
 
 script = ExtResource( 4 )
 
-[node name="ActionTimer" type="Timer" parent="." index="4"]
+[node name="DefaultStun" type="Node2D" parent="States" index="3"]
+
+script = ExtResource( 5 )
+
+[node name="StunTimer" type="Timer" parent="States/DefaultStun" index="0"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="Sight" type="Area2D" parent="." index="5"]
+[node name="ActionTimer" type="Timer" parent="." index="5"]
 
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 2
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 5 )
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight" index="0"]
-
-position = Vector2( 0, -10 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
 
 

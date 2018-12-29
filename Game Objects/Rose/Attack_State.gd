@@ -17,6 +17,8 @@ var interrupt_time;
 var offbalance_time;
 var cooldown_timer;
 var dashing;
+var distance_traversable;
+var effect
 
 func _ready():
 	### default attack vars ###
@@ -30,6 +32,8 @@ func _ready():
 	offbalance_time = 0;
 	cooldown_timer = 0;
 	dashing = false;
+	distance_traversable = 96;
+	effect = null;
 	pass
 
 func _process(delta):
@@ -91,9 +95,13 @@ func execute(delta):
 	else:
 		interruptable = false;
 	if(interruptable):
+		if(effect != null):
+			effect.queue_free();
+			effect = null;
 		#reposition Rose.
-		#TODO: handle special cases like "jump" to trigger as normal when they are pressed.
-		if(Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right") || Input.is_action_just_pressed("ui_jump")):
+		if(!host.on_floor()):
+			combo_step = 0;
+		elif(Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right") || Input.is_action_just_pressed("ui_jump")):
 			combo_step = 0;
 		#continue the combo based on input. After so long, Rose falls off balance and is stuck finishing the animation.
 		#may need tweaking. Potentially set up a variable that changes based on the attack, so that each attack
@@ -127,17 +135,18 @@ func execute(delta):
 
 ### SLASH attacks ###
 #initializes and plays the given effect
-func makeSlashEffect(effect):
+func makeSlashEffect():
 	effect.position = host.position;
 	effect.scale.x = effect.scale.x * host.Direction;
 	host.get_parent().add_child(effect);
+	host.fall_spd = host.jump_spd;
 	pass
 	
 func firstSlash():
 	host.changeSprite(host.get_node("X Attacks").get_node("XAttackSprites"),"XAttack");
 	if(host.anim == "XAttack" && host.get_node("X Attacks").get_node('XAttackSprites').frame == 3 && combo_step == 1):
-		var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
-		makeSlashEffect(effect);
+		effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
+		makeSlashEffect();
 		combo_step += 1;
 		interrupt_time = 35;
 		dashing = true;
@@ -148,8 +157,8 @@ func secondSlash():
 		ATTACK.slash:
 			host.changeSprite(host.get_node("X Attacks").get_node("XXAttackSprites"),"XXAttack");
 			if(host.anim == "XXAttack" && host.get_node("X Attacks").get_node('XXAttackSprites').frame == 3 && combo_step == 2):
-				var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
-				makeSlashEffect(effect);
+				effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
+				makeSlashEffect();
 				combo_step += 1;
 				interrupt_time = 35;
 				dashing = true;
@@ -167,8 +176,8 @@ func thirdSlash():
 	if(first_attack == ATTACK.slash && second_attack == ATTACK.slash):
 		host.changeSprite(host.get_node("X Attacks").get_node("XXXAttackSprites"),"XXXAttack");
 		if(host.anim == "XXXAttack" && host.get_node("X Attacks").get_node('XXXAttackSprites').frame == 4 && combo_step == 3):
-			var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
-			makeSlashEffect(effect);
+			effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
+			makeSlashEffect();
 			combo_step += 1;
 			interrupt_time = 35;
 			offbalance_time = 15
@@ -194,8 +203,8 @@ func makePierceEffect(effect):
 func defaultPierce():
 	host.changeSprite("DefaultPierceSprites","DefaultPierce");
 	if(host.anim == "DefaultPierce" && host.get_node('DefaultPierceSprites').frame == 4):
-		var effect = preload("res://Game Objects/Rose/Effects/Default_Pierce_Effect.tscn").instance();
-		makePierceEffect(effect);
+		effect = preload("res://Game Objects/Rose/Effects/Default_Pierce_Effect.tscn").instance();
+		makePierceEffect();
 		combo_step = 4;
 		interrupt_time = 35
 		offbalance_time = 15
@@ -226,7 +235,7 @@ func makeBashEffect(effect):
 func defaultBash():
 	host.changeSprite("DefaultBashSprites","DefaultBash");
 	if(host.anim == "DefaultBash" && host.get_node('DefaultBashSprites').frame == 2):
-		var effect = preload("res://Game Objects/Rose/Effects/Default_Bash_Effect.tscn").instance();
+		effect = ("res://Game Objects/Rose/Effects/Default_Bash_Effect.tscn").instance();
 		makeBashEffect(effect);
 		combo_step = 4;
 		interrupt_time = 35

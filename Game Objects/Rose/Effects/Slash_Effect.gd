@@ -13,22 +13,28 @@ extends "res://Game Objects/Rose/Effects/Attack_Effect_Player.gd"
 var spd = 1200;
 var ispd = spd;
 var bounced = false;
+var displacement = 0;
+onready var pos = player.position;
 
 func _process(delta):
 	self.position = player.position;
+	if(player.position.x > pos.x):
+		displacement += player.position.x - pos.x;
+		pos.x = player.position.x;
+	elif(player.position.x < pos.x):
+		displacement += pos.x - player.position.x;
+		pos.x = player.position.x;
+	if(abs(displacement) > attackstate.distance_traversable):
+		spd = 0;
+		attackstate.dashing = false;
+	
 	
 	if(player.is_on_wall()):
 		player.velocity.x = 0;
 	elif(!player.is_on_wall()):
 		player.velocity.x = spd * player.Direction;
 	
-	if(bounced):
-		null;
-		#TODO: reduce travel time
 	if(player.state != 'attack'):
-		queue_free();
-	
-	if(!$animator.is_playing()):
 		queue_free();
 	pass
 
@@ -39,17 +45,8 @@ func on_area_entered(area):
 			object.velocity.x = 200 * player.Direction;
 	
 	elif(object.susceptible == "slash"):
+		print("!!!");
 		if(!damagedThis):
 			object.hp -= 1;
 			damagedThis = true;
-	#Bounce off object
-	#else:
-		#spd = spd * -1;
-		#bounced = true;
-	pass
-
-func on_body_entered(object):
-	#Bounce off object
-	#if(!"susceptible" in object):
-		#spd = spd * -1;
 	pass

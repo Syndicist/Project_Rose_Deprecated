@@ -3,20 +3,31 @@ extends KinematicBody2D
 onready var attack = get_node("States").get_node("Default");
 onready var move = get_node("States").get_node("Attack");
 onready var hurt = get_node("States").get_node("Chase");
+onready var defstun = get_node("States").get_node("DefaultStun");
 onready var actionTimer = get_node("ActionTimer");
+onready var player = get_parent().get_parent().get_node("Rose");
 
-var velocity;
-var move_spd;
-var spd;
-var gravity;
-var Direction;
-var floor_normal;
-var hp;
-var damage;
-var tag;
+
+
+
+
+###enemy_game_data###
+export(int) var hp = 1;
+export(int) var damage = 1;
+#range which the enemy attacks
+export(float) var arange = 50;
+#range which the enemy chases
+export(Vector2) var srange = Vector2(160,32);
+export(float) var spd = 50;
+export(float) var jspd = 75;
+export(float) var gravity = 250;
+
+###debugging_tools###
+var hit_pos;
+
+###background_enemy_data###
 var susceptible;
 var decision;
-var jspd;
 var vspd;
 var fspd;
 var wait;
@@ -24,31 +35,28 @@ var new_anim;
 var anim;
 var currentSprite;
 var hspd;
-var target;
+var velocity;
+var Direction;
+var floor_normal;
+var tag;
 
 onready var states = {
 	'default' : $States/Default,
 	'attack' : $States/Attack,
-	'chase' : $States/Chase
+	'chase' : $States/Chase,
+	'defstun' : $States/DefaultStun
 }
 var state;
 
 ### Enemy ###
 func _ready():
-	target = null;
 	decision = 0;
 	tag = "enemy";
 	state = 'default';
-	hp = 1;
 	wait = 0;
-	damage = 1;
 	velocity = Vector2(0,0);
-	move_spd = 50;
-	spd = move_spd;
 	vspd = 0;
 	fspd = 0;
-	jspd = 75;
-	gravity = 250;
 	#1 = right, -1 = left
 	Direction = 1;
 	floor_normal = Vector2(0,-1);
@@ -57,19 +65,23 @@ func _ready():
 	new_anim = anim;
 	currentSprite = get_node("Idle_Sprites");
 	hspd = 0;
+	hit_pos = Vector2(0,0);
 	pass
 
-### Kill ###
+#for debugging raycasts
+#func _draw():
+#	draw_line(Vector2(0,0),Vector2((hit_pos.x - global_position.x)*Direction, hit_pos.y - global_position.y),Color(1,1,1));
+#	pass
+
 func _process(delta):
+	#update();
+	#assumes the enemy is stored in a Node2D
 	if(actionTimer.time_left <= 0.1):
-		makeDecision();
+		decision = makeDecision();
 	wait = rand_range(.5, 2);
-	#state machine
-	#state = 'default' by default
-	states[state].execute(delta);
 	
 	if(hp <= 0):
-		queue_free();
+		Kill();
 	
 	#switch new animation
 	if(new_anim != anim):
@@ -78,6 +90,10 @@ func _process(delta):
 
 ### Default Behavior ###
 func _physics_process(delta):
+	#state machine
+	#state = 'default' by default
+	states[state].execute(delta);
+	
 	velocity.x = hspd;
 	velocity.y = vspd + fspd;
 	velocity = move_and_slide(velocity,floor_normal);
@@ -99,8 +115,8 @@ func _physics_process(delta):
 	pass
 
 func makeDecision():
-	decision = randi() % 100 + 1;
-	pass
+	var dec = randi() % 100 + 1;
+	return dec;
 
 func Animate():
 	$animator.stop();
@@ -118,4 +134,19 @@ func changeSprite(sprite, animation):
 	currentSprite = sprite
 	currentSprite.visible = true;
 	new_anim = animation;
-	pass
+
+func Kill():
+	#TODO: death anims and effects
+	queue_free();
+
+func canSeePlayer():
+	var space_state = get_world_2d().direct_space_state;
+	var result = space_state.intersect_ray(global_position, player.global_position, [self], collision_mask);
+	if(!result.empty()):
+		#debugging raycasts
+		#hit_pos = result.position;
+		return false;
+	elif((abs(player.global_position.x-global_position.x) < srange.x) && (abs(player.global_position.y-global_position.y) < srange.y)):
+		#hit_pos = player.global_position;
+		return true;
+	return false;

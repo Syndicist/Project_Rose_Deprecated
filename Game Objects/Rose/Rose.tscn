@@ -115,9 +115,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 
-length = 0.8
+length = 0.7
 loop = false
-step = 0.08
+step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("X Attacks/XAttackSprites:frame")
 tracks/0/interp = 1
@@ -125,7 +125,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.32, 0.4, 0.48, 0.56 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
@@ -143,10 +143,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -238,7 +238,34 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="animator" type="AnimationPlayer" parent="." index="0"]
+[node name="floor_cast" type="RayCast2D" parent="." index="0"]
+
+position = Vector2( 6, 18 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 0.7 )
+collision_mask = 289
+_sections_unfolded = [ "Transform" ]
+
+[node name="floor_cast2" type="RayCast2D" parent="." index="1"]
+
+position = Vector2( -6, 18 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 0.7 )
+collision_mask = 289
+_sections_unfolded = [ "Transform" ]
+
+[node name="floor_cast3" type="RayCast2D" parent="." index="2"]
+
+position = Vector2( 0, 18 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 0.7 )
+collision_mask = 289
+_sections_unfolded = [ "Transform" ]
+
+[node name="animator" type="AnimationPlayer" parent="." index="3"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -259,14 +286,13 @@ anims/YYYAttack = SubResource( 11 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="1"]
+[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="4"]
 
 shape = SubResource( 12 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area" type="Area2D" parent="." index="2"]
+[node name="Area" type="Area2D" parent="." index="5"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -284,7 +310,7 @@ _sections_unfolded = [ "Collision" ]
 shape = SubResource( 12 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Default Movement" type="Node2D" parent="." index="3"]
+[node name="Default Movement" type="Node2D" parent="." index="6"]
 
 editor/display_folded = true
 
@@ -331,7 +357,7 @@ texture = ExtResource( 8 )
 hframes = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="X Attacks" type="Node2D" parent="." index="4"]
+[node name="X Attacks" type="Node2D" parent="." index="7"]
 
 editor/display_folded = true
 
@@ -340,15 +366,15 @@ editor/display_folded = true
 visible = false
 texture = ExtResource( 9 )
 hframes = 6
-frame = 5
+frame = 2
 _sections_unfolded = [ "Animation" ]
 
 [node name="XXAttackSprites" type="Sprite" parent="X Attacks" index="1"]
 
 visible = false
 texture = ExtResource( 10 )
-hframes = 5
-frame = 4
+hframes = 6
+frame = 2
 _sections_unfolded = [ "Animation", "Transform" ]
 
 [node name="XXXAttackSprites" type="Sprite" parent="X Attacks" index="2"]
@@ -359,12 +385,12 @@ hframes = 7
 frame = 6
 _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
+[node name="Camera2D" type="Camera2D" parent="." index="8"]
 
 editor/display_folded = true
 anchor_mode = 1
 rotating = false
-current = false
+current = true
 zoom = Vector2( 0.5, 0.5 )
 limit_left = -10000000
 limit_top = -10000000
@@ -413,9 +439,7 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
-[node name="States" type="Node2D" parent="." index="6"]
-
-editor/display_folded = true
+[node name="States" type="Node2D" parent="." index="9"]
 
 [node name="Attack" type="Node2D" parent="States" index="0"]
 
@@ -430,13 +454,13 @@ _sections_unfolded = [ "Pause" ]
 
 script = ExtResource( 14 )
 
-[node name="Helpers" type="Node2D" parent="." index="7"]
+[node name="Helpers" type="Node2D" parent="." index="10"]
 
 editor/display_folded = true
 
 [node name="Collide" type="Node2D" parent="Helpers" index="0"]
 
-[node name="Y Attacks" type="Node2D" parent="." index="8"]
+[node name="Y Attacks" type="Node2D" parent="." index="11"]
 
 editor/display_folded = true
 
@@ -462,7 +486,7 @@ texture = ExtResource( 17 )
 hframes = 10
 _sections_unfolded = [ "Animation" ]
 
-[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="9"]
+[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="12"]
 
 editor/display_folded = true
 layer = -1

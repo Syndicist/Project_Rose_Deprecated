@@ -30,7 +30,7 @@ func execute(delta):
 	host.vspd = knockback_y;
 	host.changeSprite(host.get_node("Default Movement").get_node("HurtSprites"),"Hurt");
 	
-	if(hurt_timer <= 0 && host.is_on_floor()):
+	if(hurt_timer <= 0 && host.on_floor()):
 		host.velocity.x = 0;
 		host.velocity.y = 0;
 		host.vspd = 0;
