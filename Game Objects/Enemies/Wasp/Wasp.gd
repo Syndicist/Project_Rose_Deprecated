@@ -6,18 +6,17 @@ onready var actionTimerTwo = get_node("ActionTimerTwo");
 
 ### Enemy ###
 func _ready():
-	._ready();
 	vdecision = 0;
 	#1 = down, -1 = up
 	vDirection = 1;
 	pass
 
-### Kill ###
-func _process(delta):
+func execute(delta):
 	if(actionTimer.time_left <= 0.1):
 		decision = makeDecision();
+	if(actionTimerTwo.time_left <= 0.1):
 		vdecision = makeDecision();
-	wait = rand_range(.1, .35);
+	wait = rand_range(.3, .45);
 	#state machine
 	#state = 'default' by default
 	states[state].execute(delta);
@@ -28,11 +27,10 @@ func _process(delta):
 	#switch new animation
 	if(new_anim != anim):
 		Animate();
-	pass
+	pass;
 
-### Default Behavior ###
-func _physics_process(delta):
+func physExecute(delta):
 	velocity.x = hspd;
 	velocity.y = vspd + fspd;
 	velocity = move_and_slide(velocity,floor_normal);
-	pass
+	pass;

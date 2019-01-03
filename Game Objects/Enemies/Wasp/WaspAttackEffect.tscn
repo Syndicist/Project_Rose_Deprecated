@@ -10,12 +10,14 @@ extents = Vector2( 10, 10 )
 
 [node name="WaspAttackEffect" instance=ExtResource( 1 )]
 
+collision_layer = 16
+collision_mask = 227
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="3"]
+[node name="Sprite" type="Sprite" parent="." index="2"]
 
 

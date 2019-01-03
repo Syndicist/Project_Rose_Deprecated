@@ -84,9 +84,18 @@ position = Vector2( 0, 0 )
 
 position = Vector2( 0, 0 )
 
+[node name="Area2D" parent="." index="3"]
+
+editor/display_folded = true
+collision_mask = 2054
+
 [node name="DamageCollider" parent="Area2D" index="0"]
 
 position = Vector2( 0, 0 )
+
+[node name="States" parent="." index="4"]
+
+editor/display_folded = true
 
 [node name="Default" parent="States" index="0"]
 

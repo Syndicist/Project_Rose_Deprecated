@@ -1,21 +1,22 @@
 extends Area2D
 
 onready var host = get_parent();
-
+onready var attack = get_parent().get_node("States").get_node("Attack");
 func _ready():
 	connect("area_entered", self, "on_area_entered");
 	pass
 
 func on_area_entered(area):
-	var object = area.get_parent();
-
+	var other = area.get_parent();
+	if(attack.dashing && (other.susceptible == "all" || other.susceptible == "slash")):
+		return;
 	if(host.state != 'hurt'):
 		host.velocity.x = 0;
 		host.velocity.y = 0;
 		host.states['hurt'].hurt_timer = 7;
 		host.state = 'hurt';
-		host.hp -= object.damage;
-		if(object.position.x >= host.position.x):
+		host.hp -= other.damage;
+		if(other.position.x >= host.position.x):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
 			host.Direction = 1;

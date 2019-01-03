@@ -10,6 +10,7 @@ extents = Vector2( 7.03037, 32.0864 )
 
 [node name="Obstacle" instance=ExtResource( 1 )]
 
+collision_mask = 4126
 _sections_unfolded = [ "Collision", "Pause" ]
 hp = 1
 susceptible = "bash"

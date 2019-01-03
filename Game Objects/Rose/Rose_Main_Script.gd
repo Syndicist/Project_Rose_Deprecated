@@ -23,6 +23,9 @@ var floor_normal;
 var fall_spd;
 var vspd;
 var min_air_time = 0.1;
+var targettableSlashHitboxes = [];
+var targettableBashHitboxes = [];
+var targettablePierceHitboxes = [];
 
 ### state vars ###
 #TODO: hurt_state
@@ -67,7 +70,7 @@ func _ready():
 	vspd = 0;
 	fall_spd = 0;
 	$animator.play(anim);
-	pass
+	pass;
 
 ################## PROCESS_FUNCTION ##################
 #Processes player variables, like hp, damage, and speed.
@@ -89,7 +92,11 @@ func _process(delta):
 		Animate();
 	
 	$Camera2D.current = true;
-	pass
+	
+	slashHitboxLoop();
+	bashHitboxLoop();
+	pierceHitboxLoop();
+	pass;
 
 ################## PHYSICS_FUNCTION ##################
 #Processes physical interactions.
@@ -119,7 +126,7 @@ func _physics_process(delta):
 	
 	if(is_on_ceiling()):
 		fall_spd = 500;
-	pass
+	pass;
 
 ################## ANIMATE_NEW_ANIMATION ##################
 #Stops the current animation on whatever frame it's on and
@@ -129,7 +136,7 @@ func Animate():
 	$animator.stop();
 	anim = new_anim;
 	$animator.play(anim);
-	pass
+	pass;
 
 ################## CHANGE_SPRITE ##################
 #Makes the current sprite invisible, switches the
@@ -141,7 +148,61 @@ func changeSprite(sprite, animation):
 	currentSprite = sprite
 	currentSprite.visible = true;
 	new_anim = animation;
-	pass
+	pass;
 
 func on_floor():
 	return ($floor_cast.is_colliding() || $floor_cast2.is_colliding() || $floor_cast3.is_colliding());
+
+
+func _on_DetectSlashHitboxArea_area_entered(area):
+	targettableSlashHitboxes.push_back(area);
+	pass;
+func _on_DetectSlashHitboxArea_area_exited(area):
+	targettableSlashHitboxes.erase(area);
+	pass;
+	
+func slashHitboxLoop():
+	var space_state = get_world_2d().direct_space_state;
+	for item in targettableSlashHitboxes:
+		var result = space_state.intersect_ray(global_position, item.global_position, [self], $DetectSlashHitboxArea/SlashRayCastCollision.collision_mask);
+		if(result.empty()):
+			item.hittable = true;
+		else:
+			#TODO: check to see if the object is susceptible to slashing
+			item.hittable = false;
+	pass;
+
+
+func _on_DetectBashHitboxArea_area_entered(area):
+	targettableBashHitboxes.push_back(area);
+	pass;
+func _on_DetectBashHitboxArea_area_exited(area):
+	targettableBashHitboxes.erase(area);
+	pass;
+func bashHitboxLoop():
+	var space_state = get_world_2d().direct_space_state;
+	for item in targettableBashHitboxes:
+		var result = space_state.intersect_ray(global_position, item.global_position, [self], $DetectBashHitboxArea/BashRayCastCollision.collision_mask);
+		if(result.empty()):
+			item.hittable = true;
+		else:
+			#TODO: check to see if the object is susceptible to bashing
+			item.hittable = false;
+	pass;
+
+func _on_DetectPierceHitboxArea_area_entered(area):
+	targettablePierceHitboxes.push_back(area);
+	pass;
+func _on_DetectPierceHitboxArea_area_exited(area):
+	targettablePierceHitboxes.erase(area);
+	pass;
+func pierceHitboxLoop():
+	var space_state = get_world_2d().direct_space_state;
+	for item in targettablePierceHitboxes:
+		var result = space_state.intersect_ray(global_position, item.global_position, [self], $DetectPierceHitboxArea/PierceRayCastCollision.collision_mask);
+		if(result.empty()):
+			item.hittable = true;
+		else:
+			#TODO: check to see if the object is susceptible to piercing
+			item.hittable = false;
+	pass;

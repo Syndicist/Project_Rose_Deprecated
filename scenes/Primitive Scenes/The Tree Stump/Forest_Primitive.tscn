@@ -16,7 +16,7 @@
 [ext_resource path="res://Game Objects/Hazards/Splinters.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Game Objects/Obstacles/breakable_foliage.tscn" type="PackedScene" id=15]
 
-[node name="Level 1" type="Node2D" index="0"]
+[node name="Level 1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -69,12 +69,12 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="Rose" parent="." index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 168.871, 343.114 )
+position = Vector2( 680.21, -467.811 )
 collision_mask = 33
 
 [node name="KinematicBody2D" parent="." index="4" instance=ExtResource( 5 )]
 
-position = Vector2( 3486.8, 443.741 )
+position = Vector2( 3271.41, 444.784 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Enemies" type="Node2D" parent="." index="5"]
@@ -97,11 +97,11 @@ position = Vector2( 998.936, -494.647 )
 
 [node name="woodeater5" parent="Enemies" index="4" instance=ExtResource( 6 )]
 
-position = Vector2( 829.005, -432.409 )
+position = Vector2( 557.341, -439.406 )
 
 [node name="woodeater6" parent="Enemies" index="5" instance=ExtResource( 6 )]
 
-position = Vector2( 635.298, -433.808 )
+position = Vector2( 784.985, -458.533 )
 
 [node name="woodeater7" parent="Enemies" index="6" instance=ExtResource( 6 )]
 
@@ -113,15 +113,15 @@ position = Vector2( 3244.33, -42.5782 )
 
 [node name="charger2" parent="Enemies" index="8" instance=ExtResource( 7 )]
 
-position = Vector2( 2761.38, 116.202 )
+position = Vector2( 2792.26, 98.0186 )
 
 [node name="wasp" parent="Enemies" index="9" instance=ExtResource( 8 )]
 
-position = Vector2( 528, -628.999 )
+position = Vector2( 649.365, -676.513 )
 
-[node name="wasp3" parent="Enemies" index="10" instance=ExtResource( 8 )]
+[node name="wasp2" parent="Enemies" index="10" instance=ExtResource( 8 )]
 
-position = Vector2( 1029.29, -236.8 )
+position = Vector2( 1026.93, -205.435 )
 
 [node name="wasp4" parent="Enemies" index="11" instance=ExtResource( 8 )]
 
@@ -132,8 +132,6 @@ position = Vector2( 2362.11, -95.3629 )
 position = Vector2( 2547.67, -106.095 )
 
 [node name="platforms" type="Node2D" parent="." index="6"]
-
-editor/display_folded = true
 
 [node name="LeafPlatform7" parent="platforms" index="0" instance=ExtResource( 9 )]
 
@@ -186,7 +184,7 @@ position = Vector2( 569.845, -511.657 )
 
 [node name="LeafPlatform22" parent="platforms" index="12" instance=ExtResource( 9 )]
 
-position = Vector2( 507.376, -417.099 )
+position = Vector2( 507.397, -417.129 )
 
 [node name="LeafPlatform19" parent="platforms" index="13" instance=ExtResource( 9 )]
 
@@ -258,8 +256,6 @@ position = Vector2( 2683.31, -33.136 )
 
 [node name="Interactables" type="Node2D" parent="." index="7"]
 
-editor/display_folded = true
-
 [node name="rotted_bark" parent="Interactables" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( 1210.65, -722.267 )
@@ -278,7 +274,13 @@ position = Vector2( 3243.37, -28.7867 )
 hp = 3
 susceptible = null
 
-[node name="rotted_branch2" parent="Interactables" index="4" instance=ExtResource( 13 )]
+[node name="rotted_branch3" parent="Interactables" index="4" instance=ExtResource( 13 )]
+
+position = Vector2( 3243.37, -28.7867 )
+hp = 3
+susceptible = null
+
+[node name="rotted_branch2" parent="Interactables" index="5" instance=ExtResource( 13 )]
 
 position = Vector2( 2955.3, 132.791 )
 hp = 3
@@ -309,6 +311,6 @@ position = Vector2( 780.004, 431.002 )
 
 [node name="DenseFoliage3" parent="." index="12" instance=ExtResource( 15 )]
 
-position = Vector2( 898.055, -628.75 )
+position = Vector2( 898.204, -627.841 )
 
 

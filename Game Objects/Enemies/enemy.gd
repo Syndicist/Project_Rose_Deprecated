@@ -60,7 +60,7 @@ func _ready():
 	#1 = right, -1 = left
 	Direction = 1;
 	floor_normal = Vector2(0,-1);
-	susceptible = "slash"
+	susceptible = "all"
 	anim = "idle";
 	new_anim = anim;
 	currentSprite = get_node("Idle_Sprites");
@@ -75,6 +75,10 @@ func _ready():
 
 func _process(delta):
 	#update();
+	execute(delta);
+	pass
+
+func execute(delta):
 	#assumes the enemy is stored in a Node2D
 	if(actionTimer.time_left <= 0.1):
 		decision = makeDecision();
@@ -90,6 +94,10 @@ func _process(delta):
 
 ### Default Behavior ###
 func _physics_process(delta):
+	physExecute(delta);
+	pass
+
+func physExecute(delta):
 	#state machine
 	#state = 'default' by default
 	states[state].execute(delta);

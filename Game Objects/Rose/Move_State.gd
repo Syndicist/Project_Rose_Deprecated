@@ -3,33 +3,41 @@ extends "res://Game Objects/Rose/State.gd"
 func _process(delta):
 	pass
 
+func goToAttack():
+	attack.combo_step = 1;
+	attack.start = true;
+	host.state = 'attack';
+	pass
+
 ################## MOVE_PLAYER ##################
 #Allows the player to move and jump, as well as trigger attacks.
 #This is the default and primary state.
 func execute(delta):
 	### attack triggers ###
 	#TODO: pierce and bash attack triggers (these need animations first)
-	if(attack.cooldown_timer <= 0 && host.on_floor()):
+	if(attack.get_node("CooldownTimer").is_stopped() && host.on_floor()):
 		if(Input.is_action_just_pressed("ui_slash")):
-			attack.combo_step = 1;
-			attack.attack_timer = 75;
 			attack.first_attack = attack.ATTACK.slash;
 			host.velocity.x = 0;
-			host.state = 'attack';
+			goToAttack();
+		if(Input.is_action_just_pressed("ui_bash") && !attack.defBashed):
+			attack.first_attack = attack.ATTACK.bash;
+			goToAttack();
+		"""
 		if(Input.is_action_just_pressed("ui_pierce")):
 			attack.combo_step = 1;
 			attack.attack_timer = 75;
 			attack.first_attack = attack.ATTACK.pierce;
 			host.state = 'attack';
 			host.velocity.x = 0;
-	elif(attack.cooldown_timer <= 0 && !host.on_floor()):
+		"""
+	elif(attack.get_node("CooldownTimer").is_stopped() && !host.on_floor()):
 		if(Input.is_action_just_pressed("ui_slash")):
-			attack.combo_step = 1;
-			attack.attack_timer = 75;
 			attack.first_attack = attack.ATTACK.slash;
-			host.velocity.x = 0;
-			host.state = 'attack';
-		#TODO: aerial attack
+			goToAttack();
+		if(Input.is_action_just_pressed("ui_bash") && !attack.defBashed):
+			attack.first_attack = attack.ATTACK.bash;
+			goToAttack();
 		null
 	### move triggers ###
 	if(host.on_floor() && host.state == 'move'):

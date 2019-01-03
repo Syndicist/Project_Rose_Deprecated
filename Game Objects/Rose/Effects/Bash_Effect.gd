@@ -10,37 +10,32 @@ extends "res://Game Objects/Rose/Effects/Attack_Effect_Player.gd"
 #this makes virtually no difference, since spd is re-initialized in each higher-
 #level script's _ready function anyways. This is just needed for the code to run
 #at all.
-var spd = 1200;
+var spd = 0;
 var displacement = 0;
 onready var pos = player.position;
-var type = "slash";
+var booped = false;
+var type = "bash";
 
 func _process(delta):
-	self.position = player.position;
-	if(player.position.x > pos.x):
-		displacement += player.position.x - pos.x;
-		pos.x = player.position.x;
-	elif(player.position.x < pos.x):
-		displacement += pos.x - player.position.x;
-		pos.x = player.position.x;
-	if(abs(displacement) > attackstate.distance_traversable):
-		spd = 0;
-		attackstate.dashing = false;
-	
-	
-	player.velocity.x = spd * player.Direction;
-	
 	if(player.state != 'attack'):
 		queue_free();
-	pass
+	pass;
 
 func on_area_entered(area):
-	var other = area.get_parent();
-	if(!("hittable" in area)):
+	if(area.hittable):
+		var other = area.get_parent();
+		print(other.susceptible);
 		if(other.tag == "movable"):
-			if(other.type == "blowable"):
+			if(other.type == "battable"):
 				other.velocity.x = 200 * player.Direction;
-	elif(area.hittable):
-		if(other.susceptible == "slash" || other.susceptible == "all"):
+		elif(other.susceptible == "bash" || other.susceptible == "all"):
 			other.hp -= 1;
-	pass
+	pass;
+
+func on_body_entered(body):
+	if(!booped):
+		player.vspd = -spd;
+		player.fall_spd = 0;
+		$Sprite.visible = true;
+		booped = true;
+	pass;

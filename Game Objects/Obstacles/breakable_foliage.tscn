@@ -8,6 +8,10 @@
 hp = 2
 susceptible = "slash"
 
+[node name="Area2D" parent="." index="1"]
+
+collision_layer = 2080
+
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 2 )

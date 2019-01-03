@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game Objects/Enemies/enemy.gd" type="Script" id=1]
-[ext_resource path="res://Game Objects/Enemies/Default_State_Enemy.gd" type="Script" id=2]
-[ext_resource path="res://Game Objects/Enemies/Attack_State_Enemy.gd" type="Script" id=3]
-[ext_resource path="res://Game Objects/Enemies/Chase_State_Enemy.gd" type="Script" id=4]
-[ext_resource path="res://Game Objects/Enemies/DefaultStun_State_Enemy.gd" type="Script" id=5]
+[ext_resource path="res://Game Objects/NonPlayerHitbox.gd" type="Script" id=2]
+[ext_resource path="res://Game Objects/Enemies/Default_State_Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Game Objects/Enemies/Attack_State_Enemy.gd" type="Script" id=4]
+[ext_resource path="res://Game Objects/Enemies/Chase_State_Enemy.gd" type="Script" id=5]
+[ext_resource path="res://Game Objects/Enemies/DefaultStun_State_Enemy.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -65,6 +66,7 @@ collision_layer = 8
 collision_mask = 6
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 2 )
 _sections_unfolded = [ "Audio Bus", "Collision" ]
 
 [node name="DamageCollider" type="CollisionShape2D" parent="Area2D" index="0"]
@@ -77,12 +79,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Default" type="Node2D" parent="States" index="0"]
 
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Attack" type="Node2D" parent="States" index="1"]
 
 editor/display_folded = true
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="AttackTimer" type="Timer" parent="States/Attack" index="0"]
 
@@ -93,11 +95,11 @@ autostart = false
 
 [node name="Chase" type="Node2D" parent="States" index="2"]
 
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="DefaultStun" type="Node2D" parent="States" index="3"]
 
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="StunTimer" type="Timer" parent="States/DefaultStun" index="0"]
 
