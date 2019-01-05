@@ -69,12 +69,12 @@ func _ready():
 	pass
 
 #for debugging raycasts
-#func _draw():
-#	draw_line(Vector2(0,0),Vector2((hit_pos.x - global_position.x)*Direction, hit_pos.y - global_position.y),Color(1,1,1));
-#	pass
+func _draw():
+	draw_line(Vector2(0,0),Vector2((hit_pos.x - global_position.x)*Direction, hit_pos.y - global_position.y),Color(1,1,1));
+	pass
 
 func _process(delta):
-	#update();
+	update();
 	execute(delta);
 	pass
 
@@ -152,9 +152,9 @@ func canSeePlayer():
 	var result = space_state.intersect_ray(global_position, player.global_position, [self], collision_mask);
 	if(!result.empty()):
 		#debugging raycasts
-		#hit_pos = result.position;
+		hit_pos = result.position;
 		return false;
 	elif((abs(player.global_position.x-global_position.x) < srange.x) && (abs(player.global_position.y-global_position.y) < srange.y)):
-		#hit_pos = player.global_position;
+		hit_pos = player.global_position;
 		return true;
 	return false;

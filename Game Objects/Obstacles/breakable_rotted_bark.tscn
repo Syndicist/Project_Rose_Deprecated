@@ -5,9 +5,13 @@
 
 [node name="RottedBark" instance=ExtResource( 1 )]
 
-collision_mask = 4126
+collision_layer = 4128
 hp = 1
 susceptible = "bash"
+
+[node name="Area2D" parent="." index="1"]
+
+collision_layer = 4128
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 

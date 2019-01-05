@@ -87,7 +87,7 @@ position = Vector2( 0, 0 )
 [node name="Area2D" parent="." index="3"]
 
 editor/display_folded = true
-collision_mask = 2054
+collision_layer = 14344
 
 [node name="DamageCollider" parent="Area2D" index="0"]
 

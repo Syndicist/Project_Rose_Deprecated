@@ -38,5 +38,8 @@ disabled = true
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
 texture = ExtResource( 1 )
+vframes = 7
+hframes = 7
+_sections_unfolded = [ "Animation" ]
 
 

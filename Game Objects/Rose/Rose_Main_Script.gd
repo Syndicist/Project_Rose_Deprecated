@@ -26,6 +26,7 @@ var min_air_time = 0.1;
 var targettableSlashHitboxes = [];
 var targettableBashHitboxes = [];
 var targettablePierceHitboxes = [];
+var itemTrace = [];
 
 ### state vars ###
 #TODO: hurt_state
@@ -72,10 +73,20 @@ func _ready():
 	$animator.play(anim);
 	pass;
 
+#for debugging raycasts
+#func _draw():
+#	for item in targettableSlashHitboxes:
+#		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(0,0,1));
+#	for item in targettableBashHitboxes:
+#		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(1,0,0));
+#	for item in targettablePierceHitboxes:
+#		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(1,1,0));
+#	pass;
+
 ################## PROCESS_FUNCTION ##################
 #Processes player variables, like hp, damage, and speed.
 func _process(delta):
-	
+#	update();
 	#state machine
 	#state = 'move' by default
 	states[state].execute(delta);
@@ -160,18 +171,11 @@ func _on_DetectSlashHitboxArea_area_entered(area):
 func _on_DetectSlashHitboxArea_area_exited(area):
 	targettableSlashHitboxes.erase(area);
 	pass;
-	
 func slashHitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
 	for item in targettableSlashHitboxes:
-		var result = space_state.intersect_ray(global_position, item.global_position, [self], $DetectSlashHitboxArea/SlashRayCastCollision.collision_mask);
-		if(result.empty()):
-			item.hittable = true;
-		else:
-			#TODO: check to see if the object is susceptible to slashing
-			item.hittable = false;
+		nextRay(self,item,11,space_state);
 	pass;
-
 
 func _on_DetectBashHitboxArea_area_entered(area):
 	targettableBashHitboxes.push_back(area);
@@ -182,12 +186,7 @@ func _on_DetectBashHitboxArea_area_exited(area):
 func bashHitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
 	for item in targettableBashHitboxes:
-		var result = space_state.intersect_ray(global_position, item.global_position, [self], $DetectBashHitboxArea/BashRayCastCollision.collision_mask);
-		if(result.empty()):
-			item.hittable = true;
-		else:
-			#TODO: check to see if the object is susceptible to bashing
-			item.hittable = false;
+		nextRay(self,item,12,space_state);
 	pass;
 
 func _on_DetectPierceHitboxArea_area_entered(area):
@@ -199,10 +198,22 @@ func _on_DetectPierceHitboxArea_area_exited(area):
 func pierceHitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
 	for item in targettablePierceHitboxes:
-		var result = space_state.intersect_ray(global_position, item.global_position, [self], $DetectPierceHitboxArea/PierceRayCastCollision.collision_mask);
-		if(result.empty()):
-			item.hittable = true;
-		else:
-			#TODO: check to see if the object is susceptible to piercing
-			item.hittable = false;
+		nextRay(self,item,13,space_state);
 	pass;
+
+func nextRay(origin,dest,col_layer,spc):
+	if(!itemTrace.has(origin)):
+		itemTrace.push_back(origin);
+	var result = spc.intersect_ray(origin.global_position, dest.global_position, itemTrace, $RayCastCollision.collision_mask);
+	if(result.empty()):
+		dest.hittable = true;
+		itemTrace.clear();
+	elif(result.collider.get_collision_layer_bit(col_layer)):
+		if(result.collider != dest):
+			nextRay(result.collider,dest,col_layer,spc);
+		else:
+			dest.hittable = true;
+			itemTrace.clear();
+	else:
+		dest.hittable = false;
+		itemTrace.clear();

@@ -10,7 +10,7 @@ extents = Vector2( 7.03037, 32.0864 )
 
 [node name="Obstacle" instance=ExtResource( 1 )]
 
-collision_mask = 4126
+collision_layer = 4128
 _sections_unfolded = [ "Collision", "Pause" ]
 hp = 1
 susceptible = "bash"
@@ -24,6 +24,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Area2D" parent="." index="1"]
 
 rotation = 1.5708
+collision_layer = 4128
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape2D2" parent="Area2D" index="0"]

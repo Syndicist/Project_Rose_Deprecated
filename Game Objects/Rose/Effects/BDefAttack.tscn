@@ -13,9 +13,9 @@ script = ExtResource( 2 )
 visible = false
 texture = ExtResource( 3 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+[node name="collider" type="CollisionPolygon2D" parent="." index="2"]
 
 build_mode = 0
-polygon = PoolVector2Array( 9.025, 23.687, 5.70572, 13.547, 28.9161, 13.6894, 27.4922, 4.71855, 20.7996, -10.5177, 37.0767, -25.5927, 41.6, -17.126, 46.0903, 16.7647, 38.1718, 27.0746, 23.6984, 28.5782, 16.4406, 26.8426 )
+polygon = PoolVector2Array( 9.025, 23.687, 5.70572, 13.547, 28.9161, 13.6894, 27.4922, 4.71855, 20.7996, -10.5177, 30.8659, -21.1476, 41.6, -17.126, 46.0903, 16.7647, 38.1718, 27.0746, 23.6984, 28.5782, 16.4406, 26.8426 )
 
 

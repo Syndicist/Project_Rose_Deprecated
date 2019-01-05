@@ -44,6 +44,7 @@ func _process(delta):
 		first_attack = ATTACK.NIL;
 		second_attack = ATTACK.NIL;
 		third_attack = ATTACK.NIL;
+		start = false;
 	pass
 
 func _physics_process(delta):
@@ -100,17 +101,20 @@ func execute(delta):
 	
 	if(!$InterruptTimer.is_stopped()):
 		effectMade = false;
+		dashing = false;
 		#reposition Rose.
 		if(Input.is_action_pressed("ui_left") || Input.is_action_pressed("ui_right") || Input.is_action_just_pressed("ui_jump")):
 			combo_step = 0;
+			start = false;
 		#continue the combo based on input. After so long, Rose falls off balance and is stuck finishing the animation.
 		#may need tweaking. Potentially set up a variable that changes based on the attack, so that each attack
 		#can have its own interruptable window.
 		#TODO: pierce and bash attacks
-		elif(Input.is_action_just_pressed("ui_slash") || 
+		elif((Input.is_action_just_pressed("ui_slash") || 
 		(Input.is_action_just_pressed("ui_pierce") && pierce_unlock) || 
-		Input.is_action_just_pressed("ui_bash") && 
+		Input.is_action_just_pressed("ui_bash")) && 
 		combo_step < 4):
+			$InterruptTimer.stop();
 			start = true;
 			if(!host.on_floor()):
 				aerial_attack = true;
@@ -124,6 +128,10 @@ func execute(delta):
 			elif(combo_step == 3):
 				if(Input.is_action_just_pressed("ui_slash")):
 					third_attack = ATTACK.slash;
+				elif(Input.is_action_just_pressed("ui_pierce")):
+					third_attack = ATTACK.pierce;
+				elif(Input.is_action_just_pressed("ui_bash")):
+					third_attack = ATTACK.bash;
 	
 	#the combo is finished
 	if(!start && $InterruptTimer.is_stopped()):

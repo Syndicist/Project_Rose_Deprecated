@@ -20,11 +20,11 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	if(player.currentSprite.frame == player.currentSprite.hframes-1):
-		queue_free();
+	if(player.currentSprite.frame >= player.currentSprite.hframes-1):
 		attackstate.start = false;
 		attackstate.get_node("InterruptTimer").wait_time = .5;
 		attackstate.get_node("InterruptTimer").start();
+		queue_free();
 
 func on_area_entered(area):
 	pass;

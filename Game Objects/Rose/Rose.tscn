@@ -332,38 +332,9 @@ _sections_unfolded = [ "Collision" ]
 shape = SubResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="DetectSlashHitboxArea" type="Area2D" parent="." index="6"]
+[node name="DetectBashHitboxArea" type="Area2D" parent="." index="6"]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 2048
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectSlashHitboxArea" index="0"]
-
-shape = SubResource( 14 )
-
-[node name="SlashRayCastCollision" type="Area2D" parent="DetectSlashHitboxArea" index="1"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 12289
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="DetectBashHitboxArea" type="Area2D" parent="." index="7"]
-
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -379,21 +350,9 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 14 )
 
-[node name="BashRayCastCollision" type="Area2D" parent="DetectBashHitboxArea" index="1"]
+[node name="DetectPierceHitboxArea" type="Area2D" parent="." index="7"]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 10241
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="DetectPierceHitboxArea" type="Area2D" parent="." index="8"]
-
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -409,7 +368,25 @@ _sections_unfolded = [ "Collision" ]
 
 shape = SubResource( 14 )
 
-[node name="PierceRayCastCollision" type="Area2D" parent="DetectPierceHitboxArea" index="1"]
+[node name="DetectSlashHit" type="Area2D" parent="." index="8"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 512
+collision_mask = 2048
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectSlashHit" index="0"]
+
+shape = SubResource( 14 )
+
+[node name="RayCastCollision" type="Area2D" parent="." index="9"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -417,12 +394,12 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 512
-collision_mask = 6145
+collision_mask = 14337
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
-[node name="Default Movement" type="Node2D" parent="." index="9"]
+[node name="Default Movement" type="Node2D" parent="." index="10"]
 
 editor/display_folded = true
 
@@ -469,7 +446,7 @@ texture = ExtResource( 8 )
 hframes = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="X Attacks" type="Node2D" parent="." index="10"]
+[node name="X Attacks" type="Node2D" parent="." index="11"]
 
 editor/display_folded = true
 
@@ -497,7 +474,7 @@ hframes = 7
 frame = 6
 _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
-[node name="B Attacks" type="Node2D" parent="." index="11"]
+[node name="B Attacks" type="Node2D" parent="." index="12"]
 
 editor/display_folded = true
 
@@ -509,7 +486,7 @@ hframes = 5
 frame = 4
 _sections_unfolded = [ "Animation" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="12"]
+[node name="Camera2D" type="Camera2D" parent="." index="13"]
 
 editor/display_folded = true
 anchor_mode = 1
@@ -563,9 +540,7 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
-[node name="States" type="Node2D" parent="." index="13"]
-
-editor/display_folded = true
+[node name="States" type="Node2D" parent="." index="14"]
 
 [node name="Attack" type="Node2D" parent="States" index="0"]
 
@@ -594,13 +569,13 @@ _sections_unfolded = [ "Pause" ]
 
 script = ExtResource( 15 )
 
-[node name="Helpers" type="Node2D" parent="." index="14"]
+[node name="Helpers" type="Node2D" parent="." index="15"]
 
 editor/display_folded = true
 
 [node name="Collide" type="Node2D" parent="Helpers" index="0"]
 
-[node name="Y Attacks" type="Node2D" parent="." index="15"]
+[node name="Y Attacks" type="Node2D" parent="." index="16"]
 
 editor/display_folded = true
 
@@ -626,7 +601,7 @@ texture = ExtResource( 18 )
 hframes = 10
 _sections_unfolded = [ "Animation" ]
 
-[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="16"]
+[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="17"]
 
 editor/display_folded = true
 layer = -1
@@ -681,10 +656,6 @@ texture = ExtResource( 21 )
 centered = false
 _sections_unfolded = [ "Offset" ]
 
-[connection signal="area_entered" from="DetectSlashHitboxArea" to="." method="_on_DetectSlashHitboxArea_area_entered"]
-
-[connection signal="area_exited" from="DetectSlashHitboxArea" to="." method="_on_DetectSlashHitboxArea_area_exited"]
-
 [connection signal="area_entered" from="DetectBashHitboxArea" to="." method="_on_DetectBashHitboxArea_area_entered"]
 
 [connection signal="area_exited" from="DetectBashHitboxArea" to="." method="_on_DetectBashHitboxArea_area_exited"]
@@ -692,5 +663,9 @@ _sections_unfolded = [ "Offset" ]
 [connection signal="area_entered" from="DetectPierceHitboxArea" to="." method="_on_DetectPierceHitboxArea_area_entered"]
 
 [connection signal="area_exited" from="DetectPierceHitboxArea" to="." method="_on_DetectPierceHitboxArea_area_exited"]
+
+[connection signal="area_entered" from="DetectSlashHit" to="." method="_on_DetectSlashHitboxArea_area_entered"]
+
+[connection signal="area_exited" from="DetectSlashHit" to="." method="_on_DetectSlashHitboxArea_area_exited"]
 
 

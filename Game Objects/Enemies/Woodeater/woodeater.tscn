@@ -105,7 +105,7 @@ blend_times = [  ]
 
 [node name="Area2D" parent="." index="7"]
 
-collision_layer = 2056
+collision_layer = 14344
 _sections_unfolded = [ "Audio Bus", "Collision", "Transform" ]
 
 [node name="States" parent="." index="8"]

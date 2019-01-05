@@ -5,6 +5,7 @@
 
 [node name="DenseFoliage" instance=ExtResource( 1 )]
 
+collision_layer = 2080
 hp = 2
 susceptible = "slash"
 

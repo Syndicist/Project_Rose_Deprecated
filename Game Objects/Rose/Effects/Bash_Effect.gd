@@ -24,12 +24,12 @@ func _process(delta):
 func on_area_entered(area):
 	if(area.hittable):
 		var other = area.get_parent();
-		print(other.susceptible);
 		if(other.tag == "movable"):
 			if(other.type == "battable"):
 				other.velocity.x = 200 * player.Direction;
 		elif(other.susceptible == "bash" || other.susceptible == "all"):
 			other.hp -= 1;
+			$collider.disabled = true;
 	pass;
 
 func on_body_entered(body):
