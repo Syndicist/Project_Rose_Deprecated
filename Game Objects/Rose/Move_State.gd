@@ -1,8 +1,5 @@
 extends "res://Game Objects/Rose/State.gd"
 
-func _process(delta):
-	pass
-
 func goToAttack():
 	attack.combo_step = 1;
 	attack.start = true;
@@ -46,13 +43,13 @@ func execute(delta):
 				host.scale.x = host.scale.x * -1;
 			host.velocity.x = host.run_spd;
 			host.Direction = 1;
-			host.changeSprite(host.get_node("Default Movement").get_node("RunSprites"),"Run");
+			host.changeSprite(host.get_node("Sprites").get_node("RunSprites"),"Run");
 		elif(Input.is_action_pressed("ui_left")):
 			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
 			host.velocity.x = -host.run_spd;
 			host.Direction = -1;
-			host.changeSprite(host.get_node("Default Movement").get_node("RunSprites"),"Run");
+			host.changeSprite(host.get_node("Sprites").get_node("RunSprites"),"Run");
 		#elif(Input.is_action_pressed("ui_up")):
 		#	null;
 			#TODO: look up
@@ -61,7 +58,7 @@ func execute(delta):
 			#TODO: look down
 		else:
 			host.velocity.x = 0;
-			host.changeSprite(host.get_node("Default Movement").get_node("StillSprites"),"Idle");
+			host.changeSprite(host.get_node("Sprites").get_node("StillSprites"),"Idle");
 		if(Input.is_action_just_pressed("ui_jump") && !Input.is_action_pressed("ui_down")):
 			attack.dashing = false;
 			host.vspd += -host.jump_spd;
@@ -73,15 +70,15 @@ func execute(delta):
 			if(host.fall_spd < host.jump_spd - 100):
 				host.fall_spd = 2*host.jump_spd/3;
 		if(host.velocity.y>0 && (host.fall_spd > abs(host.jump_spd) + 100 || host.fall_spd < host.jump_spd && host.velocity.y > 100)):
-			host.changeSprite(host.get_node("Default Movement").get_node("FallSprites"),"Fall");
+			host.changeSprite(host.get_node("Sprites").get_node("FallSprites"),"Fall");
 		elif(host.velocity.y>0):
-			host.changeSprite(host.get_node("Default Movement").get_node("JumpToFallSprites"),host.anim);
-			host.get_node("Default Movement").get_node("JumpToFallSprites").frame = 1;
+			host.changeSprite(host.get_node("Sprites").get_node("JumpToFallSprites"),host.anim);
+			host.get_node("Sprites").get_node("JumpToFallSprites").frame = 1;
 		if(host.velocity.y<0 && host.fall_spd < abs(host.jump_spd) - 100):
-			host.changeSprite(host.get_node("Default Movement").get_node("JumpSprites"),"Jump");
+			host.changeSprite(host.get_node("Sprites").get_node("JumpSprites"),"Jump");
 		elif(host.velocity.y<0):
-			host.changeSprite(host.get_node("Default Movement").get_node("JumpToFallSprites"),host.anim);
-			host.get_node("Default Movement").get_node("JumpToFallSprites").frame = 0;
+			host.changeSprite(host.get_node("Sprites").get_node("JumpToFallSprites"),host.anim);
+			host.get_node("Sprites").get_node("JumpToFallSprites").frame = 0;
 		if(Input.is_action_pressed("ui_right")):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;

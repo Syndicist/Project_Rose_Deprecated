@@ -27,8 +27,8 @@ func _process(delta):
 		spd = 0;
 		attackstate.dashing = false;
 	
-	
-	player.velocity.x = spd * player.Direction;
+	if(move_player):
+		player.velocity.x = spd * player.Direction;
 	
 	if(player.state != 'attack'):
 		queue_free();
@@ -36,11 +36,7 @@ func _process(delta):
 
 func on_area_entered(area):
 	var other = area.get_parent();
-	if(!("hittable" in area)):
-		if(other.tag == "movable"):
-			if(other.type == "blowable"):
-				other.velocity.x = 200 * player.Direction;
-	elif(area.hittable):
-		if(other.susceptible == "slash" || other.susceptible == "all"):
-			other.hp -= 1;
-	pass
+	if(area.hittable):
+		if(other.vulnerable == "slash" || other.vulnerable == "all" ):
+			other.velocity.x = spd * player.Direction;
+	return other;

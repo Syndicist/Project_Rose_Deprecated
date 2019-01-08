@@ -19,6 +19,7 @@ var bash_unlock;
 var pierce_unlock;
 var defBashed;
 var effectMade;
+var currentFrame;
 
 func _ready():
 	### default attack vars ###
@@ -36,6 +37,7 @@ func _ready():
 	pierce_unlock = false;
 	defBashed = false;
 	effectMade = false;
+	currentFrame = 0;
 	pass
 
 func _process(delta):
@@ -45,6 +47,7 @@ func _process(delta):
 		second_attack = ATTACK.NIL;
 		third_attack = ATTACK.NIL;
 		start = false;
+		currentFrame = 0;
 	pass
 
 func _physics_process(delta):
@@ -143,9 +146,6 @@ func execute(delta):
 		$CooldownTimer.start();
 	pass
 
-
-
-
 ### COMBOS AND ATTACKS ###
 #TODO: Finish all combos (art, animations and code)
 
@@ -153,7 +153,6 @@ func makeEffect(effect):
 	effect.position = host.position;
 	host.get_parent().add_child(effect);
 	host.fall_spd = host.jump_spd;
-	combo_step += 1;
 	effectMade = true;
 	pass
 
@@ -164,13 +163,12 @@ func makeSlashEffect(effect):
 	dashing = true;
 	pass
 
+var charged = false;
+
 #The first attack is a slash
 func firstSlash():
-	host.changeSprite(host.get_node("X Attacks").get_node("XAttackSprites"),"XAttack");
-	if(host.anim == "XAttack" && host.get_node("X Attacks").get_node('XAttackSprites').frame == 3 && combo_step == 1):
-		var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
-		makeSlashEffect(effect);
-	pass
+	host.changeSprite(host.get_node("Sprites").get_node("XAttackSprites"),"XAttack");
+	pass;
 
 #The second attack is a slash
 func secondSlash():
@@ -178,10 +176,7 @@ func secondSlash():
 		#The particular slash attack that happens depending on the first attack
 		match(first_attack):
 			ATTACK.slash:
-				host.changeSprite(host.get_node("X Attacks").get_node("XXAttackSprites"),"XXAttack");
-				if(host.anim == "XXAttack" && host.get_node("X Attacks").get_node('XXAttackSprites').frame == 3 && combo_step == 2):
-					var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
-					makeSlashEffect(effect);
+				host.changeSprite(host.get_node("Sprites").get_node("XXAttackSprites"),"XXAttack");
 			#TODO
 			ATTACK.pierce:
 				null;
@@ -191,6 +186,8 @@ func secondSlash():
 			ATTACK.NIL:
 				null;
 	else:
+		#TODO: actually make this right
+		start = false; #TODO: delete this
 		#The particular slash attack that happens when the player is in the air depending on the first attack
 		match(first_attack):
 			ATTACK.slash:
@@ -209,10 +206,7 @@ func thirdSlash():
 		#The particular slash attack that happens depending on the first attack
 		#XXX COMBO
 		if(first_attack == ATTACK.slash && second_attack == ATTACK.slash):
-			host.changeSprite(host.get_node("X Attacks").get_node("XXXAttackSprites"),"XXXAttack");
-			if(host.anim == "XXXAttack" && host.get_node("X Attacks").get_node('XXXAttackSprites').frame == 4 && combo_step == 3):
-				var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
-				makeSlashEffect(effect);
+			host.changeSprite(host.get_node("Sprites").get_node("XXXAttackSprites"),"XXXAttack");
 		#BYX COMBO
 		if(first_attack == ATTACK.bash && second_attack == ATTACK.pierce):
 			null
@@ -246,13 +240,8 @@ func makeBashEffect(effect):
 #Does no damage, but stuns the first enemy struck.
 #Stunned enemies deal no contact damage.
 func defaultBash():
-	host.changeSprite(host.get_node("B Attacks").get_node("BDefaultSprites"),"BDefAttack");
-	if(host.anim == "BDefAttack" && host.get_node("B Attacks").get_node("BDefaultSprites").frame == 2):
-		var effect = preload("res://Game Objects/Rose/Effects/BDefAttack.tscn").instance();
-		makeBashEffect(effect);
-		combo_step = 4;
-		defBashed = true;
-		#TODO: Make Knockback logic
+	host.changeSprite(host.get_node("Sprites").get_node("BDefaultSprites"),"BDefAttack");
+	
 	pass
 #TODO: everything else
 func firstBash():
@@ -261,3 +250,45 @@ func secondBash():
 	pass
 func thirdBash():
 	pass
+
+
+func _frame_changed():
+	if(host.state == 'attack'):
+		#First Attack In Combo
+		match(combo_step):
+			1:
+				#X
+				if(host.anim == "XAttack"):
+					if(host.currentSprite.frame == 11 && !charged):
+						var effect = preload("res://Game Objects/Rose/Effects/XAttackDash.tscn").instance();
+						makeSlashEffect(effect);
+						charged = true;
+					if(host.currentSprite.frame == 18 && charged):
+						var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
+						makeSlashEffect(effect);
+						charged = false;
+						combo_step += 1;
+				#B
+				if(host.anim == "BDefAttack"):
+					if(host.get_node("Sprites").get_node("BDefaultSprites").frame == 2):
+						var effect = preload("res://Game Objects/Rose/Effects/BDefAttack.tscn").instance();
+						makeBashEffect(effect);
+						combo_step = 4;
+						defBashed = true;
+				pass;
+			2:
+				#XX
+				if(host.anim == "XXAttack"):
+					if(host.get_node("Sprites").get_node('XXAttackSprites').frame == 3 && combo_step == 2):
+						var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
+						makeSlashEffect(effect);
+				pass;
+			3:
+				if(host.anim == "XXXAttack"):
+					if(host.get_node("Sprites").get_node('XXXAttackSprites').frame == 4 && combo_step == 3):
+						var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
+						makeSlashEffect(effect);
+				pass;
+			_:
+				pass;
+	pass;

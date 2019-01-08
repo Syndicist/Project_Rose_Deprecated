@@ -22,18 +22,15 @@ func _process(delta):
 	pass;
 
 func on_area_entered(area):
+	var other = area.get_parent();
 	if(area.hittable):
-		var other = area.get_parent();
-		if(other.tag == "movable"):
-			if(other.type == "battable"):
-				other.velocity.x = 200 * player.Direction;
-		elif(other.susceptible == "bash" || other.susceptible == "all"):
-			other.hp -= 1;
-			$collider.disabled = true;
-	pass;
+		if(other.vulnerable == "bash" || other.vulnerable == "all" ):
+			#TODO: stun
+			null
+	return other;
 
 func on_body_entered(body):
-	if(!booped):
+	if(!booped && move_player):
 		player.vspd = -spd;
 		player.fall_spd = 0;
 		$Sprite.visible = true;

@@ -93,6 +93,8 @@ script = ExtResource( 2 )
 arange = 200.0
 srange = Vector2( 320, 32 )
 jspd = 0.0
+susceptible = "bash"
+vulnerable = "bash"
 
 [node name="jump_cast_head" parent="." index="0"]
 
@@ -116,12 +118,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 shape = SubResource( 1 )
 
-[node name="Area2D" parent="." index="4"]
-
-collision_layer = 4104
-collision_mask = 4102
-
-[node name="DamageCollider" parent="Area2D" index="0"]
+[node name="DamageCollider" parent="DamagePlayerArea" index="0"]
 
 shape = SubResource( 1 )
 
@@ -173,5 +170,24 @@ anims/charge = SubResource( 3 )
 anims/idle = SubResource( 4 )
 anims/move = SubResource( 5 )
 blend_times = [  ]
+
+[node name="BashHitBox" type="Area2D" parent="." index="12"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4096
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BashHitBox" index="0"]
+
+position = Vector2( -4, -1 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 

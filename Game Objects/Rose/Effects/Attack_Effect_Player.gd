@@ -3,7 +3,7 @@
 ### ATTACK EFFECT PARENT ###
 onready var player = get_parent().get_node("Rose");
 onready var attackstate = player.get_node("States").get_node("Attack");
-
+var move_player = false;
 var Direction = 1;
 
 func _enter_tree():

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Game Objects/Platforms/LeafVine.gd" type="Script" id=1]
-[ext_resource path="res://sprites/platform sprites/shit_vine.png" type="Texture" id=2]
+[ext_resource path="res://Game Objects/NonPlayerHitbox.gd" type="Script" id=2]
+[ext_resource path="res://sprites/platform sprites/shit_vine.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -16,11 +17,13 @@ extents = Vector2( 10, 139.595 )
 [node name="LeafVine" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 64
+collision_layer = 2112
 collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pause" ]
+susceptible = "slash"
+vulnerable = "slash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
@@ -35,9 +38,10 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 128
-collision_mask = 20
+collision_mask = 2068
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 2 )
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
@@ -46,7 +50,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Visibility" ]
 
 

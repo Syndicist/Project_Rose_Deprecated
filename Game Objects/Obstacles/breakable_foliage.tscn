@@ -8,10 +8,11 @@
 collision_layer = 2080
 hp = 2
 susceptible = "slash"
+vulnerable = "none"
 
 [node name="Area2D" parent="." index="1"]
 
-collision_layer = 2080
+collision_layer = 2048
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 

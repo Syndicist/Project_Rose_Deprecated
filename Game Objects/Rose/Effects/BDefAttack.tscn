@@ -4,8 +4,9 @@
 [ext_resource path="res://Game Objects/Rose/Effects/B_Def_Attack.gd" type="Script" id=2]
 [ext_resource path="res://sprites/Rose Sprites/Rose_B_Def_Effect.png" type="Texture" id=3]
 
-[node name="BDefAttack" instance=ExtResource( 1 )]
+[node name="BDefAttack" index="0" instance=ExtResource( 1 )]
 
+collision_mask = 4097
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]

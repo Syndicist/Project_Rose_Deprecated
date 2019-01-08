@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 25.6428, 29.1046 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -19,7 +19,7 @@ collision/safe_margin = 0.08
 shape = SubResource( 1 )
 disabled = true
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="DamagePlayerArea" type="Area2D" parent="." index="1"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -29,13 +29,32 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamagePlayerArea" index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -30.7993, 28.9951, 1.99831, 29.0042, 10.6182, 16.2499, 24.1404, 12.3864, 28.2185, -1.77966, 22.6379, -9.29199, 18.3452, -27.7508, -3.76256, -38.0535, -11.9188, -26.6777, -17.2847, -16.8043, -10.7047, 8.83861, -18.4345, 14.8387, -27.0986, 14.9302, -32.0985, 23.3327 )
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="." index="2"]
+[node name="BashHitbox" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4096
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BashHitbox" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -30.7993, 28.9951, 1.99831, 29.0042, 10.6182, 16.2499, 24.1404, 12.3864, 28.2185, -1.77966, 22.6379, -9.29199, 18.3452, -27.7508, -3.76256, -38.0535, -11.9188, -26.6777, -17.2847, -16.8043, -10.7047, 8.83861, -18.4345, 14.8387, -27.0986, 14.9302, -32.0985, 23.3327 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="." index="3"]
 
 texture = ExtResource( 1 )
 vframes = 7

@@ -49,11 +49,11 @@ var tag;
 func _ready():
 	max_hp = 3;
 	hp = max_hp;
-	damage = 1;
+	damage = 10;
 	tag = "player";
 	
 	### default subnode controller vars ###
-	currentSprite = get_node("Default Movement").get_node("StillSprites");
+	currentSprite = get_node("Sprites").get_node("StillSprites");
 	anim = "Idle";
 	new_anim = "Idle";
 	

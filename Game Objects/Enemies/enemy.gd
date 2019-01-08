@@ -21,12 +21,13 @@ export(Vector2) var srange = Vector2(160,32);
 export(float) var spd = 50;
 export(float) var jspd = 75;
 export(float) var gravity = 250;
+export(String, "slash", "bash", "pierce", "all", "none") var susceptible;
+export(String, "slash", "bash", "pierce", "all", "none") var vulnerable;
 
 ###debugging_tools###
 var hit_pos;
 
 ###background_enemy_data###
-var susceptible;
 var decision;
 var vspd;
 var fspd;

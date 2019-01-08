@@ -1,16 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://sprites/Tilesets/Forest/ground_tile1.png" type="Texture" id=1]
 [ext_resource path="res://sprites/Tilesets/Forest/ground_tile2.png" type="Texture" id=2]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree5.png" type="Texture" id=3]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree6.png" type="Texture" id=4]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree1.png" type="Texture" id=5]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree2.png" type="Texture" id=6]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree3.png" type="Texture" id=7]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree4.png" type="Texture" id=8]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree10.png" type="Texture" id=9]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree9.png" type="Texture" id=10]
-[ext_resource path="res://Design and Prototypes/forest tileset/basic-tileset-tree13.png" type="Texture" id=11]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,50 +13,5 @@ texture = ExtResource( 1 )
 
 position = Vector2( -37.5302, 0 )
 texture = ExtResource( 2 )
-
-[node name="treeground1" type="Sprite" parent="." index="2"]
-
-position = Vector2( 114.969, 36.418 )
-texture = ExtResource( 3 )
-
-[node name="treeground2" type="Sprite" parent="." index="3"]
-
-position = Vector2( 75.4833, 35.0965 )
-texture = ExtResource( 4 )
-
-[node name="treewallright1" type="Sprite" parent="." index="4"]
-
-position = Vector2( 149.153, 0 )
-texture = ExtResource( 5 )
-
-[node name="treewallright2" type="Sprite" parent="." index="5"]
-
-position = Vector2( 152.052, 37.1566 )
-texture = ExtResource( 6 )
-
-[node name="treewallleft1" type="Sprite" parent="." index="6"]
-
-position = Vector2( 38.9272, 34.9551 )
-texture = ExtResource( 7 )
-
-[node name="treewallleft2" type="Sprite" parent="." index="7"]
-
-position = Vector2( 40.9133, 1.19165 )
-texture = ExtResource( 8 )
-
-[node name="treewallciel1" type="Sprite" parent="." index="8"]
-
-position = Vector2( 75.4712, -35.3523 )
-texture = ExtResource( 9 )
-
-[node name="treewallciel2" type="Sprite" parent="." index="9"]
-
-position = Vector2( 114.796, -34.5579 )
-texture = ExtResource( 10 )
-
-[node name="treecore" type="Sprite" parent="." index="10"]
-
-position = Vector2( 92.2691, 0.583984 )
-texture = ExtResource( 11 )
 
 

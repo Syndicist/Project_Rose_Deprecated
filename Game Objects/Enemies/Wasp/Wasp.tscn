@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Game Objects/Enemies/enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game Objects/Enemies/Wasp/Wasp.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Game Objects/Enemies/Wasp/Attack_State_Wasp.gd" type="Script" id=4]
 [ext_resource path="res://Game Objects/Enemies/Wasp/Chase_State_Wasp.gd" type="Script" id=5]
 [ext_resource path="res://sprites/enemy sprites/wasp.png" type="Texture" id=6]
+[ext_resource path="res://Game Objects/NonPlayerHitbox.gd" type="Script" id=7]
 
 [sub_resource type="Animation" id=1]
 
@@ -62,6 +63,11 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 9.99699, 7 )
+
 [node name="wasp" instance=ExtResource( 1 )]
 
 position = Vector2( 0, 0 )
@@ -70,6 +76,8 @@ srange = Vector2( 320, 320 )
 spd = 100.0
 jspd = 150.0
 gravity = 0.0
+susceptible = "all"
+vulnerable = "all"
 
 [node name="jump_cast_head" parent="." index="0"]
 
@@ -84,12 +92,7 @@ position = Vector2( 0, 0 )
 
 position = Vector2( 0, 0 )
 
-[node name="Area2D" parent="." index="3"]
-
-editor/display_folded = true
-collision_layer = 14344
-
-[node name="DamageCollider" parent="Area2D" index="0"]
+[node name="DamageCollider" parent="DamagePlayerArea" index="0"]
 
 position = Vector2( 0, 0 )
 
@@ -150,5 +153,23 @@ _sections_unfolded = [ "Animation" ]
 
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Animation" ]
+
+[node name="AllHitbox" type="Area2D" parent="." index="11"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 14336
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 7 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AllHitbox" index="0"]
+
+shape = SubResource( 4 )
 
 
