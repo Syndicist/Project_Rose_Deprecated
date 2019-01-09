@@ -22,9 +22,11 @@ func _process(delta):
 	pass;
 
 func on_area_entered(area):
+	if(!(.on_area_entered(area))):
+		return null;
 	var other = area.get_parent();
 	if(area.hittable):
-		if(other.vulnerable == "bash" || other.vulnerable == "all" ):
+		if(area.vulnerable == "bash" || area.vulnerable == "all" ):
 			#TODO: stun
 			null
 	return other;

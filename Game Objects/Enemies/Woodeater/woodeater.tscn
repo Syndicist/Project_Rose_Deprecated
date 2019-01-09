@@ -73,7 +73,6 @@ extents = Vector2( 9.99699, 7 )
 
 collision_mask = 289
 script = ExtResource( 2 )
-susceptible = "all"
 
 [node name="Idle_Sprites" type="Sprite" parent="." index="3"]
 
@@ -110,10 +109,6 @@ anims/idle = SubResource( 2 )
 anims/move = SubResource( 3 )
 blend_times = [  ]
 
-[node name="States" parent="." index="8"]
-
-editor/display_folded = true
-
 [node name="AllHitbox" type="Area2D" parent="." index="10"]
 
 input_pickable = true
@@ -127,6 +122,8 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 6 )
 _sections_unfolded = [ "Collision" ]
+susceptible = "all"
+vulnerable = "all"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AllHitbox" index="0"]
 

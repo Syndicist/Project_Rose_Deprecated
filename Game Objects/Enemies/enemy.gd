@@ -21,8 +21,6 @@ export(Vector2) var srange = Vector2(160,32);
 export(float) var spd = 50;
 export(float) var jspd = 75;
 export(float) var gravity = 250;
-export(String, "slash", "bash", "pierce", "all", "none") var susceptible;
-export(String, "slash", "bash", "pierce", "all", "none") var vulnerable;
 
 ###debugging_tools###
 var hit_pos;
@@ -61,7 +59,6 @@ func _ready():
 	#1 = right, -1 = left
 	Direction = 1;
 	floor_normal = Vector2(0,-1);
-	susceptible = "all"
 	anim = "idle";
 	new_anim = anim;
 	currentSprite = get_node("Idle_Sprites");
@@ -70,12 +67,12 @@ func _ready():
 	pass
 
 #for debugging raycasts
-func _draw():
-	draw_line(Vector2(0,0),Vector2((hit_pos.x - global_position.x)*Direction, hit_pos.y - global_position.y),Color(1,1,1));
-	pass
+#func _draw():
+#	draw_line(Vector2(0,0),Vector2((hit_pos.x - global_position.x)*Direction, hit_pos.y - global_position.y),Color(1,1,1));
+#	pass
 
 func _process(delta):
-	update();
+#	update();
 	execute(delta);
 	pass
 

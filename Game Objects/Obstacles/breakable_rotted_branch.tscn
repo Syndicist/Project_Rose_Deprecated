@@ -27,6 +27,8 @@ _sections_unfolded = [ "Transform" ]
 rotation = 1.5708
 collision_layer = 4096
 _sections_unfolded = [ "Collision", "Transform" ]
+susceptible = "bash"
+vulnerable = "none"
 
 [node name="CollisionShape2D2" parent="Area2D" index="0"]
 

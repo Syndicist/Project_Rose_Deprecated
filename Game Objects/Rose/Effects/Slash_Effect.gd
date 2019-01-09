@@ -35,8 +35,10 @@ func _process(delta):
 	pass
 
 func on_area_entered(area):
+	if(!(.on_area_entered(area))):
+		return null;
 	var other = area.get_parent();
 	if(area.hittable):
-		if(other.vulnerable == "slash" || other.vulnerable == "all" ):
+		if(area.vulnerable == "slash" || area.vulnerable == "all" ):
 			other.velocity.x = spd * player.Direction;
 	return other;

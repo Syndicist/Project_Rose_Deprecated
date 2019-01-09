@@ -7,7 +7,8 @@ func _ready():
 
 func on_area_entered(area):
 	var other = .on_area_entered(area);
-	if(area.hittable):
-		if(other.susceptible == "bash" || other.susceptible == "all"):
-			other.hp -= player.damage/4;
+	if(other != null):
+		if(area.hittable):
+			if(area.susceptible == "bash" || area.susceptible == "all"):
+				other.hp -= player.damage/4;
 	pass

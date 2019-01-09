@@ -27,6 +27,11 @@ func _physics_process(delta):
 		queue_free();
 
 func on_area_entered(area):
+	if(area.hits.has(self)):
+		return false;
+	else:
+		area.set_hit(self);
+		return true;
 	pass;
 
 func on_body_entered(body):

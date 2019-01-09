@@ -22,8 +22,6 @@ collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pause" ]
-susceptible = "slash"
-vulnerable = "slash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
@@ -37,12 +35,14 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-collision_layer = 128
-collision_mask = 2068
+collision_layer = 2176
+collision_mask = 20
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 2 )
 _sections_unfolded = [ "Collision" ]
+susceptible = "slash"
+vulnerable = "slash"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
 

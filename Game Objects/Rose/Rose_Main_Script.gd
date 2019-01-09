@@ -23,9 +23,7 @@ var floor_normal;
 var fall_spd;
 var vspd;
 var min_air_time = 0.1;
-var targettableSlashHitboxes = [];
-var targettableBashHitboxes = [];
-var targettablePierceHitboxes = [];
+var targettableHitboxes = [];
 var itemTrace = [];
 
 ### state vars ###
@@ -73,15 +71,13 @@ func _ready():
 	$animator.play(anim);
 	pass;
 
+"""
 #for debugging raycasts
-#func _draw():
-#	for item in targettableSlashHitboxes:
-#		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(0,0,1));
-#	for item in targettableBashHitboxes:
-#		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(1,0,0));
-#	for item in targettablePierceHitboxes:
-#		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(1,1,0));
-#	pass;
+func _draw():
+	for item in targettableHitboxes:
+		draw_line(Vector2(0,0),Vector2((item.global_position.x - global_position.x)*Direction, item.global_position.y - global_position.y),Color(0,0,1));
+	pass;
+"""
 
 ################## PROCESS_FUNCTION ##################
 #Processes player variables, like hp, damage, and speed.
@@ -104,9 +100,7 @@ func _process(delta):
 	
 	$Camera2D.current = true;
 	
-	slashHitboxLoop();
-	bashHitboxLoop();
-	pierceHitboxLoop();
+	hitboxLoop()
 	pass;
 
 ################## PHYSICS_FUNCTION ##################
@@ -165,40 +159,25 @@ func on_floor():
 	return ($floor_cast.is_colliding() || $floor_cast2.is_colliding() || $floor_cast3.is_colliding());
 
 
-func _on_DetectSlashHitboxArea_area_entered(area):
-	targettableSlashHitboxes.push_back(area);
+func _on_DetectHitboxArea_area_entered(area):
+	if(!targettableHitboxes.has(area)):
+		targettableHitboxes.push_back(area);
 	pass;
-func _on_DetectSlashHitboxArea_area_exited(area):
-	targettableSlashHitboxes.erase(area);
-	pass;
-func slashHitboxLoop():
-	var space_state = get_world_2d().direct_space_state;
-	for item in targettableSlashHitboxes:
-		nextRay(self,item,11,space_state);
+func _on_DetectHitboxArea_area_exited(area):
+	if(targettableHitboxes.has(area)):
+		targettableHitboxes.erase(area);
 	pass;
 
-func _on_DetectBashHitboxArea_area_entered(area):
-	targettableBashHitboxes.push_back(area);
-	pass;
-func _on_DetectBashHitboxArea_area_exited(area):
-	targettableBashHitboxes.erase(area);
-	pass;
-func bashHitboxLoop():
+func hitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
-	for item in targettableBashHitboxes:
-		nextRay(self,item,12,space_state);
-	pass;
-
-func _on_DetectPierceHitboxArea_area_entered(area):
-	targettablePierceHitboxes.push_back(area);
-	pass;
-func _on_DetectPierceHitboxArea_area_exited(area):
-	targettablePierceHitboxes.erase(area);
-	pass;
-func pierceHitboxLoop():
-	var space_state = get_world_2d().direct_space_state;
-	for item in targettablePierceHitboxes:
-		nextRay(self,item,13,space_state);
+	for item in targettableHitboxes:
+		var slash = nextRay(self,item,11,space_state);
+		var bash = nextRay(self,item,12,space_state);
+		var pierce = nextRay(self,item,13,space_state);
+		if(slash || bash || pierce):
+			item.hittable = true;
+		else:
+			item.hittable = false;
 	pass;
 
 func nextRay(origin,dest,col_layer,spc):
@@ -206,14 +185,14 @@ func nextRay(origin,dest,col_layer,spc):
 		itemTrace.push_back(origin);
 	var result = spc.intersect_ray(origin.global_position, dest.global_position, itemTrace, $RayCastCollision.collision_mask);
 	if(result.empty()):
-		dest.hittable = true;
 		itemTrace.clear();
+		return true;
 	elif(result.collider.get_collision_layer_bit(col_layer)):
 		if(result.collider != dest):
-			nextRay(result.collider,dest,col_layer,spc);
+			return nextRay(result.collider,dest,col_layer,spc);
 		else:
-			dest.hittable = true;
 			itemTrace.clear();
+			return true;
 	else:
-		dest.hittable = false;
 		itemTrace.clear();
+		return false;

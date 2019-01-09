@@ -8,7 +8,7 @@ func _ready():
 
 func on_area_entered(area):
 	var other = area.get_parent();
-	if(attack.dashing && (other.susceptible == "all" || other.susceptible == "slash")):
+	if(attack.dashing):
 		return;
 	if(host.state != 'hurt'):
 		host.velocity.x = 0;

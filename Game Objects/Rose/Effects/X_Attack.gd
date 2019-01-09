@@ -15,7 +15,8 @@ func _process(delta):
 
 func on_area_entered(area):
 	var other = .on_area_entered(area);
-	if(area.hittable):
-		if(other.susceptible == "slash" || other.susceptible == "all"):
-			other.hp -= player.damage/2;
+	if(other != null):
+		if(area.hittable):
+			if(area.susceptible == "slash" || area.susceptible == "all"):
+				other.hp -= player.damage/2;
 	pass

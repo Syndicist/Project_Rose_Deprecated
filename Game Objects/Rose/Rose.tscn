@@ -250,7 +250,7 @@ extents = Vector2( 6.53191, 18.3738 )
 custom_solver_bias = 0.0
 extents = Vector2( 318.155, 178.611 )
 
-[node name="Rose" type="KinematicBody2D" index="0"]
+[node name="Rose" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -371,6 +371,7 @@ shape = SubResource( 14 )
 
 [node name="DetectSlashHit" type="Area2D" parent="." index="8"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -405,7 +406,6 @@ script = ExtResource( 3 )
 
 [node name="StillSprites" type="Sprite" parent="Sprites" index="0"]
 
-visible = false
 texture = ExtResource( 4 )
 hframes = 5
 frame = 3
@@ -450,6 +450,7 @@ _sections_unfolded = [ "Animation" ]
 
 [node name="XAttackSprites" type="Sprite" parent="Sprites" index="6"]
 
+visible = false
 texture = ExtResource( 10 )
 hframes = 25
 frame = 24
@@ -639,17 +640,17 @@ texture = ExtResource( 22 )
 centered = false
 _sections_unfolded = [ "Offset" ]
 
-[connection signal="area_entered" from="DetectBashHitboxArea" to="." method="_on_DetectBashHitboxArea_area_entered"]
+[connection signal="area_entered" from="DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 
-[connection signal="area_exited" from="DetectBashHitboxArea" to="." method="_on_DetectBashHitboxArea_area_exited"]
+[connection signal="area_exited" from="DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 
-[connection signal="area_entered" from="DetectPierceHitboxArea" to="." method="_on_DetectPierceHitboxArea_area_entered"]
+[connection signal="area_entered" from="DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
 
-[connection signal="area_exited" from="DetectPierceHitboxArea" to="." method="_on_DetectPierceHitboxArea_area_exited"]
+[connection signal="area_exited" from="DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 
-[connection signal="area_entered" from="DetectSlashHit" to="." method="_on_DetectSlashHitboxArea_area_entered"]
+[connection signal="area_entered" from="DetectSlashHit" to="." method="_on_DetectHitboxArea_area_entered"]
 
-[connection signal="area_exited" from="DetectSlashHit" to="." method="_on_DetectSlashHitboxArea_area_exited"]
+[connection signal="area_exited" from="DetectSlashHit" to="." method="_on_DetectHitboxArea_area_exited"]
 
 [connection signal="frame_changed" from="Sprites/XAttackSprites" to="States/Attack" method="_frame_changed"]
 
