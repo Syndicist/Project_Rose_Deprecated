@@ -1,15 +1,7 @@
 extends KinematicBody2D
 
-onready var attack = get_node("States").get_node("Default");
-onready var move = get_node("States").get_node("Attack");
-onready var hurt = get_node("States").get_node("Chase");
-onready var defstun = get_node("States").get_node("DefaultStun");
 onready var actionTimer = get_node("ActionTimer");
 onready var player = get_parent().get_parent().get_node("Rose");
-
-
-
-
 
 ###enemy_game_data###
 export(int) var hp = 1;

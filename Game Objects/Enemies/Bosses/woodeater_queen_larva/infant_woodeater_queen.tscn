@@ -1,0 +1,289 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/infant_woodeater_queen.gd" type="Script" id=1]
+[ext_resource path="res://Game Objects/NonPlayerHitbox.gd" type="Script" id=2]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_idle.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_move.png" type="Texture" id=4]
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Default_State_Phase_1_Infant_Woodeater_Queen.gd" type="Script" id=5]
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Bite_State_Woodeater_Queen_Larva.gd" type="Script" id=6]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "idle"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Idle_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "move"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Move_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32.2295, 35.7999 )
+
+[node name="infant_woodeater_queen" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 8
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+hp = 1
+damage = 1
+arange = 50
+srange = Vector2( 160, 32 )
+spd = 50
+jspd = 75
+gravity = 250
+
+[node name="animator" type="AnimationPlayer" parent="." index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/idle = SubResource( 1 )
+anims/move = SubResource( 2 )
+blend_times = [  ]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -30.7993, 28.9951, 1.99831, 29.0042, 17.5561, 28.1004, 24.1404, 12.3864, 28.2185, -1.77966, 22.6379, -9.29199, 18.3452, -27.7508, -3.76256, -38.0535, -11.9188, -26.6777, -17.2847, -16.8043, -19.6797, 2.06693, -22.8352, 9.00919, -27.0986, 14.9302, -32.0985, 23.3327 )
+
+[node name="DamagePlayerArea" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagePlayerArea" index="0"]
+
+position = Vector2( -3, -4 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="BashHitbox" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4096
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+susceptible = null
+vulnerable = null
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BashHitbox" index="0"]
+
+position = Vector2( -3, -4 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Idle_Sprites" type="Sprite" parent="." index="4"]
+
+texture = ExtResource( 3 )
+hframes = 4
+frame = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="Move_Sprites" type="Sprite" parent="." index="5"]
+
+visible = false
+texture = ExtResource( 4 )
+hframes = 4
+_sections_unfolded = [ "Animation" ]
+
+[node name="PhaseOneStates" type="Node2D" parent="." index="6"]
+
+[node name="UnburrowedSuperState" type="Node2D" parent="PhaseOneStates" index="0"]
+
+[node name="Default" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="0"]
+
+editor/display_folded = true
+script = ExtResource( 5 )
+
+[node name="MoveTimer" type="Timer" parent="PhaseOneStates/UnburrowedSuperState/Default" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Slam" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="1"]
+
+[node name="Bite" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="2"]
+
+script = ExtResource( 6 )
+
+[node name="Charge" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="3"]
+
+[node name="Stun" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="4"]
+
+[node name="Transition" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="5"]
+
+[node name="Shoot" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="6"]
+
+[node name="Beam" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="7"]
+
+[node name="BurrowedSuperState" type="Node2D" parent="PhaseOneStates" index="1"]
+
+editor/display_folded = true
+
+[node name="Default" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="0"]
+
+[node name="Slam" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="1"]
+
+[node name="Bite" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="2"]
+
+[node name="Charge" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="3"]
+
+[node name="Stun" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="4"]
+
+[node name="Transition" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="5"]
+
+[node name="Shoot" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="6"]
+
+[node name="Beam" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="7"]
+
+[node name="PhaseTwoStates" type="Node2D" parent="." index="7"]
+
+editor/display_folded = true
+
+[node name="UnburrowedSuperState" type="Node2D" parent="PhaseTwoStates" index="0"]
+
+editor/display_folded = true
+
+[node name="Default" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="0"]
+
+[node name="Slam" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="1"]
+
+[node name="Bite" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="2"]
+
+[node name="Charge" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="3"]
+
+[node name="Stun" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="4"]
+
+[node name="Transition" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="5"]
+
+[node name="Shoot" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="6"]
+
+[node name="Beam" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="7"]
+
+[node name="BurrowedSuperState" type="Node2D" parent="PhaseTwoStates" index="1"]
+
+editor/display_folded = true
+
+[node name="Default" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="0"]
+
+[node name="Slam" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="1"]
+
+[node name="Bite" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="2"]
+
+[node name="Charge" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="3"]
+
+[node name="Stun" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="4"]
+
+[node name="Transition" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="5"]
+
+[node name="Shoot" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="6"]
+
+[node name="Beam" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="7"]
+
+[node name="PhaseThreeStates" type="Node2D" parent="." index="8"]
+
+editor/display_folded = true
+
+[node name="UnburrowedSuperState" type="Node2D" parent="PhaseThreeStates" index="0"]
+
+editor/display_folded = true
+
+[node name="Default" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="0"]
+
+[node name="Slam" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="1"]
+
+[node name="Bite" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="2"]
+
+[node name="Charge" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="3"]
+
+[node name="Stun" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="4"]
+
+[node name="Transition" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="5"]
+
+[node name="Shoot" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="6"]
+
+[node name="Beam" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="7"]
+
+[node name="BurrowedSuperState" type="Node2D" parent="PhaseThreeStates" index="1"]
+
+editor/display_folded = true
+
+[node name="Default" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="0"]
+
+[node name="Slam" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="1"]
+
+[node name="Bite" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="2"]
+
+[node name="Charge" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="3"]
+
+[node name="Stun" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="4"]
+
+[node name="Transition" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="5"]
+
+[node name="Shoot" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="6"]
+
+[node name="Beam" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="7"]
+
+[node name="ActionTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="ActionTimer" to="." method="_on_ActionTimer_timeout"]
+
+

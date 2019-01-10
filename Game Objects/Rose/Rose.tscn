@@ -402,6 +402,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Sprites" type="Node2D" parent="." index="10"]
 
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="StillSprites" type="Sprite" parent="Sprites" index="0"]
@@ -557,6 +558,8 @@ shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
 [node name="States" type="Node2D" parent="." index="12"]
+
+editor/display_folded = true
 
 [node name="Attack" type="Node2D" parent="States" index="0"]
 
