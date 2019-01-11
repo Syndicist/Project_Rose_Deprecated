@@ -217,7 +217,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-max_hp = 100
+max_hp = 30
 damage = 10
 spd = 50
 jspd = 75
@@ -258,7 +258,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-collision_layer = 32776
+collision_layer = 16392
 collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
@@ -365,6 +365,8 @@ _sections_unfolded = [ "Animation" ]
 
 [node name="PhaseOneStates" type="Node2D" parent="." index="14"]
 
+editor/display_folded = true
+
 [node name="UnburrowedSuperState" type="Node2D" parent="PhaseOneStates" index="0"]
 
 [node name="Default" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="0"]
@@ -435,6 +437,8 @@ editor/display_folded = true
 
 [node name="PhaseTwoStates" type="Node2D" parent="." index="15"]
 
+editor/display_folded = true
+
 [node name="UnburrowedSuperState" type="Node2D" parent="PhaseTwoStates" index="0"]
 
 editor/display_folded = true
@@ -495,6 +499,8 @@ editor/display_folded = true
 [node name="Beam" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="7"]
 
 [node name="PhaseThreeStates" type="Node2D" parent="." index="16"]
+
+editor/display_folded = true
 
 [node name="UnburrowedSuperState" type="Node2D" parent="PhaseThreeStates" index="0"]
 

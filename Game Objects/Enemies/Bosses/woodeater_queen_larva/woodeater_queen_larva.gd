@@ -58,10 +58,8 @@ func execute(delta):
 func phys_execute(delta):
 	#phase switcher
 	if(float(hp)/float(max_hp) <= .75):
-		print(hp/max_hp);
 		phase = '2';
 	if(float(hp)/float(max_hp) <= .45):
-		print(hp/max_hp);
 		phase = '3';
 	
 	if(player.global_position.x > global_position.x && state == 'default'):
