@@ -282,12 +282,14 @@ func _frame_changed():
 					if(host.get_node("Sprites").get_node('XXAttackSprites').frame == 3 && combo_step == 2):
 						var effect = preload("res://Game Objects/Rose/Effects/XXAttack.tscn").instance();
 						makeSlashEffect(effect);
+						combo_step += 1;
 				pass;
 			3:
 				if(host.anim == "XXXAttack"):
 					if(host.get_node("Sprites").get_node('XXXAttackSprites').frame == 4 && combo_step == 3):
 						var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
 						makeSlashEffect(effect);
+						combo_step += 1;
 				pass;
 			_:
 				pass;
