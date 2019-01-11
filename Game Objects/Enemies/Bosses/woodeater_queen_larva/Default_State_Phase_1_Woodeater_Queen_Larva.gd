@@ -49,7 +49,6 @@ func execute(delta):
 			$MoveTimer.stop();
 			host.state = 'bite';
 			host.hspd = 0;
-			host.get_node("animator").playback_speed = 1;
 	pass
 
 func go():

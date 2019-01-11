@@ -22,7 +22,7 @@
 [sub_resource type="TileSet" id=1]
 
 
-[node name="Level 1" type="Node2D"]
+[node name="Level 1" type="Node2D" index="0"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="0"]
 
@@ -125,7 +125,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Rose" parent="." index="6" instance=ExtResource( 7 )]
 
-position = Vector2( 269.436, 416.524 )
+position = Vector2( 346.509, 378.007 )
 collision_mask = 33
 max_hp = 1
 damage = 1
@@ -135,7 +135,7 @@ tag = "actor"
 
 [node name="Infant Woodeater Queen" parent="Woodeater_Queen_Larva" index="0" instance=ExtResource( 8 )]
 
-position = Vector2( 3518.5, 439.448 )
+position = Vector2( 3740.63, 436.275 )
 _sections_unfolded = [ "Collision", "Transform" ]
 max_hp = 20
 
@@ -332,7 +332,6 @@ position = Vector2( 2683.31, -33.136 )
 
 [node name="Interactables" type="Node2D" parent="." index="10"]
 
-editor/display_folded = true
 position = Vector2( 244.711, 3.79871 )
 
 [node name="rotted_bark" parent="Interactables" index="0" instance=ExtResource( 13 )]
@@ -343,37 +342,49 @@ position = Vector2( 1210.65, -722.267 )
 
 position = Vector2( 1210.65, -722.267 )
 
-[node name="LeafVine2" parent="Interactables" index="2" instance=ExtResource( 14 )]
+[node name="rotted_bark3" parent="Interactables" index="2" instance=ExtResource( 13 )]
+
+position = Vector2( 3579.26, 430.89 )
+
+[node name="rotted_bark4" parent="Interactables" index="3" instance=ExtResource( 13 )]
+
+position = Vector2( 3002.08, 425.201 )
+
+[node name="rotted_bark5" parent="Interactables" index="4" instance=ExtResource( 13 )]
+
+position = Vector2( 1170.9, -15.4856 )
+
+[node name="LeafVine2" parent="Interactables" index="5" instance=ExtResource( 14 )]
 
 position = Vector2( 617.2, 169.07 )
 
-[node name="LeafVine1" parent="Interactables" index="3" instance=ExtResource( 15 )]
+[node name="LeafVine1" parent="Interactables" index="6" instance=ExtResource( 15 )]
 
 position = Vector2( 790.214, 168.255 )
 
-[node name="rotted_branch" parent="Interactables" index="4" instance=ExtResource( 16 )]
+[node name="rotted_branch" parent="Interactables" index="7" instance=ExtResource( 16 )]
 
 position = Vector2( 3243.37, -26.7705 )
 hp = 3
 
-[node name="rotted_branch2" parent="Interactables" index="5" instance=ExtResource( 16 )]
+[node name="rotted_branch2" parent="Interactables" index="8" instance=ExtResource( 16 )]
 
 position = Vector2( 2955.34, 131.237 )
 hp = 3
 
-[node name="Splinters" parent="Interactables" index="6" instance=ExtResource( 17 )]
+[node name="Splinters" parent="Interactables" index="9" instance=ExtResource( 17 )]
 
 position = Vector2( 1067.74, -339.645 )
 
-[node name="DenseFoliage" parent="Interactables" index="7" instance=ExtResource( 18 )]
+[node name="DenseFoliage" parent="Interactables" index="10" instance=ExtResource( 18 )]
 
 position = Vector2( 426.927, 428.211 )
 
-[node name="DenseFoliage2" parent="Interactables" index="8" instance=ExtResource( 18 )]
+[node name="DenseFoliage2" parent="Interactables" index="11" instance=ExtResource( 18 )]
 
 position = Vector2( 778.684, 428.199 )
 
-[node name="DenseFoliage3" parent="Interactables" index="9" instance=ExtResource( 18 )]
+[node name="DenseFoliage3" parent="Interactables" index="12" instance=ExtResource( 18 )]
 
 position = Vector2( 898.133, -627.877 )
 
@@ -391,5 +402,7 @@ input_pickable = true
 position = Vector2( 971.754, -339.735 )
 
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]
+
+[connection signal="tree_exited" from="Interactables/rotted_bark4" to="Woodeater_Queen_Larva/Infant Woodeater Queen" method="_on_rotted_bark4_tree_exited"]
 
 

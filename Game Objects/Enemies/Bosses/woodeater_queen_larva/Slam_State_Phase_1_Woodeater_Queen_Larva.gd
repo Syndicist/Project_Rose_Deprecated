@@ -32,6 +32,7 @@ func _ready():
 func execute(delta):
 	#jump
 	if(!started):
+		host.get_node("animator").playback_speed = 1;
 		host.changeSprite(host.get_node("Jump_Sprites"),"jump");
 		started = true;
 		if(host.player.global_position.x > host.global_position.x):

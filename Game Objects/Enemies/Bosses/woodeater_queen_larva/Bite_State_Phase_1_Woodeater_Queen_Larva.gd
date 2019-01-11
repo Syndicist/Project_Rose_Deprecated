@@ -14,6 +14,7 @@ func _ready():
 
 func execute(delta):
 	if(!started):
+		host.get_node("animator").playback_speed = 1;
 		if(host.global_position.x < host.player.global_position.x):
 			host.flipped = false;
 			host.Direction = 1;
