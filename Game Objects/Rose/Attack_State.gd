@@ -152,7 +152,7 @@ func execute(delta):
 func makeEffect(effect):
 	effect.position = host.position;
 	host.get_parent().add_child(effect);
-	host.fall_spd = host.jump_spd;
+	host.fspd = host.jspd;
 	effectMade = true;
 	pass
 

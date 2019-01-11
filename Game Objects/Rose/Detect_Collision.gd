@@ -8,7 +8,7 @@ func _ready():
 
 func on_area_entered(area):
 	var other = area.get_parent();
-	if(attack.dashing):
+	if(attack.dashing && area.get_collision_layer_bit(14)):
 		return;
 	if(host.state != 'hurt'):
 		host.velocity.x = 0;
@@ -16,7 +16,7 @@ func on_area_entered(area):
 		host.states['hurt'].hurt_timer = 7;
 		host.state = 'hurt';
 		host.hp -= other.damage;
-		if(other.position.x >= host.position.x):
+		if(other.global_position.x >= host.global_position.x):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
 			host.Direction = 1;

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/Tilesets/Forest/tiles/ground_tile2.png" type="Texture" id=1]
 [ext_resource path="res://sprites/Tilesets/Forest/tiles/ground_tile1.png" type="Texture" id=2]
 [ext_resource path="res://sprites/Tilesets/Forest/earth_tile.png" type="Texture" id=3]
+[ext_resource path="res://sprites/Tilesets/Forest/stump/eg.png" type="Texture" id=4]
+[ext_resource path="res://sprites/Tilesets/Forest/stump/grass_fg1-sheet.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -53,5 +55,15 @@ shape = SubResource( 1 )
 
 position = Vector2( 39.7106, -0.291992 )
 texture = ExtResource( 3 )
+
+[node name="grass_bg" type="Sprite" parent="." index="3"]
+
+position = Vector2( 140.447, -0.291992 )
+texture = ExtResource( 4 )
+
+[node name="grass_bg_small" type="Sprite" parent="." index="4"]
+
+position = Vector2( 245.124, -0.291992 )
+texture = ExtResource( 5 )
 
 

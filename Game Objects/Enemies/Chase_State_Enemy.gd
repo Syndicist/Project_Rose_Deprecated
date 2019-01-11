@@ -1,6 +1,4 @@
-extends Node2D
-
-onready var host = get_parent().get_parent();
+extends "res://Game Objects/Enemies/Enemy_State.gd"
 
 func execute(delta):
 	if(host.player.global_position.x > host.global_position.x):

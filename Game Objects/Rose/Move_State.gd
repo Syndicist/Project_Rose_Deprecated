@@ -41,13 +41,13 @@ func execute(delta):
 		if(Input.is_action_pressed("ui_right")):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
-			host.velocity.x = host.run_spd;
+			host.velocity.x = host.spd;
 			host.Direction = 1;
 			host.changeSprite(host.get_node("Sprites").get_node("RunSprites"),"Run");
 		elif(Input.is_action_pressed("ui_left")):
 			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
-			host.velocity.x = -host.run_spd;
+			host.velocity.x = -host.spd;
 			host.Direction = -1;
 			host.changeSprite(host.get_node("Sprites").get_node("RunSprites"),"Run");
 		#elif(Input.is_action_pressed("ui_up")):
@@ -61,20 +61,20 @@ func execute(delta):
 			host.changeSprite(host.get_node("Sprites").get_node("StillSprites"),"Idle");
 		if(Input.is_action_just_pressed("ui_jump") && !Input.is_action_pressed("ui_down")):
 			attack.dashing = false;
-			host.vspd += -host.jump_spd;
+			host.vspd += -host.jspd;
 	
 	### moving in the air ###
 	#TODO: jump-based special attacks
 	elif(!host.on_floor()):
 		if(Input.is_action_just_released("ui_jump")):
-			if(host.fall_spd < host.jump_spd - 100):
-				host.fall_spd = 2*host.jump_spd/3;
-		if(host.velocity.y>0 && (host.fall_spd > abs(host.jump_spd) + 100 || host.fall_spd < host.jump_spd && host.velocity.y > 100)):
+			if(host.fspd < host.jspd - 100):
+				host.fspd = 2*host.jspd/3;
+		if(host.velocity.y>0 && (host.fspd > abs(host.jspd) + 100 || host.fspd < host.jspd && host.velocity.y > 100)):
 			host.changeSprite(host.get_node("Sprites").get_node("FallSprites"),"Fall");
 		elif(host.velocity.y>0):
 			host.changeSprite(host.get_node("Sprites").get_node("JumpToFallSprites"),host.anim);
 			host.get_node("Sprites").get_node("JumpToFallSprites").frame = 1;
-		if(host.velocity.y<0 && host.fall_spd < abs(host.jump_spd) - 100):
+		if(host.velocity.y<0 && host.fspd < abs(host.jspd) - 100):
 			host.changeSprite(host.get_node("Sprites").get_node("JumpSprites"),"Jump");
 		elif(host.velocity.y<0):
 			host.changeSprite(host.get_node("Sprites").get_node("JumpToFallSprites"),host.anim);
@@ -82,12 +82,12 @@ func execute(delta):
 		if(Input.is_action_pressed("ui_right")):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
-			host.velocity.x = host.run_spd;
+			host.velocity.x = host.spd;
 			host.Direction = 1;
 		elif(Input.is_action_pressed("ui_left")):
 			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
-			host.velocity.x = -host.run_spd;
+			host.velocity.x = -host.spd;
 			host.Direction = -1;
 		else:
 			host.velocity.x = 0;

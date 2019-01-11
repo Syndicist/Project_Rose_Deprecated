@@ -95,6 +95,9 @@ ui_jump=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
 2d_physics/layer_12="SlashHitboxes"
 2d_physics/layer_13="BashHitboxes"
 2d_physics/layer_14="PierceHitboxes"
+2d_physics/layer_15="SlashDamageboxes"
+2d_physics/layer_16="BashDamageboxes"
+2d_physics/layer_17="PierceDamageboxes"
 
 [rendering]
 

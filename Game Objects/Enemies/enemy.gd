@@ -1,71 +1,34 @@
-extends KinematicBody2D
+extends "res://Game Objects/actor.gd"
 
 onready var actionTimer = get_node("ActionTimer");
 onready var player = get_parent().get_parent().get_node("Rose");
 
-###enemy_game_data###
-export(int) var hp = 1;
-export(int) var damage = 1;
 #range which the enemy attacks
 export(float) var arange = 50;
 #range which the enemy chases
 export(Vector2) var srange = Vector2(160,32);
-export(float) var spd = 50;
-export(float) var jspd = 75;
-export(float) var gravity = 250;
 
 ###debugging_tools###
 var hit_pos;
 
 ###background_enemy_data###
 var decision;
-var vspd;
-var fspd;
 var wait;
-var new_anim;
-var anim;
-var currentSprite;
-var hspd;
-var velocity;
-var Direction;
-var floor_normal;
-var tag;
 
-onready var states = {
-	'default' : $States/Default,
-	'attack' : $States/Attack,
-	'chase' : $States/Chase,
-	'defstun' : $States/DefaultStun
-}
+onready var states;
 var state;
 
 ### Enemy ###
 func _ready():
 	decision = 0;
-	tag = "enemy";
 	state = 'default';
 	wait = 0;
-	velocity = Vector2(0,0);
-	vspd = 0;
-	fspd = 0;
-	#1 = right, -1 = left
-	Direction = 1;
-	floor_normal = Vector2(0,-1);
 	anim = "idle";
 	new_anim = anim;
 	currentSprite = get_node("Idle_Sprites");
-	hspd = 0;
 	hit_pos = Vector2(0,0);
-	pass
-
-#for debugging raycasts
-#func _draw():
-#	draw_line(Vector2(0,0),Vector2((hit_pos.x - global_position.x)*Direction, hit_pos.y - global_position.y),Color(1,1,1));
-#	pass
-
-func _process(delta):
-#	update();
-	execute(delta);
+	
+	$animator.play(anim);
 	pass
 
 func execute(delta):
@@ -82,12 +45,7 @@ func execute(delta):
 		Animate();
 	pass
 
-### Default Behavior ###
-func _physics_process(delta):
-	physExecute(delta);
-	pass
-
-func physExecute(delta):
+func phys_execute(delta):
 	#state machine
 	#state = 'default' by default
 	states[state].execute(delta);
@@ -115,27 +73,6 @@ func physExecute(delta):
 func makeDecision():
 	var dec = randi() % 100 + 1;
 	return dec;
-
-func Animate():
-	$animator.stop();
-	anim = new_anim;
-	$animator.play(anim);
-	pass
-
-################## CHANGE_SPRITE ##################
-#Makes the current sprite invisible, switches the
-#sprite to the given sprite, and sets the new sprite
-#to visible. Sets the new animation to the given
-#animation.
-func changeSprite(sprite, animation):
-	currentSprite.visible = false;
-	currentSprite = sprite
-	currentSprite.visible = true;
-	new_anim = animation;
-
-func Kill():
-	#TODO: death anims and effects
-	queue_free();
 
 func canSeePlayer():
 	var space_state = get_world_2d().direct_space_state;

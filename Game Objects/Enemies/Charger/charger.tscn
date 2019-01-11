@@ -91,9 +91,11 @@ tracks/0/keys = {
 
 collision_layer = 4104
 script = ExtResource( 2 )
+max_hp = 1
+jspd = 0.0
+tag = "actor"
 arange = 200.0
 srange = Vector2( 320, 32 )
-jspd = 0.0
 
 [node name="jump_cast_head" parent="." index="0"]
 
@@ -116,6 +118,10 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [node name="PhysicsCollider" parent="." index="3"]
 
 shape = SubResource( 1 )
+
+[node name="DamagePlayerArea" parent="." index="4"]
+
+collision_layer = 32776
 
 [node name="DamageCollider" parent="DamagePlayerArea" index="0"]
 

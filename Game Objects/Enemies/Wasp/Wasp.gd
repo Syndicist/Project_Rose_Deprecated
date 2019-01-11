@@ -4,8 +4,15 @@ var vDirection;
 var vdecision;
 onready var actionTimerTwo = get_node("ActionTimerTwo");
 
+
 ### Enemy ###
 func _ready():
+	states = {
+	'default' : $States/Default,
+	'attack' : $States/Attack,
+	'chase' : $States/Chase,
+	'defstun' : $States/DefaultStun
+	}
 	vdecision = 0;
 	#1 = down, -1 = up
 	vDirection = 1;
@@ -29,7 +36,7 @@ func execute(delta):
 		Animate();
 	pass;
 
-func physExecute(delta):
+func phys_execute(delta):
 	velocity.x = hspd;
 	velocity.y = vspd + fspd;
 	velocity = move_and_slide(velocity,floor_normal);

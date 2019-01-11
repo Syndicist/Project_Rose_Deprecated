@@ -6,7 +6,6 @@ extends "res://Game Objects/Enemies/enemy.gd"
 	#2: gains burrow, is a bit faster. spits acid out and in burrow, can do burrow charge
 	#3: bite combo, moves even faster, burrow bite, acid laser in and out of burrow
 
-var max_hp;
 
 onready var phases = {
 	'1' : "PhaseOneStates",
@@ -22,6 +21,8 @@ onready var burrowed = {
 var is_burrowed;
 var burrow_moves;
 
+var flipped = false;
+
 ### Enemy ###
 func _ready():
 	states = {
@@ -34,57 +35,52 @@ func _ready():
 	'shoot' : "Shoot",
 	'beam' : "Beam"
 	}
-	max_hp = 100;
-	hp = max_hp;
-	decision = 0;
-	tag = "enemy";
 	state = 'default';
 	phase = '1';
 	is_burrowed = false;
 	burrow_moves = 0;
-	wait = 0;
-	velocity = Vector2(0,0);
-	vspd = 0;
-	fspd = 0;
-	#1 = right, -1 = left
-	Direction = 1;
-	floor_normal = Vector2(0,-1);
 	anim = "idle";
 	new_anim = anim;
 	currentSprite = get_node("Idle_Sprites");
-	hspd = 0;
-	pass
-
-func _process(delta):
-	execute(delta);
+	actionTimer.wait_time = rand_range(2,4);
+	actionTimer.start();
 	pass
 
 func execute(delta):
-	
 	if(hp <= 0):
 		Kill();
-
+	
 	#switch new animation
 	if(new_anim != anim):
 		Animate();
 	pass
 
-func physExecute(delta):
+func phys_execute(delta):
 	#phase switcher
-	if(hp/max_hp <= .75):
+	if(float(hp)/float(max_hp) <= .75):
+		print(hp/max_hp);
 		phase = '2';
-	if(hp/max_hp <= .45):
+	if(float(hp)/float(max_hp) <= .45):
+		print(hp/max_hp);
 		phase = '3';
-
+	
+	if(player.global_position.x > global_position.x && state == 'default'):
+		flipped = false;
+		Direction = 1;
+	elif(player.global_position.x < global_position.x && state == 'default'):
+		flipped = true;
+		Direction = -1;
+	currentSprite.flip_h = flipped;
+	
 	#state machine
 	get_node(phases[phase]).get_node(burrowed[is_burrowed]).get_node(states[state]).execute(delta);
-
+	
 	velocity.x = hspd;
 	velocity.y = vspd + fspd;
 	velocity = move_and_slide(velocity,floor_normal);
-
+	
 	#no gravity acceleration when on floor
-	if(is_on_floor() && state != 'slam'):
+	if(is_on_floor() || state == 'slam'):
 		velocity.y = 0
 		vspd = 0;
 		fspd = 0;
@@ -98,39 +94,12 @@ func physExecute(delta):
 		fspd = 900;
 	if(is_on_ceiling()):
 		fspd = 500;
-
-	if(player.global_position.x > global_position.x):
-		currentSprite.flip_h = false;
-		Direction = 1;
-	elif(player.global_position.x < global_position.x):
-		currentSprite.flip_h = true;
-		Direction = -1;
 	pass
-
-func makeDecision():
-	var dec = randi() % 100 + 1;
-	return dec;
-
-func Animate():
-	$animator.stop();
-	anim = new_anim;
-	$animator.play(anim);
-	pass
-
-func Kill():
-	#TODO: death anims and effects
-	queue_free();
 
 #Do new action
 func _on_ActionTimer_timeout():
 	decision = makeDecision();
-	actionTimer.paused = true;
 	actionTimer.wait_time = 3;
-
-	actionTimer.wait_time = rand_range(2,4);
-	actionTimer.start();
-	state = 'default';
-	"""
 	#move a bit (10%)
 	if(decision >= 1 && decision <= 10):
 		actionTimer.wait_time = rand_range(2,4);
@@ -152,7 +121,8 @@ func _on_ActionTimer_timeout():
 		state = 'bite';
 	#charge(15%)
 	elif(decision >= 56 && decision <= 70):
-		state = 'charge';
+		null;
+		#state = 'charge';
 	#shoot or bite(20%)
 	elif(decision >= 71 && decision <= 90):
 		if(phase != '1'):
@@ -167,5 +137,4 @@ func _on_ActionTimer_timeout():
 			actionTimer.wait_time = rand_range(2,4);
 			actionTimer.start();
 			state = 'default';
-	"""
 	pass;

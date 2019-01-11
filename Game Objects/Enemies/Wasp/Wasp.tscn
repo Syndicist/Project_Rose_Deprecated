@@ -72,10 +72,12 @@ extents = Vector2( 9.99699, 7 )
 
 position = Vector2( 0, 0 )
 script = ExtResource( 2 )
-srange = Vector2( 320, 320 )
+max_hp = 1
 spd = 100.0
 jspd = 150.0
 gravity = 0.0
+tag = "actor"
+srange = Vector2( 320, 320 )
 
 [node name="jump_cast_head" parent="." index="0"]
 
@@ -89,6 +91,10 @@ position = Vector2( 0, 0 )
 [node name="PhysicsCollider" parent="." index="2"]
 
 position = Vector2( 0, 0 )
+
+[node name="DamagePlayerArea" parent="." index="3"]
+
+collision_layer = 114696
 
 [node name="DamageCollider" parent="DamagePlayerArea" index="0"]
 

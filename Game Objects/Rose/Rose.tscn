@@ -250,7 +250,7 @@ extents = Vector2( 6.53191, 18.3738 )
 custom_solver_bias = 0.0
 extents = Vector2( 318.155, 178.611 )
 
-[node name="Rose" type="KinematicBody2D"]
+[node name="Rose" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -258,6 +258,12 @@ collision_mask = 289
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
+max_hp = 3
+damage = 10
+spd = 50
+jspd = 75
+gravity = 250
+tag = "player"
 
 [node name="floor_cast" type="RayCast2D" parent="." index="0"]
 
@@ -333,61 +339,7 @@ _sections_unfolded = [ "Collision" ]
 shape = SubResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="DetectBashHitboxArea" type="Area2D" parent="." index="6"]
-
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 4096
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBashHitboxArea" index="0"]
-
-shape = SubResource( 14 )
-
-[node name="DetectPierceHitboxArea" type="Area2D" parent="." index="7"]
-
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 8192
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPierceHitboxArea" index="0"]
-
-shape = SubResource( 14 )
-
-[node name="DetectSlashHit" type="Area2D" parent="." index="8"]
-
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 512
-collision_mask = 2048
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectSlashHit" index="0"]
-
-shape = SubResource( 14 )
-
-[node name="RayCastCollision" type="Area2D" parent="." index="9"]
+[node name="RayCastCollision" type="Area2D" parent="." index="6"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -400,7 +352,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
-[node name="Sprites" type="Node2D" parent="." index="10"]
+[node name="Sprites" type="Node2D" parent="." index="7"]
 
 editor/display_folded = true
 script = ExtResource( 3 )
@@ -409,7 +361,6 @@ script = ExtResource( 3 )
 
 texture = ExtResource( 4 )
 hframes = 5
-frame = 3
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="RunSprites" type="Sprite" parent="Sprites" index="1"]
@@ -478,7 +429,6 @@ _sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 visible = false
 texture = ExtResource( 13 )
 hframes = 5
-frame = 4
 _sections_unfolded = [ "Animation" ]
 
 [node name="YAttackSprites" type="Sprite" parent="Sprites" index="10"]
@@ -503,9 +453,9 @@ texture = ExtResource( 16 )
 hframes = 10
 _sections_unfolded = [ "Animation" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="11"]
+[node name="Camera2D" type="Camera2D" parent="." index="8"]
 
-editor/display_folded = true
+position = Vector2( 0, -100 )
 anchor_mode = 1
 rotating = false
 current = true
@@ -528,7 +478,7 @@ drag_margin_bottom = 0.03
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Offset", "Smoothing" ]
+_sections_unfolded = [ "Smoothing", "Transform" ]
 
 [node name="Viewport" type="Viewport" parent="Camera2D" index="0"]
 
@@ -557,7 +507,61 @@ shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
 _sections_unfolded = [ "Pause" ]
 
-[node name="States" type="Node2D" parent="." index="12"]
+[node name="DetectBashHitboxArea" type="Area2D" parent="Camera2D" index="1"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 512
+collision_mask = 4096
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectBashHitboxArea" index="0"]
+
+shape = SubResource( 14 )
+
+[node name="DetectPierceHitboxArea" type="Area2D" parent="Camera2D" index="2"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 512
+collision_mask = 8192
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectPierceHitboxArea" index="0"]
+
+shape = SubResource( 14 )
+
+[node name="DetectSlashHitboxArea" type="Area2D" parent="Camera2D" index="3"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 512
+collision_mask = 2048
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectSlashHitboxArea" index="0"]
+
+shape = SubResource( 14 )
+
+[node name="States" type="Node2D" parent="." index="9"]
 
 editor/display_folded = true
 
@@ -588,7 +592,7 @@ _sections_unfolded = [ "Pause" ]
 
 script = ExtResource( 19 )
 
-[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="13"]
+[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="10"]
 
 editor/display_folded = true
 layer = -1
@@ -643,18 +647,6 @@ texture = ExtResource( 22 )
 centered = false
 _sections_unfolded = [ "Offset" ]
 
-[connection signal="area_entered" from="DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
-
-[connection signal="area_exited" from="DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
-
-[connection signal="area_entered" from="DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
-
-[connection signal="area_exited" from="DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
-
-[connection signal="area_entered" from="DetectSlashHit" to="." method="_on_DetectHitboxArea_area_entered"]
-
-[connection signal="area_exited" from="DetectSlashHit" to="." method="_on_DetectHitboxArea_area_exited"]
-
 [connection signal="frame_changed" from="Sprites/XAttackSprites" to="States/Attack" method="_frame_changed"]
 
 [connection signal="frame_changed" from="Sprites/XXAttackSprites" to="States/Attack" method="_frame_changed"]
@@ -662,5 +654,17 @@ _sections_unfolded = [ "Offset" ]
 [connection signal="frame_changed" from="Sprites/XXXAttackSprites" to="States/Attack" method="_frame_changed"]
 
 [connection signal="frame_changed" from="Sprites/BDefaultSprites" to="States/Attack" method="_frame_changed"]
+
+[connection signal="area_entered" from="Camera2D/DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
+
+[connection signal="area_exited" from="Camera2D/DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
+
+[connection signal="area_entered" from="Camera2D/DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
+
+[connection signal="area_exited" from="Camera2D/DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
+
+[connection signal="area_entered" from="Camera2D/DetectSlashHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
+
+[connection signal="area_exited" from="Camera2D/DetectSlashHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
 
 

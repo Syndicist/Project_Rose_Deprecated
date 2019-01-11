@@ -1,6 +1,4 @@
-extends Node2D
-
-onready var host = get_parent().get_parent();
+extends "res://Game Objects/Enemies/Enemy_State.gd"
 
 var stunned = false;
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Game Objects/AttackEffect.tscn" type="PackedScene" id=1]
+
+[node name="Bite1Effect" instance=ExtResource( 1 )]
+
+collision_layer = 16400
+collision_mask = 2
+_sections_unfolded = [ "Audio Bus", "Collision" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -25.5774, -10.3465, -15.3218, 16.3181, -5.38177, 28.4671, 5.97829, 37.4605, 41.1629, 39.196, 47.1585, 25.3115, 43.8451, 7.32474, 28.3829, -13.6598, 10.3961, -18.0776 )
+_sections_unfolded = [ "Transform" ]
+
+

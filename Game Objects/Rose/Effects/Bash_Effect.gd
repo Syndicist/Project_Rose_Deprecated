@@ -34,7 +34,7 @@ func on_area_entered(area):
 func on_body_entered(body):
 	if(!booped && move_player):
 		player.vspd = -spd;
-		player.fall_spd = 0;
+		player.fspd = 0;
 		$Sprite.visible = true;
 		booped = true;
 	pass;
