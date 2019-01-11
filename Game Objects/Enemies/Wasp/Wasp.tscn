@@ -100,10 +100,6 @@ collision_layer = 114696
 
 position = Vector2( 0, 0 )
 
-[node name="States" parent="." index="4"]
-
-editor/display_folded = true
-
 [node name="Default" parent="States" index="0"]
 
 script = ExtResource( 3 )

@@ -4,11 +4,11 @@ var charging = false;
 
 func execute(delta):
 	if(!charging):
-		if(host.player.position.x > host.position.x):
+		if(host.player.global_position.x > host.global_position.x):
 			if(host.Direction != 1):
 				host.scale.x = host.scale.x * -1;
 			host.Direction = 1;
-		elif(host.player.position.x < host.position.x):
+		elif(host.player.global_position.x < host.global_position.x):
 			if(host.Direction != -1):
 				host.scale.x = host.scale.x * -1;
 			host.Direction = -1;
