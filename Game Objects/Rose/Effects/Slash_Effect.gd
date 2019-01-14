@@ -15,7 +15,7 @@ var displacement = 0;
 onready var pos = player.position;
 var type = "slash";
 
-func _process(delta):
+func _physics_process(delta):
 	self.position = player.position;
 	if(player.position.x > pos.x):
 		displacement += player.position.x - pos.x;
@@ -24,7 +24,10 @@ func _process(delta):
 		displacement += pos.x - player.position.x;
 		pos.x = player.position.x;
 	if(abs(displacement) > attackstate.distance_traversable):
-		spd = 0;
+		if(player.on_floor()):
+			spd = 0;
+		else:
+			spd -= 75;
 		attackstate.dashing = false;
 	
 	if(move_player):

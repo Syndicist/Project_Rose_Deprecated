@@ -10,5 +10,5 @@ func on_area_entered(area):
 	if(other != null):
 		if(area.hittable):
 			if(area.susceptible == "bash" || area.susceptible == "all"):
-				other.hp -= player.damage/4;
+				other.hp -= player.damage/10;
 	pass

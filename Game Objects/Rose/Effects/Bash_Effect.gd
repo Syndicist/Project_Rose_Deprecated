@@ -27,7 +27,9 @@ func on_area_entered(area):
 	var other = area.get_parent();
 	if(area.hittable):
 		if(area.vulnerable == "bash" || area.vulnerable == "all" ):
-			#TODO: stun
+			other.stun_damage += player.damage;
+			if(other.off_bal):
+				other.stun_damage += player.damage;
 			null
 	return other;
 

@@ -62,6 +62,7 @@ func execute(delta):
 
 #Processes physical interactions.
 func phys_execute(delta):
+	#print(attack.start);
 	#count time in air
 	air_time += delta;
 	

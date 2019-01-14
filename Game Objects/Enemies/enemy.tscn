@@ -20,15 +20,15 @@ collision_mask = 33
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform", "Z Index", "collision" ]
-hp = 1
+max_hp = 1
 damage = 1
-arange = 50
-srange = Vector2( 160, 32 )
 spd = 50
 jspd = 75
 gravity = 250
-susceptible = null
-vulnerable = null
+tag = "actor"
+arange = 50
+srange = Vector2( 160, 32 )
+stun_threshold = 10
 
 [node name="jump_cast_head" type="RayCast2D" parent="." index="0"]
 

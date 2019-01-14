@@ -60,6 +60,8 @@ func _physics_process(delta):
 #Checks for given attack inputs and triggers them 
 #sequentially. 
 func execute(delta):
+	if(host.on_floor() && !dashing):
+		host.velocity.x = 0;
 	#Attack animations should not ever be interuptable when they're first triggered.
 	#finds what attack to do first based on input.
 	if(!effectMade):
@@ -121,6 +123,8 @@ func execute(delta):
 			start = true;
 			if(!host.on_floor()):
 				aerial_attack = true;
+			else:
+				aerial_attack = false;
 			if(combo_step == 2):
 				if(Input.is_action_just_pressed("ui_slash")):
 					second_attack = ATTACK.slash;
@@ -265,7 +269,7 @@ func _frame_changed():
 						charged = true;
 					if(host.currentSprite.frame == 18 && charged):
 						var effect = preload("res://Game Objects/Rose/Effects/XAttack.tscn").instance();
-						makeSlashEffect(effect);
+						makeEffect(effect);
 						charged = false;
 						combo_step += 1;
 				#B
@@ -284,13 +288,28 @@ func _frame_changed():
 						makeSlashEffect(effect);
 						combo_step += 1;
 				pass;
+				#XB
+				if(host.anim == "BDefAttack"):
+					if(host.get_node("Sprites").get_node("BDefaultSprites").frame == 2):
+						var effect = preload("res://Game Objects/Rose/Effects/BDefAttack.tscn").instance();
+						makeBashEffect(effect);
+						combo_step = 4;
+						defBashed = true;
 			3:
+				#XXX
 				if(host.anim == "XXXAttack"):
 					if(host.get_node("Sprites").get_node('XXXAttackSprites').frame == 4 && combo_step == 3):
 						var effect = preload("res://Game Objects/Rose/Effects/XXXAttack.tscn").instance();
 						makeSlashEffect(effect);
 						combo_step += 1;
 				pass;
+				#XXB
+				if(host.anim == "BDefAttack"):
+					if(host.get_node("Sprites").get_node("BDefaultSprites").frame == 2):
+						var effect = preload("res://Game Objects/Rose/Effects/BDefAttack.tscn").instance();
+						makeBashEffect(effect);
+						combo_step = 4;
+						defBashed = true;
 			_:
 				pass;
 	pass;

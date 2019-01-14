@@ -5,14 +5,6 @@ func _ready():
 	move_player = false;
 	pass
 
-func _process(delta):
-	if(player.currentSprite.frame >= 21):
-		attackstate.start = false;
-		attackstate.get_node("InterruptTimer").wait_time = .5;
-		attackstate.get_node("InterruptTimer").start();
-		queue_free();
-	pass
-
 func on_area_entered(area):
 	var other = .on_area_entered(area);
 	if(other != null):

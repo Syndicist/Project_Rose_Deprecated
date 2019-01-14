@@ -11,6 +11,7 @@ func on_area_entered(area):
 	if(attack.dashing && area.get_collision_layer_bit(14)):
 		return;
 	if(host.state != 'hurt'):
+		host.fspd = 0;
 		host.velocity.x = 0;
 		host.velocity.y = 0;
 		host.states['hurt'].hurt_timer = 7;

@@ -1,11 +1,25 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sprites/Tilesets/Forest/stump/stump_tileset.png" type="Texture" id=1]
+[ext_resource path="res://sprites/Tilesets/Forest/stump/stump_bg_log.png" type="Texture" id=2]
+[ext_resource path="res://sprites/Tilesets/Forest/stump/stump_bg_pile.png" type="Texture" id=3]
 
 [node name="Node2D" type="Node2D"]
 
+_sections_unfolded = [ "Transform", "Z Index" ]
+
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+position = Vector2( -341.01, 0.362152 )
 texture = ExtResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="." index="2"]
+
+position = Vector2( 198.938, -2.20064 )
+texture = ExtResource( 3 )
 
 

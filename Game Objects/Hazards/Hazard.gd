@@ -7,8 +7,6 @@ func _ready():
 	pass
 
 func on_area_entered(area):
-	#if(("sight" in area)):
-	#	return;
 	var object = area.get_parent();
 
 	if(object.tag == "enemy"):

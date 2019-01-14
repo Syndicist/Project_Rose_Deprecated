@@ -10,6 +10,15 @@ func _ready():
 	attacking = false;
 	pass
 
+func _process(delta):
+	if(host.state != 'attack'):
+		started = false;
+		attacking = false;
+		if(effect != null):
+			effect.queue_free();
+			effect = null;
+	pass;
+
 func execute(delta):
 	if(!started):
 		started = true;

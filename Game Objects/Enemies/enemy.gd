@@ -7,7 +7,7 @@ onready var player = get_parent().get_parent().get_node("Rose");
 export(float) var arange = 50;
 #range which the enemy chases
 export(Vector2) var srange = Vector2(160,32);
-
+export(int) var stun_threshold = 10;
 ###debugging_tools###
 var hit_pos;
 
@@ -17,6 +17,8 @@ var wait;
 
 onready var states;
 var state;
+var stun_damage;
+var off_bal;
 
 ### Enemy ###
 func _ready():
@@ -28,12 +30,17 @@ func _ready():
 	currentSprite = get_node("Idle_Sprites");
 	hit_pos = Vector2(0,0);
 	
+	stun_damage = 0;
+	
 	$animator.play(anim);
 	pass
 
 func execute(delta):
+	if(stun_damage >= stun_threshold):
+		state = 'defstun';
+		stun_damage = 0;
 	#assumes the enemy is stored in a Node2D
-	if(actionTimer.time_left <= 0.1):
+	if(actionTimer.time_left <= 0.1 && state != 'defstun'):
 		decision = makeDecision();
 	wait = rand_range(.5, 2);
 	

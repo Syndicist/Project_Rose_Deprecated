@@ -9,7 +9,12 @@ func execute(delta):
 		stunned = true;
 		host.hspd = 0;
 		host.vspd = 0;
-	if($StunTimer.time_left < 0.1):
-		host.state = 'default';
-		stunned = false;
-	pass
+		host.changeSprite(host.get_node("Stun_Sprites"), 'stun');
+	pass;
+
+
+
+func _on_StunTimer_timeout():
+	host.state = 'default';
+	stunned = false;
+	pass;

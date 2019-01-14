@@ -19,6 +19,10 @@ func _ready():
 	pass
 
 func execute(delta):
+	if(stun_damage >= stun_threshold):
+		state = 'defstun';
+		stun_damage = 0;
+	
 	if(actionTimer.time_left <= 0.1):
 		decision = makeDecision();
 	if(actionTimerTwo.time_left <= 0.1):

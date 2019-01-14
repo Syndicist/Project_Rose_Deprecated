@@ -20,7 +20,7 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	if(player.currentSprite.frame >= player.currentSprite.hframes-1):
+	if(player.currentSprite.frame >= player.currentSprite.hframes-1 || !player.get_node("animator").is_playing()):
 		attackstate.start = false;
 		attackstate.get_node("InterruptTimer").wait_time = .5;
 		attackstate.get_node("InterruptTimer").start();

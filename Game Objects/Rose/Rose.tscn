@@ -250,7 +250,7 @@ extents = Vector2( 6.53191, 18.3738 )
 custom_solver_bias = 0.0
 extents = Vector2( 318.155, 178.611 )
 
-[node name="Rose" type="KinematicBody2D" index="0"]
+[node name="Rose" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -258,7 +258,7 @@ collision_mask = 289
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
-max_hp = 3
+max_hp = 5
 damage = 10
 spd = 50
 jspd = 75
@@ -405,7 +405,6 @@ _sections_unfolded = [ "Animation" ]
 visible = false
 texture = ExtResource( 10 )
 hframes = 25
-frame = 24
 _sections_unfolded = [ "Animation", "Region" ]
 
 [node name="XXAttackSprites" type="Sprite" parent="Sprites" index="7"]
