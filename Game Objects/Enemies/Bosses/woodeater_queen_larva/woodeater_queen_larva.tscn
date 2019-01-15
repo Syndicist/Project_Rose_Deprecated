@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/woodeater_queen_larva.gd" type="Script" id=1]
 [ext_resource path="res://Game Objects/NonPlayerHitbox.gd" type="Script" id=2]
@@ -12,9 +12,12 @@
 [ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_in_air.png" type="Texture" id=10]
 [ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_fall.png" type="Texture" id=11]
 [ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_shock.png" type="Texture" id=12]
-[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Default_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=13]
-[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Slam_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=14]
-[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Bite_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=15]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_get_stunned.png" type="Texture" id=13]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_stunned.png" type="Texture" id=14]
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Default_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=15]
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Slam_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=16]
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Bite_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=17]
+[ext_resource path="res://Game Objects/Enemies/Bosses/woodeater_queen_larva/Stun_State_Phase_1_Woodeater_Queen_Larva.gd" type="Script" id=18]
 
 [sub_resource type="Animation" id=1]
 
@@ -203,10 +206,53 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
+[sub_resource type="Animation" id=12]
+
+resource_name = "stun"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Stun_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=13]
+
+resource_name = "twitch"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Twitch_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
 [sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.2295, 35.7999 )
+
+[sub_resource type="RectangleShape2D" id=14]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25.9979, 16.2963 )
 
 [node name="woodeater_queen_larva" type="KinematicBody2D"]
 
@@ -243,6 +289,8 @@ anims/move_back = SubResource( 7 )
 anims/recov = SubResource( 8 )
 anims/rise = SubResource( 9 )
 anims/shock = SubResource( 10 )
+anims/stun = SubResource( 12 )
+anims/twitch = SubResource( 13 )
 blend_times = [  ]
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." index="1"]
@@ -272,7 +320,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="BashHitbox" type="Area2D" parent="." index="3"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -293,13 +340,36 @@ position = Vector2( -3, -4 )
 shape = SubResource( 11 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Idle_Sprites" type="Sprite" parent="." index="4"]
+[node name="SlashHitbox" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2048
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+susceptible = "slash"
+vulnerable = "none"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SlashHitbox" index="0"]
+
+position = Vector2( 4, 23 )
+shape = SubResource( 14 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Idle_Sprites" type="Sprite" parent="." index="5"]
 
 texture = ExtResource( 3 )
 hframes = 4
 _sections_unfolded = [ "Animation" ]
 
-[node name="Move_Sprites" type="Sprite" parent="." index="5"]
+[node name="Move_Sprites" type="Sprite" parent="." index="6"]
 
 visible = false
 texture = ExtResource( 4 )
@@ -307,28 +377,28 @@ hframes = 4
 frame = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="Move_Back_Sprites" type="Sprite" parent="." index="6"]
+[node name="Move_Back_Sprites" type="Sprite" parent="." index="7"]
 
 visible = false
 texture = ExtResource( 5 )
 hframes = 4
 _sections_unfolded = [ "Animation" ]
 
-[node name="Bite_Sprites" type="Sprite" parent="." index="7"]
+[node name="Bite_Sprites" type="Sprite" parent="." index="8"]
 
 visible = false
 texture = ExtResource( 6 )
 hframes = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="Recov_Sprites" type="Sprite" parent="." index="8"]
+[node name="Recov_Sprites" type="Sprite" parent="." index="9"]
 
 visible = false
 texture = ExtResource( 7 )
 hframes = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="Jump_Sprites" type="Sprite" parent="." index="9"]
+[node name="Jump_Sprites" type="Sprite" parent="." index="10"]
 
 visible = false
 texture = ExtResource( 8 )
@@ -336,26 +406,26 @@ hframes = 4
 frame = 3
 _sections_unfolded = [ "Animation" ]
 
-[node name="Rise_Sprites" type="Sprite" parent="." index="10"]
+[node name="Rise_Sprites" type="Sprite" parent="." index="11"]
 
 visible = false
 texture = ExtResource( 9 )
 hframes = 2
 _sections_unfolded = [ "Animation" ]
 
-[node name="Air_Sprites" type="Sprite" parent="." index="11"]
+[node name="Air_Sprites" type="Sprite" parent="." index="12"]
 
 visible = false
 texture = ExtResource( 10 )
 _sections_unfolded = [ "Animation" ]
 
-[node name="Fall_Sprites" type="Sprite" parent="." index="12"]
+[node name="Fall_Sprites" type="Sprite" parent="." index="13"]
 
 visible = false
 texture = ExtResource( 11 )
 _sections_unfolded = [ "Animation" ]
 
-[node name="Shock_Sprites" type="Sprite" parent="." index="13"]
+[node name="Shock_Sprites" type="Sprite" parent="." index="14"]
 
 visible = false
 texture = ExtResource( 12 )
@@ -363,14 +433,30 @@ hframes = 3
 frame = 2
 _sections_unfolded = [ "Animation" ]
 
-[node name="PhaseOneStates" type="Node2D" parent="." index="14"]
+[node name="Stun_Sprites" type="Sprite" parent="." index="15"]
+
+visible = false
+texture = ExtResource( 13 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="Twitch_Sprites" type="Sprite" parent="." index="16"]
+
+visible = false
+position = Vector2( 0, 8 )
+texture = ExtResource( 14 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
+
+[node name="PhaseOneStates" type="Node2D" parent="." index="17"]
+
+editor/display_folded = true
 
 [node name="UnburrowedSuperState" type="Node2D" parent="PhaseOneStates" index="0"]
 
 [node name="Default" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="0"]
 
 editor/display_folded = true
-script = ExtResource( 13 )
+script = ExtResource( 15 )
 
 [node name="MoveTimer" type="Timer" parent="PhaseOneStates/UnburrowedSuperState/Default" index="0"]
 
@@ -382,7 +468,7 @@ autostart = false
 [node name="Slam" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="1"]
 
 editor/display_folded = true
-script = ExtResource( 14 )
+script = ExtResource( 16 )
 
 [node name="AttackTimer" type="Timer" parent="PhaseOneStates/UnburrowedSuperState/Slam" index="0"]
 
@@ -394,7 +480,7 @@ autostart = false
 [node name="Bite" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="2"]
 
 editor/display_folded = true
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 
 [node name="AttackTimer" type="Timer" parent="PhaseOneStates/UnburrowedSuperState/Bite" index="0"]
 
@@ -406,6 +492,15 @@ autostart = false
 [node name="Charge" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="3"]
 
 [node name="Stun" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="4"]
+
+script = ExtResource( 18 )
+
+[node name="StunTimer" type="Timer" parent="PhaseOneStates/UnburrowedSuperState/Stun" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
 
 [node name="Transition" type="Node2D" parent="PhaseOneStates/UnburrowedSuperState" index="5"]
 
@@ -433,7 +528,7 @@ editor/display_folded = true
 
 [node name="Beam" type="Node2D" parent="PhaseOneStates/BurrowedSuperState" index="7"]
 
-[node name="PhaseTwoStates" type="Node2D" parent="." index="15"]
+[node name="PhaseTwoStates" type="Node2D" parent="." index="18"]
 
 editor/display_folded = true
 
@@ -444,7 +539,7 @@ editor/display_folded = true
 [node name="Default" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="0"]
 
 editor/display_folded = true
-script = ExtResource( 13 )
+script = ExtResource( 15 )
 
 [node name="MoveTimer" type="Timer" parent="PhaseTwoStates/UnburrowedSuperState/Default" index="0"]
 
@@ -457,7 +552,7 @@ autostart = false
 
 [node name="Bite" type="Node2D" parent="PhaseTwoStates/UnburrowedSuperState" index="2"]
 
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 
 [node name="AttackTimer" type="Timer" parent="PhaseTwoStates/UnburrowedSuperState/Bite" index="0"]
 
@@ -496,9 +591,7 @@ editor/display_folded = true
 
 [node name="Beam" type="Node2D" parent="PhaseTwoStates/BurrowedSuperState" index="7"]
 
-[node name="PhaseThreeStates" type="Node2D" parent="." index="16"]
-
-editor/display_folded = true
+[node name="PhaseThreeStates" type="Node2D" parent="." index="19"]
 
 [node name="UnburrowedSuperState" type="Node2D" parent="PhaseThreeStates" index="0"]
 
@@ -507,7 +600,7 @@ editor/display_folded = true
 [node name="Default" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="0"]
 
 editor/display_folded = true
-script = ExtResource( 13 )
+script = ExtResource( 15 )
 
 [node name="MoveTimer" type="Timer" parent="PhaseThreeStates/UnburrowedSuperState/Default" index="0"]
 
@@ -520,7 +613,7 @@ autostart = false
 
 [node name="Bite" type="Node2D" parent="PhaseThreeStates/UnburrowedSuperState" index="2"]
 
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 
 [node name="AttackTimer" type="Timer" parent="PhaseThreeStates/UnburrowedSuperState/Bite" index="0"]
 
@@ -541,8 +634,6 @@ autostart = false
 
 [node name="BurrowedSuperState" type="Node2D" parent="PhaseThreeStates" index="1"]
 
-editor/display_folded = true
-
 [node name="Default" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="0"]
 
 [node name="Slam" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="1"]
@@ -559,7 +650,7 @@ editor/display_folded = true
 
 [node name="Beam" type="Node2D" parent="PhaseThreeStates/BurrowedSuperState" index="7"]
 
-[node name="ActionTimer" type="Timer" parent="." index="17"]
+[node name="ActionTimer" type="Timer" parent="." index="20"]
 
 process_mode = 1
 wait_time = 1.0
@@ -569,6 +660,8 @@ autostart = false
 [connection signal="timeout" from="PhaseOneStates/UnburrowedSuperState/Slam/AttackTimer" to="PhaseOneStates/UnburrowedSuperState/Slam" method="_on_AttackTimer_timeout"]
 
 [connection signal="timeout" from="PhaseOneStates/UnburrowedSuperState/Bite/AttackTimer" to="PhaseOneStates/UnburrowedSuperState/Bite" method="_on_AttackTimer_timeout"]
+
+[connection signal="timeout" from="PhaseOneStates/UnburrowedSuperState/Stun/StunTimer" to="PhaseOneStates/UnburrowedSuperState/Stun" method="_on_StunTimer_timeout"]
 
 [connection signal="timeout" from="PhaseTwoStates/UnburrowedSuperState/Bite/AttackTimer" to="PhaseTwoStates/UnburrowedSuperState/Bite" method="_on_AttackTimer_timeout"]
 

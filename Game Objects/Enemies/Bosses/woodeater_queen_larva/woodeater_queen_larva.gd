@@ -59,11 +59,20 @@ func execute(delta):
 func phys_execute(delta):
 	if(active):
 		#phase switcher
-		if(float(hp)/float(max_hp) <= .75):
-			phase = '2';
-		if(float(hp)/float(max_hp) <= .45):
-			phase = '3';
+		#if(float(hp)/float(max_hp) <= .75):
+		#	phase = '2';
+		#if(float(hp)/float(max_hp) <= .45):
+		#	phase = '3';
+		if(state == 'stun'):
+			$BashHitbox/CollisionShape2D2.disabled = true;
+			$SlashHitbox/CollisionShape2D2.disabled = false;
+		else:
+			$BashHitbox/CollisionShape2D2.disabled = false;
+			$SlashHitbox/CollisionShape2D2.disabled = true;
 		
+		if(stun_damage >= stun_threshold):
+			state = 'stun';
+			stun_damage = 0;
 		if(player.global_position.x > global_position.x && state == 'default'):
 			flipped = false;
 			Direction = 1;

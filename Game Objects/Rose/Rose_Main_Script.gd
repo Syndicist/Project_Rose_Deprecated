@@ -47,9 +47,7 @@ func execute(delta):
 	states[state].execute(delta);
 	
 	if(hp<=0):
-		print("you technically just died right now");
-		hp = 3;
-		#TODO: go to game over
+		Kill();
 	
 	#switch new animation
 	if(new_anim != anim):
@@ -58,6 +56,10 @@ func execute(delta):
 	$Camera2D.current = true;
 	#detect enemy hitboxes
 	hitboxLoop()
+	pass;
+
+func Kill():
+	get_tree().change_scene("res://scenes/GameOver/GameOver.tscn")
 	pass;
 
 #Processes physical interactions.
