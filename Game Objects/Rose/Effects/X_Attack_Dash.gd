@@ -12,7 +12,6 @@ func _process(delta):
 
 func on_area_entered(area):
 	var other = .on_area_entered(area);
-	print(area.hittable);
 	if(other != null):
 		if(area.hittable):
 			if(area.susceptible == "slash" || area.susceptible == "all"):

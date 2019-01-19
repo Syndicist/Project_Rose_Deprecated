@@ -22,6 +22,8 @@ var state;
 #Not actually neccessary mostly, but provides an easy
 #centrailized location for all default variable values.
 func _ready():
+	$fadeanim.play("fadeanim");
+	
 	max_hp = 3;
 	damage = 10;
 	spd = 250;
@@ -133,3 +135,13 @@ func nextRay(origin,dest,col_layer,spc):
 	else:
 		itemTrace.clear();
 		return false;
+
+#kick up dirt
+func _on_RunSprites_frame_changed():
+	if(currentSprite.frame == 2):
+		$kickup.restart();
+		$kickup.emitting = true;
+	if(currentSprite.frame == 6):
+		$kickup2.restart();
+		$kickup2.emitting = true;
+	pass;

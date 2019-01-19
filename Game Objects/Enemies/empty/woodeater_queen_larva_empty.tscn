@@ -1,0 +1,440 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Game Objects/Enemies/empty/woodeater_queen_larva_empty.gd" type="Script" id=1]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_idle.png" type="Texture" id=2]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_move.png" type="Texture" id=3]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_move_back.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_bite1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_recov.png" type="Texture" id=6]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_jump.png" type="Texture" id=7]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_rise.png" type="Texture" id=8]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_in_air.png" type="Texture" id=9]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_fall.png" type="Texture" id=10]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_shock.png" type="Texture" id=11]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_get_stunned.png" type="Texture" id=12]
+[ext_resource path="res://sprites/enemy sprites/woodeater_queen_larva_stunned.png" type="Texture" id=13]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "bite"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Bite_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "fall"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fall_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Idle_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "in_air"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Air_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "jump"
+length = 0.8
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Jump_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Move_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+
+resource_name = "move_back"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Move_Back_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=8]
+
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Recov_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "rise"
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Rise_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=10]
+
+resource_name = "shock"
+length = 0.9
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shock_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=11]
+
+resource_name = "stun"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Stun_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=12]
+
+resource_name = "twitch"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Twitch_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=13]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32.2295, 35.7999 )
+
+[sub_resource type="RectangleShape2D" id=14]
+
+custom_solver_bias = 0.0
+extents = Vector2( 25.9979, 16.2963 )
+
+[node name="woodeater_queen_larva" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 8
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="animator" type="AnimationPlayer" parent="." index="0"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/bite = SubResource( 1 )
+anims/fall = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/in_air = SubResource( 4 )
+anims/jump = SubResource( 5 )
+anims/move = SubResource( 6 )
+anims/move_back = SubResource( 7 )
+anims/recov = SubResource( 8 )
+anims/rise = SubResource( 9 )
+anims/shock = SubResource( 10 )
+anims/stun = SubResource( 11 )
+anims/twitch = SubResource( 12 )
+blend_times = [  ]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -30.7993, 28.9951, 1.99831, 29.0042, 17.5561, 28.1004, 24.1404, 12.3864, 28.2185, -1.77966, 22.6379, -9.29199, 18.3452, -27.7508, -3.76256, -38.0535, -11.9188, -26.6777, -17.2847, -16.8043, -19.6797, 2.06693, -22.8352, 9.00919, -27.0986, 14.9302, -32.0985, 23.3327 )
+
+[node name="DamagePlayerArea" type="Area2D" parent="." index="2"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 16392
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamagePlayerArea" index="0"]
+
+position = Vector2( -3, -4 )
+shape = SubResource( 13 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="BashHitbox" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4096
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BashHitbox" index="0"]
+
+position = Vector2( -3, -4 )
+shape = SubResource( 13 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="SlashHitbox" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2048
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SlashHitbox" index="0"]
+
+position = Vector2( 4, 23 )
+shape = SubResource( 14 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Idle_Sprites" type="Sprite" parent="." index="5"]
+
+visible = false
+texture = ExtResource( 2 )
+hframes = 4
+_sections_unfolded = [ "Animation" ]
+
+[node name="Move_Sprites" type="Sprite" parent="." index="6"]
+
+texture = ExtResource( 3 )
+hframes = 4
+frame = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="Move_Back_Sprites" type="Sprite" parent="." index="7"]
+
+visible = false
+texture = ExtResource( 4 )
+hframes = 4
+_sections_unfolded = [ "Animation" ]
+
+[node name="Bite_Sprites" type="Sprite" parent="." index="8"]
+
+visible = false
+texture = ExtResource( 5 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="Recov_Sprites" type="Sprite" parent="." index="9"]
+
+visible = false
+texture = ExtResource( 6 )
+hframes = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="Jump_Sprites" type="Sprite" parent="." index="10"]
+
+visible = false
+texture = ExtResource( 7 )
+hframes = 4
+frame = 3
+_sections_unfolded = [ "Animation" ]
+
+[node name="Rise_Sprites" type="Sprite" parent="." index="11"]
+
+visible = false
+texture = ExtResource( 8 )
+hframes = 2
+_sections_unfolded = [ "Animation" ]
+
+[node name="Air_Sprites" type="Sprite" parent="." index="12"]
+
+visible = false
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="Fall_Sprites" type="Sprite" parent="." index="13"]
+
+visible = false
+texture = ExtResource( 10 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="Shock_Sprites" type="Sprite" parent="." index="14"]
+
+visible = false
+texture = ExtResource( 11 )
+hframes = 3
+frame = 2
+_sections_unfolded = [ "Animation" ]
+
+[node name="Stun_Sprites" type="Sprite" parent="." index="15"]
+
+visible = false
+texture = ExtResource( 12 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="Twitch_Sprites" type="Sprite" parent="." index="16"]
+
+visible = false
+position = Vector2( 0, 8 )
+texture = ExtResource( 13 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Transform", "Z Index" ]
+
+[node name="ActionTimer" type="Timer" parent="." index="17"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="ActionTimer" to="." method="_on_ActionTimer_timeout"]
+
+
