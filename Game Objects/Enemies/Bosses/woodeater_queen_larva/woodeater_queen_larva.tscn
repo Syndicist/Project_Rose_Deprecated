@@ -206,7 +206,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=11]
 
 resource_name = "stun"
 length = 1.0
@@ -225,7 +225,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 
 resource_name = "twitch"
 length = 0.2
@@ -244,7 +244,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.2295, 35.7999 )
@@ -289,8 +289,8 @@ anims/move_back = SubResource( 7 )
 anims/recov = SubResource( 8 )
 anims/rise = SubResource( 9 )
 anims/shock = SubResource( 10 )
-anims/stun = SubResource( 12 )
-anims/twitch = SubResource( 13 )
+anims/stun = SubResource( 11 )
+anims/twitch = SubResource( 12 )
 blend_times = [  ]
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." index="1"]
@@ -315,7 +315,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamagePlayerArea" index="0"]
 
 position = Vector2( -3, -4 )
-shape = SubResource( 11 )
+shape = SubResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="BashHitbox" type="Area2D" parent="." index="3"]
@@ -337,7 +337,7 @@ vulnerable = "bash"
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BashHitbox" index="0"]
 
 position = Vector2( -3, -4 )
-shape = SubResource( 11 )
+shape = SubResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="SlashHitbox" type="Area2D" parent="." index="4"]

@@ -9,16 +9,10 @@
 [ext_resource path="res://Game Objects/NonPlayerHitbox.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
 extents = Vector2( 17.7601, 9.02082 )
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "attack"
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Attack_Sprites:frame")
 tracks/0/interp = 1
@@ -33,11 +27,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "charge"
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Charge_Sprites:frame")
 tracks/0/interp = 1
@@ -52,10 +42,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Idle_Sprites:frame")
 tracks/0/interp = 1
@@ -70,10 +56,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Move_Sprites:frame")
 tracks/0/interp = 1
@@ -88,11 +70,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-
 resource_name = "stun"
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Stun_Sprites:frame")
 tracks/0/interp = 1
@@ -107,122 +85,72 @@ tracks/0/keys = {
 }
 
 [node name="Charger" instance=ExtResource( 1 )]
-
 collision_layer = 4104
 script = ExtResource( 2 )
-max_hp = 5
-jspd = 0.0
-tag = "enemy"
-arange = 200.0
-srange = Vector2( 320, 32 )
-stun_threshold = 20
 
 [node name="jump_cast_head" parent="." index="0"]
-
 position = Vector2( 15, 0 )
 rotation = 0.0
 
 [node name="jump_cast_feet" parent="." index="1"]
-
 position = Vector2( 5, 2 )
 
 [node name="charge_cast" type="RayCast2D" parent="." index="2"]
-
 rotation = -1.5708
 enabled = true
-exclude_parent = true
-cast_to = Vector2( 0, 50 )
 collision_mask = 35
-_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="PhysicsCollider" parent="." index="3"]
-
 shape = SubResource( 1 )
 
 [node name="DamagePlayerArea" parent="." index="4"]
-
 collision_layer = 32776
 collision_mask = 1026
 
 [node name="DamageCollider" parent="DamagePlayerArea" index="0"]
-
 shape = SubResource( 1 )
 
 [node name="Default" parent="States" index="0"]
-
 script = ExtResource( 3 )
 
 [node name="Attack" parent="States" index="1"]
-
 script = ExtResource( 4 )
 
 [node name="Chase" parent="States" index="2"]
-
 script = ExtResource( 5 )
 
 [node name="DefaultStun" parent="States" index="3"]
-
 editor/display_folded = true
 
 [node name="Idle_Sprites" type="Sprite" parent="." index="7"]
-
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Animation" ]
 
 [node name="Move_Sprites" type="Sprite" parent="." index="8"]
-
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Animation" ]
 
 [node name="Attack_Sprites" type="Sprite" parent="." index="9"]
-
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Animation" ]
 
 [node name="Charge_Sprites" type="Sprite" parent="." index="10"]
-
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Animation" ]
 
 [node name="Stun_Sprites" type="Sprite" parent="." index="11"]
-
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Animation" ]
 
 [node name="animator" type="AnimationPlayer" parent="." index="12"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 anims/attack = SubResource( 2 )
 anims/charge = SubResource( 3 )
 anims/idle = SubResource( 4 )
 anims/move = SubResource( 5 )
 anims/stun = SubResource( 6 )
-blend_times = [  ]
 
 [node name="BashHitBox" type="Area2D" parent="." index="13"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 4096
 collision_mask = 4
-audio_bus_override = false
-audio_bus_name = "Master"
 script = ExtResource( 7 )
-_sections_unfolded = [ "Collision" ]
 susceptible = "bash"
 vulnerable = "bash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BashHitBox" index="0"]
-
 position = Vector2( -4, -1 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-

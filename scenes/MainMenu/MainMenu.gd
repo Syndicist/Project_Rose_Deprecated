@@ -12,7 +12,7 @@ func _on_StartButton_pressed():
 
 
 func _on_AudioStreamPlayer_finished():
-	play();
+	#play();
 	pass;
 
 

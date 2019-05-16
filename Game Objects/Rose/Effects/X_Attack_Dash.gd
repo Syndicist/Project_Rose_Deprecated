@@ -11,6 +11,7 @@ func _process(delta):
 	pass
 
 func on_area_entered(area):
+	print("!!!");
 	var other = .on_area_entered(area);
 	if(other != null):
 		if(area.hittable):

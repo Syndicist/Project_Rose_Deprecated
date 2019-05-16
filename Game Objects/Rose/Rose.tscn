@@ -25,11 +25,7 @@
 [ext_resource path="res://Design and Prototypes/Capture.PNG" type="Texture" id=23]
 
 [sub_resource type="Animation" id=1]
-
 resource_name = "fadeanim"
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("fadeSprite:modulate")
 tracks/0/interp = 1
@@ -44,10 +40,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-
 length = 0.5
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/BDefaultSprites:frame")
 tracks/0/interp = 1
@@ -62,10 +55,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 length = 0.3
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/FallSprites:frame")
 tracks/0/interp = 1
@@ -80,9 +71,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
 length = 0.2
-loop = false
 step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/HurtSprites:frame")
@@ -98,8 +87,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-
-length = 1.0
 loop = true
 step = 0.2
 tracks/0/type = "value"
@@ -116,10 +103,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-
 length = 0.3
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/JumpSprites:frame")
 tracks/0/interp = 1
@@ -134,10 +119,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-
 length = 0.8
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/RunSprites:frame")
 tracks/0/interp = 1
@@ -152,9 +135,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-
-length = 1.0
-loop = false
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/XAttackSprites:frame")
@@ -170,10 +150,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-
 length = 0.7
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/XXAttackSprites:frame")
 tracks/0/interp = 1
@@ -188,9 +165,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=10]
-
-length = 1.0
-loop = false
 step = 0.14
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/XXXAttackSprites:frame")
@@ -206,10 +180,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-
 length = 0.5
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/YAttackSprites:frame")
 tracks/0/interp = 1
@@ -224,10 +195,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-
 length = 0.5
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/YYAttackSprites:frame")
 tracks/0/interp = 1
@@ -242,10 +210,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=13]
-
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/YYYAttackSprites:frame")
 tracks/0/interp = 1
@@ -260,160 +224,81 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=14]
-
-custom_solver_bias = 0.0
 extents = Vector2( 6.53191, 18.3738 )
 
 [sub_resource type="RectangleShape2D" id=15]
-
-custom_solver_bias = 0.0
 extents = Vector2( 318.155, 178.611 )
 
-[sub_resource type="Curve" id=17]
-
+[sub_resource type="Curve" id=16]
 min_value = -360.0
 max_value = 360.0
-bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 108.281 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=18]
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
 
-flags = 4
-width = 2048
-curve = SubResource( 17 )
-
-[sub_resource type="Gradient" id=19]
-
-offsets = PoolRealArray( 0, 1 )
+[sub_resource type="Gradient" id=18]
 colors = PoolColorArray( 0.21875, 0.155945, 0.0751953, 1, 0.476563, 0.406812, 0.273651, 0.281765 )
 
-[sub_resource type="GradientTexture" id=20]
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
 
-flags = 4
-gradient = SubResource( 19 )
-width = 2048
-
-[sub_resource type="Curve" id=21]
-
-min_value = 0.0
-max_value = 1.0
-bake_resolution = 100
+[sub_resource type="Curve" id=20]
 _data = [ Vector2( 0, 0.639648 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=22]
+[sub_resource type="CurveTexture" id=21]
+curve = SubResource( 20 )
 
-flags = 4
-width = 2048
-curve = SubResource( 21 )
-
-[sub_resource type="ParticlesMaterial" id=16]
-
-render_priority = 0
-trail_divisor = 1
+[sub_resource type="ParticlesMaterial" id=22]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
-flag_align_y = false
-flag_rotate_y = false
 flag_disable_z = true
 spread = 25.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 0.0
-initial_velocity_random = 0.0
-angular_velocity = 0.0
-angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
 angle = 25.0
 angle_random = 1.0
-angle_curve = SubResource( 18 )
+angle_curve = SubResource( 17 )
 scale = 5.0
-scale_random = 0.0
-scale_curve = SubResource( 22 )
-color_ramp = SubResource( 20 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Angle", "Color", "Initial Velocity", "Linear Accel", "Scale", "Trail" ]
+scale_curve = SubResource( 21 )
+color_ramp = SubResource( 19 )
 
 [node name="Rose" type="KinematicBody2D"]
-
-input_pickable = false
 collision_layer = 2
 collision_mask = 289
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform" ]
 max_hp = 5
 damage = 10
-spd = 50
-jspd = 75
-gravity = 250
 tag = "player"
 
-[node name="fadeanim" type="AnimationPlayer" parent="." index="0"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="fadeanim" type="AnimationPlayer" parent="."]
 anims/fadeanim = SubResource( 1 )
-blend_times = [  ]
 
-[node name="fadeSprite" type="Sprite" parent="." index="1"]
-
+[node name="fadeSprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 z_index = 100
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Visibility" ]
 
-[node name="floor_cast" type="RayCast2D" parent="." index="2"]
-
+[node name="floor_cast" type="RayCast2D" parent="."]
 position = Vector2( 6, 18 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 0.7 )
 collision_mask = 289
-_sections_unfolded = [ "Transform" ]
 
-[node name="floor_cast2" type="RayCast2D" parent="." index="3"]
-
+[node name="floor_cast2" type="RayCast2D" parent="."]
 position = Vector2( -6, 18 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 0.7 )
 collision_mask = 289
-_sections_unfolded = [ "Transform" ]
 
-[node name="floor_cast3" type="RayCast2D" parent="." index="4"]
-
+[node name="floor_cast3" type="RayCast2D" parent="."]
 position = Vector2( 0, 18 )
 enabled = true
-exclude_parent = true
 cast_to = Vector2( 0, 0.7 )
 collision_mask = 289
-_sections_unfolded = [ "Transform" ]
 
-[node name="animator" type="AnimationPlayer" parent="." index="5"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
+[node name="animator" type="AnimationPlayer" parent="."]
 anims/BDefAttack = SubResource( 2 )
 anims/Fall = SubResource( 3 )
 anims/Hurt = SubResource( 4 )
@@ -426,405 +311,204 @@ anims/XXXAttack = SubResource( 10 )
 anims/YAttack = SubResource( 11 )
 anims/YYAttack = SubResource( 12 )
 anims/YYYAttack = SubResource( 13 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="." index="6"]
-
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 shape = SubResource( 14 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="DamageArea" type="Area2D" parent="." index="7"]
-
+[node name="DamageArea" type="Area2D" parent="."]
 editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 2
 collision_mask = 1048
-audio_bus_override = false
-audio_bus_name = "Master"
 script = ExtResource( 3 )
-_sections_unfolded = [ "Collision" ]
 
-[node name="TriggerCollider" type="CollisionShape2D" parent="DamageArea" index="0"]
-
+[node name="TriggerCollider" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource( 14 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="RayCastCollision" type="Area2D" parent="." index="8"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
+[node name="RayCastCollision" type="Area2D" parent="."]
 collision_layer = 512
 collision_mask = 14337
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
 
-[node name="Sprites" type="Node2D" parent="." index="9"]
-
+[node name="Sprites" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 4 )
 
-[node name="StillSprites" type="Sprite" parent="Sprites" index="0"]
-
+[node name="StillSprites" type="Sprite" parent="Sprites"]
 texture = ExtResource( 5 )
 hframes = 5
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
-[node name="RunSprites" type="Sprite" parent="Sprites" index="1"]
-
+[node name="RunSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 6 )
 hframes = 8
 frame = 2
-_sections_unfolded = [ "Animation", "Offset" ]
 
-[node name="JumpSprites" type="Sprite" parent="Sprites" index="2"]
-
+[node name="JumpSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 7 )
 hframes = 3
-_sections_unfolded = [ "Animation" ]
 
-[node name="FallSprites" type="Sprite" parent="Sprites" index="3"]
-
+[node name="FallSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 8 )
 hframes = 3
 frame = 2
-_sections_unfolded = [ "Animation" ]
 
-[node name="HurtSprites" type="Sprite" parent="Sprites" index="4"]
-
+[node name="HurtSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 9 )
-_sections_unfolded = [ "Animation" ]
 
-[node name="JumpToFallSprites" type="Sprite" parent="Sprites" index="5"]
-
+[node name="JumpToFallSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 10 )
 hframes = 2
 frame = 1
-_sections_unfolded = [ "Animation" ]
 
-[node name="XAttackSprites" type="Sprite" parent="Sprites" index="6"]
-
+[node name="XAttackSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 11 )
 hframes = 25
-_sections_unfolded = [ "Animation", "Region" ]
 
-[node name="XXAttackSprites" type="Sprite" parent="Sprites" index="7"]
-
+[node name="XXAttackSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 12 )
 hframes = 6
 frame = 2
-_sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="XXXAttackSprites" type="Sprite" parent="Sprites" index="8"]
-
+[node name="XXXAttackSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 13 )
 hframes = 7
 frame = 6
-_sections_unfolded = [ "Animation", "Transform", "Visibility" ]
 
-[node name="BDefaultSprites" type="Sprite" parent="Sprites" index="9"]
-
+[node name="BDefaultSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 14 )
 hframes = 5
-_sections_unfolded = [ "Animation" ]
 
-[node name="YAttackSprites" type="Sprite" parent="Sprites" index="10"]
-
+[node name="YAttackSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 15 )
 hframes = 2
 frame = 1
-_sections_unfolded = [ "Animation" ]
 
-[node name="YYAttackSprites" type="Sprite" parent="Sprites" index="11"]
-
+[node name="YYAttackSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 16 )
 hframes = 2
-_sections_unfolded = [ "Animation" ]
 
-[node name="YYYAttackSprites" type="Sprite" parent="Sprites" index="12"]
-
+[node name="YYYAttackSprites" type="Sprite" parent="Sprites"]
 visible = false
 texture = ExtResource( 17 )
 hframes = 10
-_sections_unfolded = [ "Animation" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="10"]
-
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -100 )
-anchor_mode = 1
-rotating = false
 current = true
 zoom = Vector2( 0.5, 0.5 )
 limit_left = 0
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
 drag_margin_h_enabled = false
-drag_margin_v_enabled = true
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
 drag_margin_left = 0.05
-drag_margin_top = 0.2
 drag_margin_right = 0.05
 drag_margin_bottom = 0.03
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Editor", "Offset", "Smoothing", "Transform" ]
 
-[node name="Viewport" type="Viewport" parent="Camera2D" index="0"]
-
-arvr = false
+[node name="Viewport" type="Viewport" parent="Camera2D"]
 size = Vector2( 1, 1 )
-own_world = false
-world = null
-transparent_bg = false
-msaa = 0
-hdr = true
-disable_3d = false
-usage = 2
-debug_draw = 0
-render_target_v_flip = false
-render_target_clear_mode = 0
-render_target_update_mode = 2
-audio_listener_enable_2d = false
-audio_listener_enable_3d = false
-physics_object_picking = false
-gui_disable_input = false
-gui_snap_controls_to_pixels = true
-shadow_atlas_size = 0
-shadow_atlas_quad_0 = 2
-shadow_atlas_quad_1 = 2
-shadow_atlas_quad_2 = 3
-shadow_atlas_quad_3 = 4
-_sections_unfolded = [ "Pause" ]
 
-[node name="DetectBashHitboxArea" type="Area2D" parent="Camera2D" index="1"]
-
+[node name="DetectBashHitboxArea" type="Area2D" parent="Camera2D"]
 editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 512
 collision_mask = 4096
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectBashHitboxArea" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectBashHitboxArea"]
 shape = SubResource( 15 )
 
-[node name="DetectPierceHitboxArea" type="Area2D" parent="Camera2D" index="2"]
-
+[node name="DetectPierceHitboxArea" type="Area2D" parent="Camera2D"]
 editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 512
 collision_mask = 8192
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectPierceHitboxArea" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectPierceHitboxArea"]
 shape = SubResource( 15 )
 
-[node name="DetectSlashHitboxArea" type="Area2D" parent="Camera2D" index="3"]
-
+[node name="DetectSlashHitboxArea" type="Area2D" parent="Camera2D"]
 editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
 collision_layer = 512
 collision_mask = 2048
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectSlashHitboxArea" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DetectSlashHitboxArea"]
 shape = SubResource( 15 )
 
-[node name="States" type="Node2D" parent="." index="11"]
+[node name="States" type="Node2D" parent="."]
 
-[node name="Attack" type="Node2D" parent="States" index="0"]
-
+[node name="Attack" type="Node2D" parent="States"]
 script = ExtResource( 18 )
 
-[node name="InterruptTimer" type="Timer" parent="States/Attack" index="0"]
+[node name="InterruptTimer" type="Timer" parent="States/Attack"]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
+[node name="CooldownTimer" type="Timer" parent="States/Attack"]
 
-[node name="CooldownTimer" type="Timer" parent="States/Attack" index="1"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
-[node name="Move" type="Node2D" parent="States" index="1"]
-
+[node name="Move" type="Node2D" parent="States"]
 script = ExtResource( 19 )
-_sections_unfolded = [ "Pause" ]
 
-[node name="Hurt" type="Node2D" parent="States" index="2"]
-
+[node name="Hurt" type="Node2D" parent="States"]
 script = ExtResource( 20 )
 
-[node name="ParallaxBackground1" type="ParallaxBackground" parent="." index="12"]
+[node name="ParallaxBackground1" type="ParallaxBackground" parent="."]
 
-layer = -1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-scroll_offset = Vector2( 0, 0 )
-scroll_base_offset = Vector2( 0, 0 )
-scroll_base_scale = Vector2( 1, 1 )
-scroll_limit_begin = Vector2( 0, 0 )
-scroll_limit_end = Vector2( 0, 0 )
-scroll_ignore_camera_zoom = false
-_sections_unfolded = [ "Scroll" ]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground1" index="0"]
-
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground1"]
 motion_scale = Vector2( 0.25, 0.1 )
 motion_offset = Vector2( 0, -300 )
 motion_mirroring = Vector2( 900, 0 )
-_sections_unfolded = [ "Motion" ]
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer" index="0"]
-
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer"]
 texture = ExtResource( 21 )
 centered = false
-_sections_unfolded = [ "Offset" ]
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground1" index="1"]
-
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground1"]
 motion_scale = Vector2( 0.5, 0.15 )
 motion_offset = Vector2( 0, -300 )
 motion_mirroring = Vector2( 900, 0 )
-_sections_unfolded = [ "Motion" ]
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer2" index="0"]
-
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer2"]
 texture = ExtResource( 22 )
 centered = false
-_sections_unfolded = [ "Offset" ]
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground1" index="2"]
-
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground1"]
 motion_scale = Vector2( 0.8, 0.8 )
 motion_offset = Vector2( 0, -100 )
 motion_mirroring = Vector2( 900, 0 )
-_sections_unfolded = [ "Motion" ]
 
-[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer3" index="0"]
-
+[node name="Sprite" type="Sprite" parent="ParallaxBackground1/ParallaxLayer3"]
 texture = ExtResource( 23 )
 centered = false
-_sections_unfolded = [ "Offset" ]
 
-[node name="kickup" type="Particles2D" parent="." index="13"]
-
+[node name="kickup" type="Particles2D" parent="."]
 position = Vector2( -2.20062, 19.3654 )
 rotation = 3.40339
 emitting = false
 amount = 3
-lifetime = 1.0
 one_shot = true
-preprocess = 0.0
-speed_scale = 1.0
 explosiveness = 0.95
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
-draw_order = 0
-process_material = SubResource( 16 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Textures" ]
+process_material = SubResource( 22 )
 
-[node name="kickup2" type="Particles2D" parent="." index="14"]
-
+[node name="kickup2" type="Particles2D" parent="."]
 position = Vector2( -2.20062, 19.3654 )
 rotation = 3.40339
 emitting = false
 amount = 3
-lifetime = 1.0
 one_shot = true
-preprocess = 0.0
-speed_scale = 1.0
 explosiveness = 0.95
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
-draw_order = 0
-process_material = SubResource( 16 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Process Material", "Textures" ]
-
+process_material = SubResource( 22 )
 [connection signal="frame_changed" from="Sprites/RunSprites" to="." method="_on_RunSprites_frame_changed"]
-
 [connection signal="frame_changed" from="Sprites/XAttackSprites" to="States/Attack" method="_frame_changed"]
-
 [connection signal="frame_changed" from="Sprites/XXAttackSprites" to="States/Attack" method="_frame_changed"]
-
 [connection signal="frame_changed" from="Sprites/XXXAttackSprites" to="States/Attack" method="_frame_changed"]
-
 [connection signal="frame_changed" from="Sprites/BDefaultSprites" to="States/Attack" method="_frame_changed"]
-
 [connection signal="area_entered" from="Camera2D/DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
-
 [connection signal="area_exited" from="Camera2D/DetectBashHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
-
 [connection signal="area_entered" from="Camera2D/DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
-
 [connection signal="area_exited" from="Camera2D/DetectPierceHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
-
 [connection signal="area_entered" from="Camera2D/DetectSlashHitboxArea" to="." method="_on_DetectHitboxArea_area_entered"]
-
 [connection signal="area_exited" from="Camera2D/DetectSlashHitboxArea" to="." method="_on_DetectHitboxArea_area_exited"]
-
-
