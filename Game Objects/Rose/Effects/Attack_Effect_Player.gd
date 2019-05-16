@@ -31,8 +31,6 @@ func on_area_entered(area):
 		return false;
 	else:
 		area.set_hit(self);
-		if(area.hittable):
-			get_tree().paused = true;
 		return true;
 	pass;
 
