@@ -70,7 +70,6 @@ tracks/0/keys = {
 extents = Vector2( 9.99699, 7 )
 
 [node name="wasp" instance=ExtResource( 1 )]
-editor/display_folded = true
 position = Vector2( 0, 0 )
 script = ExtResource( 2 )
 

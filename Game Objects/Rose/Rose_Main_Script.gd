@@ -110,6 +110,7 @@ func _on_DetectHitboxArea_area_exited(area):
 func hitboxLoop():
 	var space_state = get_world_2d().direct_space_state;
 	for item in targettableHitboxes:
+		
 		var slash = nextRay(self,item,11,space_state);
 		var bash = nextRay(self,item,12,space_state);
 		var pierce = nextRay(self,item,13,space_state);

@@ -4,20 +4,15 @@
 [ext_resource path="res://sprites/obstacle sprites/shit_rotted_bark.png" type="Texture" id=2]
 
 [node name="RottedBark" instance=ExtResource( 1 )]
-
 collision_layer = 4128
 hp = 1
 susceptible = "bash"
 vulnerable = "none"
 
 [node name="Area2D" parent="." index="1"]
-
 collision_layer = 4096
 susceptible = "bash"
 vulnerable = "none"
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
-
 texture = ExtResource( 2 )
-
-
